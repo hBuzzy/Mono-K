@@ -1,3 +1,4 @@
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -68,7 +69,19 @@ public class CharacterMovement : MonoBehaviour
 
     private void Jump()
     {
-        _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        // //_rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        // var jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody.gravityScale * _maxJumpHeight);
+        //
+        // if (_velocity.y > 0f) {
+        //     jumpSpeed = Mathf.Max(jumpSpeed - _velocity.y, 0f);
+        // }
+        // else if (_velocity.y < 0f) {
+        //     jumpSpeed += Mathf.Abs(_rigidbody.velocity.y);
+        // }
+        //
+        // _velocity.y += jumpSpeed;
+        //
+        // Debug.Log("jumped");
     }
 
     private void Run(Vector2 direction)
