@@ -1,45 +1,69 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Grounder))]
 
 public class CharacterJump : MonoBehaviour
 {
-    [Header("Main stats")]
-    [SerializeField, Range(1.5f, 6f)] private float _maxJumpHeight;
-    [SerializeField, Range(0.1f, 2f)] private float _timeToRichApex;
-    [SerializeField, Range(0f, 10f)] private float _gravityDownMultiplier;
-    [SerializeField, Range(0f, 10f)] private float _gravityUpMultiplier;
-    [SerializeField, Range(0f, 30f)] private float _maxFallSpeed;
+    [Header("Components")] [HideInInspector]
+    public Rigidbody2D body;
 
-    [Header("Additional stats")]
-    [SerializeField] private float _coyoteTime;
-    [SerializeField] private float _bufferTime;
+    private Grounder ground;
+    private CharacterGround _ground2;
 
-    private Rigidbody2D _rigidbody2D;
-    private Grounder _grounder;
+    [HideInInspector] public Vector2 velocity;
+    //private characterJuice juice;
+
+
+    [Header("Jumping Stats")] [SerializeField, Range(2f, 5.5f)] [Tooltip("Maximum jump height")]
+    public float jumpHeight = 7.3f;
+
+    [SerializeField, Range(0.2f, 1.25f)] [Tooltip("How long it takes to reach that height before coming back down")]
+    public float timeToJumpApex;
+
+    [SerializeField, Range(0f, 5f)] [Tooltip("Gravity multiplier to apply when going up")]
+    public float upwardMovementMultiplier = 1f;
+
+    [SerializeField, Range(1f, 10f)] [Tooltip("Gravity multiplier to apply when coming down")]
+    public float downwardMovementMultiplier = 6.17f;
+
+    [SerializeField, Range(0, 1)] [Tooltip("How many times can you jump in the air?")]
+    public int maxAirJumps = 0;
+
+    [Header("Options")] [Tooltip("Should the character drop when you let go of jump?")]
+    public bool variablejumpHeight;
+
+    [SerializeField, Range(1f, 10f)] [Tooltip("Gravity multiplier when you let go of jump")]
+    public float jumpCutOff;
+
+    [SerializeField] [Tooltip("The fastest speed the character can fall")]
+    public float speedLimit;
+
+    [SerializeField, Range(0f, 0.3f)] [Tooltip("How long should coyote time last?")]
+    public float coyoteTime = 0.15f;
+
+    [SerializeField, Range(0f, 0.3f)] [Tooltip("How far from ground should we cache your jump?")]
+    public float jumpBuffer = 0.15f;
+
+    [Header("Calculations")] public float jumpSpeed;
+    private float defaultGravityScale = 1f;
+    public float gravMultiplier = 1f;
+
+    [Header("Current State")] private bool desiredJump;
+    private bool pressingJump;
+    public bool onGround;
+    private bool currentlyJumping;
+
+
     private PlayerInputActions _playerInput;
-    
-    private float _jumpSpeed;
-    private Vector2 _velocity;
-    private float _gravityMultiplayer = 1f;
-    private float _defaultGravityScale = 1f;
 
-    private bool _isGrounded;
-    private bool _pressingJumpButton;
-    private bool _wantToJump;
-
-    private void Awake()
+    void Awake()
     {
+        body = GetComponent<Rigidbody2D>();
+        ground = GetComponent<Grounder>();
+        _ground2 = GetComponent<CharacterGround>();
         _playerInput = new PlayerInputActions();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-    
-    private void Start()
-    {
-        _grounder = GetComponent<Grounder>();
+        defaultGravityScale = 1f;
     }
 
     private void OnEnable()
@@ -56,56 +80,119 @@ public class CharacterJump : MonoBehaviour
         _playerInput.Character.Jump.canceled -= OnJumpCanceled;
     }
 
-    private void Update()
+    void Update()
     {
-        CalculatePhysics();
+        setPhysics();
 
-        if (_wantToJump == true)
+        if (ground.enabled)
         {
-            _wantToJump = false;
+            onGround = ground.IsGrounded;
         }
+        else if (_ground2.enabled)
+        {
+            onGround = _ground2.GetOnGround();
+        }
+    }
+
+    private void setPhysics()
+    {
+        Vector2 newGravity = new Vector2(0, (-2 * jumpHeight) / (timeToJumpApex * timeToJumpApex));
+        body.gravityScale = (newGravity.y / Physics2D.gravity.y) * gravMultiplier;
     }
 
     private void FixedUpdate()
     {
-        if (_wantToJump == true)
+        velocity = body.velocity;
+
+        if (desiredJump)
         {
-            Jump();
-            _rigidbody2D.velocity = _velocity;
+            DoAJump();
+            body.velocity = velocity;
+            return;
         }
-        
-        CalculateGravity();
+
+        calculateGravity();
     }
 
-    private void CalculatePhysics()
-    {
-        // float x = 0;
-        // float y = (-2 * _maxJumpHeight) / (_timeToRichApex * _timeToRichApex);
-        // Vector2 gravity = new Vector2(0, y);
-        //
-        // _rigidbody2D.gravityScale = (gravity.y / Physics2D.gravity.y) / _gravityMultiplayer;
-    }
-
-    private void CalculateGravity()
-    {
-        
-    }
-    
     private void OnJumpStarted(InputAction.CallbackContext context)
     {
-        _wantToJump = true;
-        _pressingJumpButton = true;
-        Debug.Log("wanna jump");
-    }
-    
-    private void OnJumpCanceled(InputAction.CallbackContext context)
-    {
-        _pressingJumpButton = false;
-        Debug.Log("Don't wanna jump");
+        desiredJump = true;
+        pressingJump = true;
     }
 
-    private void Jump()
+    private void OnJumpCanceled(InputAction.CallbackContext context)
     {
+        pressingJump = false;
+    }
+
+    private void calculateGravity()
+    {
+        if (body.velocity.y > 0.01f)
+        {
+            if (onGround)
+            {
+                gravMultiplier = defaultGravityScale;
+            }
+            else
+            {
+                if (pressingJump && currentlyJumping)
+                {
+                    gravMultiplier = upwardMovementMultiplier;
+                }
+                else
+                {
+                    gravMultiplier = jumpCutOff;
+                }
+            }
+        }
+        else if (body.velocity.y < -0.01f)
+        {
+            if (onGround)
+            {
+                gravMultiplier = defaultGravityScale;
+            }
+            else
+            {
+                gravMultiplier = downwardMovementMultiplier;
+            }
+        }
+        else
+        {
+            if (onGround)
+            {
+                currentlyJumping = false;
+            }
+
+            gravMultiplier = defaultGravityScale;
+        }
+
+        body.velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -speedLimit, 100));
+    }
+
+    private void DoAJump()
+    {
+        if (onGround)
+        {
+            desiredJump = false;
+
+            var rem = jumpSpeed;
+
+            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
         
+            if (velocity.y > 0f) {
+                jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+            }
+            else if (velocity.y < 0f) {
+                jumpSpeed += Mathf.Abs(body.velocity.y);
+            }
+            
+            if (jumpSpeed > rem * 1.5 && rem != 0)
+            {
+                jumpSpeed = rem;
+            }
+
+            velocity.y += jumpSpeed;
+            currentlyJumping = true;
+        }
     }
 }

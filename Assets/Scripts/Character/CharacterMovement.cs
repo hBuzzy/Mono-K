@@ -1,7 +1,4 @@
-using TMPro.EditorUtilities;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -19,11 +16,13 @@ public class CharacterMovement : MonoBehaviour
     private PlayerInputActions _playerInput;
     private Grounder _grounder;
     private Rigidbody2D _rigidbody;
+    private SpriteRenderer _spriteRenderer;
 
-    private float _speedChange;
-    private Vector2 _velocity;
-    private Vector2 _desiredVelocity;
-    private float directionX;
+    public float _speedChange; //TODO: Make it private after tests
+    public Vector2 _velocity; //TODO: Make it private after tests
+    public Vector2 _desiredVelocity; // TODO: Make it private after tests
+    public float previousDirectionX;
+    public float directionX; //TODO: Make it private after tests
     private bool isGrounded;
 
     private void Awake()
@@ -35,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _grounder = GetComponent<Grounder>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -50,23 +50,30 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         directionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
+
+        if (IsDirectionChanged())
+        {
+            FlipDirection();
+            previousDirectionX = directionX;
+        }
+
         float friction = 0;
         _desiredVelocity = new Vector2(directionX, 0f) * Mathf.Max(_maxMoveSpeed - friction, 0f);
     }
-    
+
     private void FixedUpdate()
     {
         isGrounded = _grounder.IsGrounded;
         _velocity = _rigidbody.velocity;
 
-        Move();
+        if (CharacterMovementBlocker.Instance.CanMove)
+        {
+            Move();
+        }
     }
 
     private void Move()
     {
-        //_rigidbody.velocity = new Vector2(direction.x * _moveSpeed, _rigidbody.velocity.y);
-        //transform.position += new Vector3(direction.x, 0, direction.y) * (_moveSpeed * Time.deltaTime);
-
         float acceleration = isGrounded ? _acceleration : _airAcceleration;
         float deceleration = isGrounded ? _deceleration : _airDeceleration;
         float turnSpeed = isGrounded ? _turnSpeed : _airTurnSpeed;
@@ -89,5 +96,22 @@ public class CharacterMovement : MonoBehaviour
 
         _velocity.x = Mathf.MoveTowards(_velocity.x, _desiredVelocity.x, _speedChange);
         _rigidbody.velocity = _velocity;
+    }
+
+    private void FlipDirection()
+    {
+        _spriteRenderer.flipX = directionX == (float)MoveDirectionX.Left;
+    }
+
+    private bool IsDirectionChanged()
+    {
+        return directionX != previousDirectionX && directionX != (float)MoveDirectionX.Idle;
+    }
+    
+    private enum MoveDirectionX
+    {
+        Left = -1,
+        Idle = 0,
+        Right = 1
     }
 }
