@@ -22,13 +22,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "73db620d-15a4-48d6-93f3-372c30dd8eae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "49ed6c5b-486e-42f7-9db2-435226f9e606",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
@@ -50,7 +59,7 @@
                 {
                     "name": "up",
                     "id": "6b268ba4-a809-4638-814f-62938d2226e9",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
@@ -61,7 +70,7 @@
                 {
                     "name": "down",
                     "id": "7d381c1b-c703-4775-b470-894c0741a6d8",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
@@ -72,7 +81,7 @@
                 {
                     "name": "left",
                     "id": "7782994d-5c0a-4be4-a31d-2c11dfaa00bd",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
@@ -83,13 +92,24 @@
                 {
                     "name": "right",
                     "id": "7429fed4-bc6a-488e-9ee0-119ca9868c79",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "b417fd27-2dce-414e-b120-e11148b9a986",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
