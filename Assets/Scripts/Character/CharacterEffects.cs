@@ -15,6 +15,7 @@ public class CharacterEffects : MonoBehaviour
     private CharacterMovement _characterMovement;
     private CharacterDash _characterDash;
     private CharacterJump _characterJump;
+    private Animator _animator;
     
     private void Awake()
     {

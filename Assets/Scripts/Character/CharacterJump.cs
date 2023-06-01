@@ -7,8 +7,7 @@ public class CharacterJump : MonoBehaviour
 {
     [Header("Components")] [HideInInspector]
     public Rigidbody2D body;
-
-    private Grounder ground;
+    
     private CharacterGround _ground2;
 
     [HideInInspector] public Vector2 velocity;
@@ -61,7 +60,6 @@ public class CharacterJump : MonoBehaviour
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        ground = GetComponent<Grounder>();
         _ground2 = GetComponent<CharacterGround>();
         _playerInput = new PlayerInputActions();
         defaultGravityScale = 1f;
@@ -88,14 +86,7 @@ public class CharacterJump : MonoBehaviour
             setPhysics();
         }
 
-        if (ground.enabled)
-        {
-            onGround = ground.IsGrounded;
-        }
-        else if (_ground2.enabled)
-        {
-            onGround = _ground2.GetOnGround();
-        }
+        onGround = _ground2.GetOnGround();
     }
 
     private void setPhysics()

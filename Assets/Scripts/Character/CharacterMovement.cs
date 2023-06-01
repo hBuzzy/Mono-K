@@ -15,9 +15,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float _airDeceleration;
     
     private PlayerInputActions _playerInput;
-    private Grounder _grounder;
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
+    private CharacterGround _grounder;
 
     public float _speedChange; //TODO: Make it private after tests
     public Vector2 _velocity; //TODO: Make it private after tests
@@ -33,9 +33,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        _grounder = GetComponent<Grounder>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _grounder = GetComponent<CharacterGround>();
     }
 
     private void OnEnable()
@@ -64,7 +64,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = _grounder.IsGrounded;
+        isGrounded = _grounder.GetOnGround();
         _velocity = _rigidbody.velocity;
 
         Move();
