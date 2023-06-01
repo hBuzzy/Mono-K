@@ -20,7 +20,8 @@ public class CharacterDash : MonoBehaviour
     private bool _dashNeed;
     
     private PlayerInputActions _playerInput;
-    
+
+    public event Action Dashed;
     
     private void Awake()
     {
@@ -67,6 +68,8 @@ public class CharacterDash : MonoBehaviour
         _rigidbody.velocity = Vector2.zero;
         Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>().normalized;
         
+        Dashed?.Invoke();
+
         StartCoroutine(WaitDash(direction));
     }
 
