@@ -17,30 +17,31 @@ public class CharacterMovement : MonoBehaviour
     private PlayerInputActions _playerInput;
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
-    private CharacterGround _grounder;
+    private Character _character;
 
     public float _speedChange; //TODO: Make it private after tests
     public Vector2 _velocity; //TODO: Make it private after tests
     public Vector2 _desiredVelocity; // TODO: Make it private after tests
     public float previousDirectionX;
     public float directionX; //TODO: Make it private after tests
-    private bool isGrounded;
+    private bool _isGrounded;
 
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
+        _character = GetComponent<Character>();
     }
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _grounder = GetComponent<CharacterGround>();
     }
 
     private void OnEnable()
     {
         _playerInput.Character.Enable();
+        _character.GrounedChanged += isGrounded => { _isGrounded = isGrounded; };
     }
 
     private void OnDisable()
@@ -64,7 +65,6 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = _grounder.GetOnGround();
         _velocity = _rigidbody.velocity;
 
         Move();
@@ -72,9 +72,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
-        float acceleration = isGrounded ? _acceleration : _airAcceleration;
-        float deceleration = isGrounded ? _deceleration : _airDeceleration;
-        float turnSpeed = isGrounded ? _turnSpeed : _airTurnSpeed;
+        float acceleration = _isGrounded ? _acceleration : _airAcceleration;
+        float deceleration = _isGrounded ? _deceleration : _airDeceleration;
+        float turnSpeed = _isGrounded ? _turnSpeed : _airTurnSpeed;
 
         if (directionX == 0) //TODO: Refactoring 
         {

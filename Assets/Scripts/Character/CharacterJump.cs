@@ -1,14 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 
 public class CharacterJump : MonoBehaviour
 {
     [Header("Components")] [HideInInspector]
     public Rigidbody2D body;
-    
-    private CharacterGround _ground2;
 
     [HideInInspector] public Vector2 velocity;
     //private characterJuice juice;
@@ -48,19 +47,21 @@ public class CharacterJump : MonoBehaviour
     private float defaultGravityScale = 1f;
     public float gravMultiplier = 1f;
 
-    [Header("Current State")] private bool desiredJump;
+    [Header("Current State")] 
+    private bool desiredJump;
     private bool pressingJump;
-    public bool onGround;
+    public bool _isGrounded;
     private bool currentlyJumping;
     
     private PlayerInputActions _playerInput;
+    private Character _character;
 
     public event Action Jumped;
 
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        _ground2 = GetComponent<CharacterGround>();
+        _character = GetComponent<Character>();
         _playerInput = new PlayerInputActions();
         defaultGravityScale = 1f;
     }
@@ -70,6 +71,7 @@ public class CharacterJump : MonoBehaviour
         _playerInput.Enable();
         _playerInput.Character.Jump.started += OnJumpStarted;
         _playerInput.Character.Jump.canceled += OnJumpCanceled;
+        _character.GrounedChanged += isGrounded => { _isGrounded = isGrounded; };
     }
 
     private void OnDisable()
@@ -85,8 +87,6 @@ public class CharacterJump : MonoBehaviour
         {
             setPhysics();
         }
-
-        onGround = _ground2.GetOnGround();
     }
 
     private void setPhysics()
@@ -125,7 +125,7 @@ public class CharacterJump : MonoBehaviour
     {
         if (body.velocity.y > 0.01f)
         {
-            if (onGround)
+            if (_isGrounded)
             {
                 gravMultiplier = defaultGravityScale;
             }
@@ -143,7 +143,7 @@ public class CharacterJump : MonoBehaviour
         }
         else if (body.velocity.y < -0.01f)
         {
-            if (onGround)
+            if (_isGrounded)
             {
                 gravMultiplier = defaultGravityScale;
             }
@@ -154,7 +154,7 @@ public class CharacterJump : MonoBehaviour
         }
         else
         {
-            if (onGround)
+            if (_isGrounded)
             {
                 currentlyJumping = false;
             }
@@ -167,7 +167,7 @@ public class CharacterJump : MonoBehaviour
 
     private void DoAJump()
     {
-        if (onGround)
+        if (_isGrounded)
         {
             desiredJump = false;
 
