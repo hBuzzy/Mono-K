@@ -53,9 +53,10 @@ public class CharacterJump : MonoBehaviour
     private bool pressingJump;
     public bool onGround;
     private bool currentlyJumping;
-
-
+    
     private PlayerInputActions _playerInput;
+
+    public event Action Jumped;
 
     void Awake()
     {
@@ -110,6 +111,7 @@ public class CharacterJump : MonoBehaviour
         if (desiredJump)
         {
             DoAJump();
+            Jumped?.Invoke();
             body.velocity = velocity;
             return;
         }
