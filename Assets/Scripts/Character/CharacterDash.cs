@@ -8,6 +8,12 @@ using UnityEngine.InputSystem;
 
 public class CharacterDash : MonoBehaviour
 {
+    [SerializeField] private float _speed;
+    [SerializeField, Range(0f, 20f)] private float _maxDrag;
+    [SerializeField, Range(0f, 20f)] private float _minDrag;
+    [SerializeField, Range(0f, 1f)] private float _dragChangeTime;
+    
+    
     private Rigidbody2D _rigidbody;
 
     private Vector2 _velocity;
@@ -68,18 +74,17 @@ public class CharacterDash : MonoBehaviour
     {
         CharacterMovementBlocker.Instance.DisableMovement();
         
-        var dashSpeed = 15f;
         var orGravity = _rigidbody.gravityScale;
 
-        DOVirtual.Float(14, 0, 0.8f, RigidbodyDrag);
+        DOVirtual.Float(_maxDrag, _minDrag, _dragChangeTime, RigidbodyDrag);
         
         _rigidbody.gravityScale = 0f;
         
-        _velocity = direction * new Vector2(dashSpeed, dashSpeed);
-        yield return new WaitForSeconds(.4f);
+        _velocity = direction * new Vector2(_speed, _speed);
+        yield return new WaitForSeconds(.1f);
         
         CharacterMovementBlocker.Instance.EnableMovement();
-        _rigidbody.gravityScale = orGravity;
+        _rigidbody.gravityScale = 1f;
     }
 
     private void RigidbodyDrag(float x)
