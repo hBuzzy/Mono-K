@@ -82,7 +82,10 @@ public class CharacterJump : MonoBehaviour
 
     void Update()
     {
-        setPhysics();
+        if (CharacterMovementBlocker.Instance.CanMove)
+        {
+            setPhysics();
+        }
 
         if (ground.enabled)
         {

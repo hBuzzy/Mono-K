@@ -66,10 +66,7 @@ public class CharacterMovement : MonoBehaviour
         isGrounded = _grounder.IsGrounded;
         _velocity = _rigidbody.velocity;
 
-        if (CharacterMovementBlocker.Instance.CanMove)
-        {
-            Move();
-        }
+        Move();
     }
 
     private void Move()
