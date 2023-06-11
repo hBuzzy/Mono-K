@@ -41,7 +41,7 @@ public class CharacterMovement : MonoBehaviour
     private void OnEnable()
     {
         _playerInput.Character.Enable();
-        _character.GrounedChanged += isGrounded => { _isGrounded = isGrounded; };
+        _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
     }
 
     private void OnDisable()
@@ -52,7 +52,20 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         directionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
-
+        //directionX = Mathf.MoveTowards(input, directionX, 5f * Time.deltaTime);
+        
+        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>().normalized;
+        Debug.Log(direction);
+        
+        if (directionX != 0)
+        {
+            directionX = directionX > 0 ? 1 : -1;
+        }
+        else
+        {
+            directionX = 0;
+        }
+        
         if (IsDirectionChanged())
         {
             FlipDirection();
