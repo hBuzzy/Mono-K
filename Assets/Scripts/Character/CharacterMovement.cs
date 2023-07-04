@@ -26,6 +26,9 @@ public class CharacterMovement : MonoBehaviour
     public float directionX; //TODO: Make it private after tests
     private bool _isGrounded;
 
+    private bool _isOnPlatform;
+    private Vector2 _platformVelocity;
+
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
@@ -55,7 +58,7 @@ public class CharacterMovement : MonoBehaviour
         //directionX = Mathf.MoveTowards(input, directionX, 5f * Time.deltaTime);
         
         Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>().normalized;
-        Debug.Log(direction);
+        //Debug.Log(direction);
         
         if (directionX != 0)
         {
@@ -83,6 +86,32 @@ public class CharacterMovement : MonoBehaviour
         Move();
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.TryGetComponent(out MovingPlatform movingPlatform))
+        {
+            _isOnPlatform = true;
+            _platformVelocity = movingPlatform.Velocity;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.collider.TryGetComponent(out MovingPlatform movingPlatform))
+        {
+            _platformVelocity = movingPlatform.Velocity;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.collider.TryGetComponent(out MovingPlatform movingPlatform))
+        {
+            _isOnPlatform = false;
+            _platformVelocity = Vector3.zero;
+        }
+    }
+
     private void Move()
     {
         float acceleration = _isGrounded ? _acceleration : _airAcceleration;
@@ -105,7 +134,14 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
+
+        if (_isOnPlatform && directionX == 0)
+        {
+            _desiredVelocity.x += _platformVelocity.x;
+        }
+        
         _velocity.x = Mathf.MoveTowards(_velocity.x, _desiredVelocity.x, _speedChange);
+
         _rigidbody.velocity = _velocity;
     }
 
