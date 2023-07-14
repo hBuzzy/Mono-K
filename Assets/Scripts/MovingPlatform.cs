@@ -38,29 +38,11 @@ public class MovingPlatform : MonoBehaviour
             target = _wayPoints[0];
             CalculateDirection();
         }
-
-        //transform.position = Vector3.MoveTowards(transform.position, target, _moveSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         _rigidbody.velocity = _moveDirection * _moveSpeed;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.TryGetComponent(out Character character))
-        {
-            character.transform.SetParent(transform);
-        }
-    }
-    
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.collider.TryGetComponent(out Character character))
-        {
-            character.transform.SetParent(null);
-        }
     }
 
     private void CalculateDirection()
