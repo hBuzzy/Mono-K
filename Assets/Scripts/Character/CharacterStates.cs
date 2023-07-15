@@ -1,9 +1,12 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStates : MonoBehaviour
 {
     [SerializeField] private CharacterGround _grounder;
+    [SerializeField] private TMP_Text _text;
     
     private CharacterMovement _movementScript;
     private Character _character;
@@ -11,6 +14,7 @@ public class CharacterStates : MonoBehaviour
     private CharacterDash _dashScript;
     private Rigidbody2D _rigidbody;
     private CharacterSlide _slideScript;
+    private CharacterHurt _hurtScript;
 
     private bool _isGrounded;
     private bool _isMoving;
@@ -19,6 +23,7 @@ public class CharacterStates : MonoBehaviour
     private bool _isFalling;
     private bool _isJump;
     private bool _isSliding;
+    private bool _isHurt;
     private Vector2 _velocity;
 
     private States _currentState;
@@ -32,6 +37,7 @@ public class CharacterStates : MonoBehaviour
         _slideScript = GetComponent<CharacterSlide>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
+        _hurtScript = GetComponent<CharacterHurt>();
         
         _jumpScript.Jumped += () => { _isJumping = true; };
         _dashScript.DashStatusChanged += isDashing =>
@@ -44,7 +50,10 @@ public class CharacterStates : MonoBehaviour
             _isGrounded = isGrounded;
             _isJumping = false;
         };
-
+        _hurtScript.Hurting += isHurt =>
+        {
+            _isHurt = isHurt;
+        };
         _slideScript.SlidingStatusChanged += isSliding =>
         {
             _isSliding = isSliding;
@@ -86,7 +95,8 @@ public class CharacterStates : MonoBehaviour
         {
             _currentState = newState;
             StateChanged?.Invoke(_currentState);
-            Debug.Log(_currentState);
+            _text.text = _currentState.ToString();
+            //Debug.Log(_currentState);
         }
     }
 
@@ -97,6 +107,11 @@ public class CharacterStates : MonoBehaviour
 
     private States UpdateState()
     {
+        if (_isHurt)
+        {
+            return States.Hurt;
+        }
+        
         if (_isSliding)
         {
             return States.Slide;
@@ -129,6 +144,8 @@ public class CharacterStates : MonoBehaviour
         Land = 5,
         Fall = 6,
         Slide =7,
-        Dash
+        Dash = 8,
+        Hurt = 9,
+        Explosion = 10
     }
 }

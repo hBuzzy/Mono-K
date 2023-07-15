@@ -17,6 +17,9 @@ public class CharacterEffects : MonoBehaviour
     [Header("Walk")]
     [SerializeField] private AudioSource _walkSound;
     
+    [Header("Hurt")]
+    [SerializeField] private AudioSource _hitSound;
+
     private CharacterMovement _characterMovement;
     private CharacterDash _characterDash;
     private CharacterJump _characterJump;
@@ -43,6 +46,8 @@ public class CharacterEffects : MonoBehaviour
 
     private void HandleState(CharacterStates.States state)
     {
+        //_walkSound.Stop();
+        
         if (state == CharacterStates.States.Jump)
         {
             PlayJumpEffects();
@@ -50,6 +55,14 @@ public class CharacterEffects : MonoBehaviour
         else if (state == CharacterStates.States.Dash)
         {
             PlayDashEffect();
+        }
+        else if (state == CharacterStates.States.Move)
+        {
+            //_walkSound.Play();
+        }
+        else if (state == CharacterStates.States.Hurt)
+        {
+            PlayHurtEffect();
         }
     }
 
@@ -61,10 +74,15 @@ public class CharacterEffects : MonoBehaviour
 
     private void PlayDashEffect()
     {
-        _dashSound.Play();
+        _dashSound.PlayOneShot(_dashSound.clip);
         _dashDustEffect.Play();
     }
-    
+
+    private void PlayHurtEffect()
+    {
+        _hitSound.PlayOneShot(_hitSound.clip);
+    }
+
     private void OnJumped()
     {
         //_jumpSound.Play();

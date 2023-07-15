@@ -17,7 +17,7 @@ public class CharacterSlide : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
     }
-
+    
     private void OnEnable()
     {
         _character.WalledChanged += isOnWall => { _isOnWall = isOnWall; };
@@ -48,7 +48,7 @@ public class CharacterSlide : MonoBehaviour
 
         if (_isSliding)
         {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -0.3f, float.MaxValue));
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -0.7f, float.MaxValue));
         }
     }
 }

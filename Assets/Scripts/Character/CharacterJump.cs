@@ -85,7 +85,7 @@ public class CharacterJump : MonoBehaviour
 
         if (desiredJump)
         {
-            DoAJump();
+            Jump();
             body.velocity = velocity;
             return;
         }
@@ -102,6 +102,7 @@ public class CharacterJump : MonoBehaviour
     private void OnJumpCanceled(InputAction.CallbackContext context)
     {
         pressingJump = false;
+        desiredJump = false;
     }
 
     private void calculateGravity()
@@ -148,7 +149,7 @@ public class CharacterJump : MonoBehaviour
         body.velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -speedLimit, 100));
     }
 
-    private void DoAJump()
+    private void Jump()
     {
         if (_isGrounded)
         {

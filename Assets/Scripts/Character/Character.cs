@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CharacterStates))]
 
@@ -7,24 +9,32 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private CharacterGround _grounder; //TODO: Rename
     [SerializeField] private CharacterWallChecker _waller;//TODO: Rename
-    
+    [SerializeField] private Transform _respawnPoint;
+    [SerializeField] private NightSwitcher _nightSwitcher;
+    [SerializeField] private Light2D _light;
+    [SerializeField] private TrailRenderer _trail;
+
     private bool _isGrounded;
     private bool _isCurrentlyGrounded;
     private bool _isOnWall;
     private bool _isCurrentlyOnWall;
     private float _directionX;
-
+    private bool _canMove;
+    
     private CharacterStates _states;
     private PlayerInputActions _playerInput;
     public event Action<bool> GroundedChanged; //TODO: Rename
     public event Action<bool> WalledChanged;
+    public event Action<bool> Hurted;
 
     public float DirectionX => _directionX;
+    public bool CanMove => _canMove;
 
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
         _playerInput.Character.Enable();
+        _canMove = true;
     }
 
     private void Start()
@@ -39,6 +49,15 @@ public class Character : MonoBehaviour
     private void OnEnable()
     {
         _playerInput.Character.Enable();
+        _nightSwitcher.NightStarted += NightStarted;
+    }
+
+    private void NightStarted()
+    {
+        Debug.Log("night");
+
+        _light.enabled = true;
+        _trail.enabled = true;
     }
 
     private void OnDisable()

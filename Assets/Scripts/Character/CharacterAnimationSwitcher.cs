@@ -11,7 +11,9 @@ public class CharacterAnimationSwitcher : MonoBehaviour
     private readonly int _jumpEnd = Animator.StringToHash("JumpEnd");
     private readonly int _walk = Animator.StringToHash("Walk");
     private readonly int _dash = Animator.StringToHash("Dash");
-    
+    private readonly int _slide = Animator.StringToHash("Slide");
+    private readonly int _hurt = Animator.StringToHash("Hurt");
+
     private Animator _animator;
     
     private bool _isJumping;
@@ -43,7 +45,16 @@ public class CharacterAnimationSwitcher : MonoBehaviour
     
     private int GetStateAnimation(CharacterStates.States state)
     {
-
+        if (state == CharacterStates.States.Hurt)
+        {
+            return _hurt;
+        }
+        
+        if (state == CharacterStates.States.Slide)
+        {
+            return _slide;
+        }
+        
         if (state == CharacterStates.States.Dash)
         {
             return _dash;

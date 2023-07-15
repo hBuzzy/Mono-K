@@ -25,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     public float previousDirectionX;
     public float directionX; //TODO: Make it private after tests
     private bool _isGrounded;
+    private bool _isWallTouch;
 
     private bool _isOnPlatform;
     private Vector2 _platformVelocity;
@@ -45,6 +46,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _playerInput.Character.Enable();
         _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
+        _character.WalledChanged += isWallTouch => { _isWallTouch = isWallTouch; };
     }
 
     private void OnDisable()
@@ -69,7 +71,7 @@ public class CharacterMovement : MonoBehaviour
             directionX = 0;
         }
         
-        if (IsDirectionChanged())
+        if (IsDirectionChanged() && _isWallTouch == false)
         {
             FlipDirection();
             previousDirectionX = directionX;
