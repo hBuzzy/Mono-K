@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class CharacterJump : MonoBehaviour
 {
-    [Header("Components")] [HideInInspector]
-    public Rigidbody2D body;
+    private Rigidbody2D _rigidbody;
 
-    [HideInInspector] public Vector2 velocity;
+    [HideInInspector] public Vector2 velocity;//TODO:
     //private characterJuice juice;
 
 
@@ -16,12 +16,12 @@ public class CharacterJump : MonoBehaviour
     [SerializeField, Range(0.2f, 1.25f)] public float timeToJumpApex;
     [SerializeField, Range(0f, 5f)] public float upwardMovementMultiplier = 1f;
     [SerializeField, Range(1f, 10f)] public float downwardMovementMultiplier = 6.17f;
-
+    [SerializeField] private float _wallJumpForce;
+    
     [Header("Options")]
     [SerializeField, Range(0f, 10f)] public float jumpCutOff;
     [SerializeField] public float speedLimit;
     [SerializeField, Range(0f, 0.3f)] public float coyoteTime = 0.15f;
-
     [SerializeField, Range(0f, 0.3f)] public float jumpBuffer = 0.15f;
 
     [Header("Calculations")] public float jumpSpeed;
@@ -33,6 +33,8 @@ public class CharacterJump : MonoBehaviour
     private bool pressingJump;
     public bool _isGrounded;
     private bool currentlyJumping;
+    private bool _isTouchingWall;
+    private float jumpBufferCounter;
     
     private PlayerInputActions _playerInput;
     private Character _character;
@@ -42,7 +44,7 @@ public class CharacterJump : MonoBehaviour
 
     void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
         _states = GetComponent<CharacterStates>();
         _playerInput = new PlayerInputActions();
@@ -55,7 +57,10 @@ public class CharacterJump : MonoBehaviour
         _playerInput.Character.Jump.started += OnJumpStarted;
         _playerInput.Character.Jump.canceled += OnJumpCanceled;
         _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
-        
+        _character.WalledChanged += isTouchingWall =>
+        {
+            _isTouchingWall = isTouchingWall;
+        };
     }
 
     private void OnDisable()
@@ -69,28 +74,41 @@ public class CharacterJump : MonoBehaviour
     {
         if (_states.GetCurrentState() != CharacterStates.States.Dash)
         {
-            setPhysics();
+            SetPhysics();
+        }
+
+        if (jumpBuffer > 0)
+        {
+            if (desiredJump)
+            {
+                jumpBufferCounter += Time.deltaTime;
+
+                if (jumpBufferCounter > jumpBuffer)
+                {
+                    desiredJump = false;
+                    jumpBufferCounter = 0;
+                }
+            }
         }
     }
 
-    private void setPhysics()
+    private void SetPhysics()
     {
         Vector2 newGravity = new Vector2(0, (-2 * jumpHeight) / (timeToJumpApex * timeToJumpApex));
-        body.gravityScale = (newGravity.y / Physics2D.gravity.y) * gravMultiplier;
+        _rigidbody.gravityScale = (newGravity.y / Physics2D.gravity.y) * gravMultiplier;
     }
 
     private void FixedUpdate()
     {
-        velocity = body.velocity;
+        velocity = _rigidbody.velocity;
 
         if (desiredJump)
         {
             Jump();
-            body.velocity = velocity;
             return;
         }
 
-        calculateGravity();
+        CalculateGravity();
     }
 
     private void OnJumpStarted(InputAction.CallbackContext context)
@@ -102,12 +120,11 @@ public class CharacterJump : MonoBehaviour
     private void OnJumpCanceled(InputAction.CallbackContext context)
     {
         pressingJump = false;
-        desiredJump = false;
     }
 
-    private void calculateGravity()
+    private void CalculateGravity()
     {
-        if (body.velocity.y > 0.01f)
+        if (_rigidbody.velocity.y > 0.01f)
         {
             if (_isGrounded)
             {
@@ -125,7 +142,7 @@ public class CharacterJump : MonoBehaviour
                 }
             }
         }
-        else if (body.velocity.y < -0.01f)
+        else if (_rigidbody.velocity.y < -0.01f)
         {
             if (_isGrounded)
             {
@@ -138,7 +155,7 @@ public class CharacterJump : MonoBehaviour
         }
         else
         {
-            if (_isGrounded)
+            if (_isGrounded || _isTouchingWall)//TODO: Добавить на стене
             {
                 currentlyJumping = false;
             }
@@ -146,60 +163,80 @@ public class CharacterJump : MonoBehaviour
             gravMultiplier = defaultGravityScale;
         }
 
-        body.velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -speedLimit, 100));
+        _rigidbody.velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -speedLimit, 100));
     }
 
     private void Jump()
     {
         if (_isGrounded)
         {
-            Jumped.Invoke();
-            desiredJump = false;
-
-            var rem = jumpSpeed;
-
-            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
-        
-            if (velocity.y > 0f) {
-                jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
-            }
-            else if (velocity.y < 0f) {
-                jumpSpeed += Mathf.Abs(body.velocity.y);
-            }
-            
-            if (jumpSpeed > rem * 1.3 && rem != 0) //TODO: Create Methhod or fix this bug
-            {
-                jumpSpeed = rem;
-            }
-
-            velocity.y += jumpSpeed;
-            currentlyJumping = true;
-            //JumpStatusChanged?.Invoke(false);
+            JumpFromGround();
         }
 
         if (_states.GetCurrentState() == CharacterStates.States.Slide)
         {
-            Jumped.Invoke();
-            desiredJump = false;
-            
-            var rem = jumpSpeed;
-
-            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
-        
-            if (velocity.y > 0f) {
-                jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
-            }
-            else if (velocity.y < 0f) {
-                jumpSpeed += Mathf.Abs(body.velocity.y);
-            }
-            
-            if (jumpSpeed > rem * 1.3 && rem != 0) //TODO: Create Methhod or fix this bug
-            {
-                jumpSpeed = rem;
-            }
-
-            velocity.y += jumpSpeed;
-            currentlyJumping = true;
+            JumpFromWall();
         }
+
+        if (jumpBuffer == 0)
+        {
+            desiredJump = false;
+        }
+        _rigidbody.velocity = velocity;
+    }
+
+    private void JumpFromGround()
+    {
+        Jumped?.Invoke();
+        jumpBufferCounter = 0;
+        desiredJump = false;
+
+        var rem = jumpSpeed;
+
+        jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody.gravityScale * jumpHeight);
+        
+        if (velocity.y > 0f) {
+            jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+        }
+        else if (velocity.y < 0f) {
+            jumpSpeed += Mathf.Abs(_rigidbody.velocity.y);
+        }
+            
+        if (jumpSpeed > rem * 1.3 && rem != 0) //TODO: Create Methhod or fix this bug
+        {
+            jumpSpeed = rem;
+        }
+
+        velocity.y += jumpSpeed;
+        currentlyJumping = true;
+    }
+
+    private void JumpFromWall()
+    {
+        //_rigidbody.velocity = Vector2.zero;
+        
+        Jumped?.Invoke();
+        jumpBufferCounter = 0;
+        desiredJump = false;
+        
+        if (_character.IsFacingLeft)
+        {
+            velocity += new Vector2(_wallJumpForce, _wallJumpForce);
+        }
+        else
+        {
+            velocity += new Vector2(-_wallJumpForce, _wallJumpForce);
+        }
+        
+        currentlyJumping = true;
+
+        // if (_character.IsFacingLeft)
+        // {
+        //     _rigidbody.AddForce(new Vector2(1 * _wallJumpForce, _wallJumpForce), ForceMode2D.Impulse);
+        // }
+        // else
+        // {
+        //     _rigidbody.AddForce(new Vector2(-1 * _wallJumpForce, _wallJumpForce), ForceMode2D.Impulse);
+        // }
     }
 }
