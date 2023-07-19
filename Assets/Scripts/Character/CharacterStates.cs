@@ -43,13 +43,18 @@ public class CharacterStates : MonoBehaviour
         _dashScript.DashStatusChanged += isDashing =>
         {
             _isDashing = isDashing;
-            _isJumping = false;
+            //_isJumping = false;
         };
         _character.GroundedChanged += isGrounded =>
         {
             _isGrounded = isGrounded;
-            _isJumping = false;
+            //_isJumping = false;
         };
+
+        _character.WalledChanged += b =>
+        {
+        };
+        
         _hurtScript.Hurting += isHurt =>
         {
             _isHurt = isHurt;
@@ -60,7 +65,7 @@ public class CharacterStates : MonoBehaviour
         };
     }
 
-    private void Update() //TODO: Fix buf when u still Jumped first before grounded (if press but at the air) and only after grounded
+    private void Update()
     {
         _velocity = _rigidbody.velocity;
         _isGrounded = _grounder.GetOnGround();
@@ -73,30 +78,19 @@ public class CharacterStates : MonoBehaviour
         }
         else
         {
-            //_isJumping = false;
             _isFalling = false;
         }
 
-        // var newState = UpdateState();
-        //
-        // if (_currentState != newState)
-        // {
-        //     _currentState = newState;
-        //     StateChanged?.Invoke(_currentState);
-        //     Debug.Log(_currentState);
-        // }
-    }
-
-    private void FixedUpdate()
-    {
         var newState = UpdateState();
         
         if (_currentState != newState)
         {
+            if (_currentState == States.Jump)
+                _isJumping = false;
+            
             _currentState = newState;
             StateChanged?.Invoke(_currentState);
             _text.text = _currentState.ToString();
-            //Debug.Log(_currentState);
         }
     }
 
@@ -112,16 +106,16 @@ public class CharacterStates : MonoBehaviour
             return States.Hurt;
         }
         
-        if (_isSliding)
-        {
-            return States.Slide;
-        }
-        
         if (_isDashing)
         {
             return States.Dash;
         }
-        
+
+        if (_isSliding)
+        {
+            return States.Slide;
+        }
+
         if (_isJumping && _rigidbody.velocity.y > 0)
         {
             return States.Jump;
@@ -132,7 +126,7 @@ public class CharacterStates : MonoBehaviour
             return _isMoving ? States.Move : States.Idle;
         }
 
-        return _isFalling ? States.Fall : States.Idle; //TODO: : State.Jump
+        return _isFalling ? States.Fall : States.Idle;
     }
     
     public enum States
@@ -145,7 +139,6 @@ public class CharacterStates : MonoBehaviour
         Fall = 6,
         Slide =7,
         Dash = 8,
-        Hurt = 9,
-        Explosion = 10
+        Hurt = 9
     }
 }
