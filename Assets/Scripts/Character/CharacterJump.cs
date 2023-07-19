@@ -5,37 +5,35 @@ using UnityEngine.Serialization;
 
 public class CharacterJump : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody;
-
-    [HideInInspector] public Vector2 velocity;//TODO:
-    //private characterJuice juice;
-
-
     [Header("Jumping Stats")]
-    [SerializeField, Range(2f, 5.5f)] public float jumpHeight = 7.3f;
-    [SerializeField, Range(0.2f, 1.25f)] public float timeToJumpApex;
-    [SerializeField, Range(0f, 5f)] public float upwardMovementMultiplier = 1f;
-    [SerializeField, Range(1f, 10f)] public float downwardMovementMultiplier = 6.17f;
-    [SerializeField] private float _wallJumpForce;
+    [SerializeField, Range(2f, 5.5f)] private float _jumpHeight = 2.25f;
+    [SerializeField, Range(0.2f, 1.25f)] private float _timeToJumpApex = 0.3f;
+    [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 0.65f;
+    [SerializeField, Range(1f, 10f)] private float _downwardMovementMultiplier = 2.25f;
+    [SerializeField] private float _wallJumpForce = 10;
     
     [Header("Options")]
-    [SerializeField, Range(0f, 10f)] public float jumpCutOff;
-    [SerializeField] public float speedLimit;
-    [SerializeField, Range(0f, 0.3f)] public float coyoteTime = 0.15f;
-    [SerializeField, Range(0f, 0.3f)] public float jumpBuffer = 0.15f;
-
-    [Header("Calculations")] public float jumpSpeed;
-    private float defaultGravityScale = 1f;
-    public float gravMultiplier = 1f;
-
-    [Header("Current State")] 
-    private bool desiredJump;
-    private bool pressingJump;
-    public bool _isGrounded;
-    private bool currentlyJumping;
-    private bool _isTouchingWall;
-    private float jumpBufferCounter;
+    [SerializeField] private float _speedLimit;
+    [SerializeField, Range(0f, 10f)] private float _jumpCutOff; //TODO: Rename
+    [SerializeField, Range(0f, 0.3f)] private float _jumpBuffer = 0.15f;
+    [SerializeField, Range(0f, 0.3f)] private float _coyoteTime = 0.15f;
     
+    private float _defaultGravityScale = 1f;
+    private float _gravMultiplier = 1f;
+
+    [Header("Calculations")] 
+    private float _jumpSpeed;
+    private float _jumpBufferCounter;
+    private Vector2 _velocity;
+    
+    [Header("Current State")]
+    private bool _desiredJump;
+    private bool _pressingJump;
+    private bool _isCurrentlyJumping;
+    private bool _isGrounded;
+    private bool _isTouchingWall;
+    
+    private Rigidbody2D _rigidbody;
     private PlayerInputActions _playerInput;
     private Character _character;
     private CharacterStates _states;
@@ -48,7 +46,7 @@ public class CharacterJump : MonoBehaviour
         _character = GetComponent<Character>();
         _states = GetComponent<CharacterStates>();
         _playerInput = new PlayerInputActions();
-        defaultGravityScale = 1f;
+        _defaultGravityScale = 1f;
     }
 
     private void OnEnable()
@@ -77,32 +75,20 @@ public class CharacterJump : MonoBehaviour
             SetPhysics();
         }
 
-        if (jumpBuffer > 0)
-        {
-            if (desiredJump)
-            {
-                jumpBufferCounter += Time.deltaTime;
-
-                if (jumpBufferCounter > jumpBuffer)
-                {
-                    desiredJump = false;
-                    jumpBufferCounter = 0;
-                }
-            }
-        }
+        CalculateBuffer();
     }
 
     private void SetPhysics()
     {
-        Vector2 newGravity = new Vector2(0, (-2 * jumpHeight) / (timeToJumpApex * timeToJumpApex));
-        _rigidbody.gravityScale = (newGravity.y / Physics2D.gravity.y) * gravMultiplier;
+        Vector2 newGravity = new Vector2(0, (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex));
+        _rigidbody.gravityScale = (newGravity.y / Physics2D.gravity.y) * _gravMultiplier;
     }
 
     private void FixedUpdate()
     {
-        velocity = _rigidbody.velocity;
+        _velocity = _rigidbody.velocity;
 
-        if (desiredJump)
+        if (_desiredJump)
         {
             Jump();
             return;
@@ -113,13 +99,13 @@ public class CharacterJump : MonoBehaviour
 
     private void OnJumpStarted(InputAction.CallbackContext context)
     {
-        desiredJump = true;
-        pressingJump = true;
+        _desiredJump = true;
+        _pressingJump = true;
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext context)
     {
-        pressingJump = false;
+        _pressingJump = false;
     }
 
     private void CalculateGravity()
@@ -128,17 +114,17 @@ public class CharacterJump : MonoBehaviour
         {
             if (_isGrounded)
             {
-                gravMultiplier = defaultGravityScale;
+                _gravMultiplier = _defaultGravityScale;
             }
             else
             {
-                if (pressingJump && currentlyJumping)
+                if (_pressingJump && _isCurrentlyJumping)
                 {
-                    gravMultiplier = upwardMovementMultiplier;
+                    _gravMultiplier = _upwardMovementMultiplier;
                 }
                 else
                 {
-                    gravMultiplier = jumpCutOff;
+                    _gravMultiplier = _jumpCutOff;
                 }
             }
         }
@@ -146,24 +132,24 @@ public class CharacterJump : MonoBehaviour
         {
             if (_isGrounded)
             {
-                gravMultiplier = defaultGravityScale;
+                _gravMultiplier = _defaultGravityScale;
             }
             else
             {
-                gravMultiplier = downwardMovementMultiplier;
+                _gravMultiplier = _downwardMovementMultiplier;
             }
         }
         else
         {
             if (_isGrounded || _isTouchingWall)//TODO: Добавить на стене
             {
-                currentlyJumping = false;
+                _isCurrentlyJumping = false;
             }
 
-            gravMultiplier = defaultGravityScale;
+            _gravMultiplier = _defaultGravityScale;
         }
 
-        _rigidbody.velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -speedLimit, 100));
+        _rigidbody.velocity = new Vector3(_velocity.x, Mathf.Clamp(_velocity.y, -_speedLimit, 100));
     }
 
     private void Jump()
@@ -178,37 +164,37 @@ public class CharacterJump : MonoBehaviour
             JumpFromWall();
         }
 
-        if (jumpBuffer == 0)
+        if (_jumpBuffer == 0)
         {
-            desiredJump = false;
+            _desiredJump = false;
         }
-        _rigidbody.velocity = velocity;
+        _rigidbody.velocity = _velocity;
     }
 
     private void JumpFromGround()
     {
         Jumped?.Invoke();
-        jumpBufferCounter = 0;
-        desiredJump = false;
+        _jumpBufferCounter = 0;
+        _desiredJump = false;
 
-        var rem = jumpSpeed;
+        var rem = _jumpSpeed;
 
-        jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody.gravityScale * jumpHeight);
+        _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody.gravityScale * _jumpHeight);
         
-        if (velocity.y > 0f) {
-            jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+        if (_velocity.y > 0f) {
+            _jumpSpeed = Mathf.Max(_jumpSpeed - _velocity.y, 0f);
         }
-        else if (velocity.y < 0f) {
-            jumpSpeed += Mathf.Abs(_rigidbody.velocity.y);
+        else if (_velocity.y < 0f) {
+            _jumpSpeed += Mathf.Abs(_rigidbody.velocity.y);
         }
             
-        if (jumpSpeed > rem * 1.3 && rem != 0) //TODO: Create Methhod or fix this bug
+        if (_jumpSpeed > rem * 1.3 && rem != 0) //TODO: Create Methhod or fix this bug
         {
-            jumpSpeed = rem;
+            _jumpSpeed = rem;
         }
 
-        velocity.y += jumpSpeed;
-        currentlyJumping = true;
+        _velocity.y += _jumpSpeed;
+        _isCurrentlyJumping = true;
     }
 
     private void JumpFromWall()
@@ -216,27 +202,34 @@ public class CharacterJump : MonoBehaviour
         //_rigidbody.velocity = Vector2.zero;
         
         Jumped?.Invoke();
-        jumpBufferCounter = 0;
-        desiredJump = false;
+        _jumpBufferCounter = 0;
+        _desiredJump = false;
         
         if (_character.IsFacingLeft)
         {
-            velocity += new Vector2(_wallJumpForce, _wallJumpForce);
+            _velocity += new Vector2(_wallJumpForce, _wallJumpForce);
         }
         else
         {
-            velocity += new Vector2(-_wallJumpForce, _wallJumpForce);
+            _velocity += new Vector2(-_wallJumpForce, _wallJumpForce);
         }
         
-        currentlyJumping = true;
+        _isCurrentlyJumping = true;
+    }
 
-        // if (_character.IsFacingLeft)
-        // {
-        //     _rigidbody.AddForce(new Vector2(1 * _wallJumpForce, _wallJumpForce), ForceMode2D.Impulse);
-        // }
-        // else
-        // {
-        //     _rigidbody.AddForce(new Vector2(-1 * _wallJumpForce, _wallJumpForce), ForceMode2D.Impulse);
-        // }
+    private void CalculateBuffer()
+    {
+        if (_jumpBuffer <= 0 || _desiredJump == false)
+        {
+            return;
+        }
+
+        _jumpBufferCounter += Time.deltaTime;
+
+        if (_jumpBufferCounter > _jumpBuffer)
+        {
+            _desiredJump = false;
+            _jumpBufferCounter = 0;
+        }
     }
 }
