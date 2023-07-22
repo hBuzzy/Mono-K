@@ -24,6 +24,10 @@ public class CharacterDash : MonoBehaviour
 
     private bool _canDash = true;
     private bool _isGrounded;
+    private bool _isDashing;
+
+    private Vector3 _lastPosition;
+    [SerializeField] private float _distanceBetweenImages = 0.1f;
 
     public event Action Dashed;
     public event Action<bool> DashStatusChanged;
@@ -59,6 +63,19 @@ public class CharacterDash : MonoBehaviour
         _playerInput.Character.Dash.performed -= OnDash;
     }
 
+    private void Update()
+    {
+        // if (_isDashing)
+        // {
+        //     if (Mathf.Abs(_character.transform.position.x - _lastPosition.x) > _distanceBetweenImages)
+        //     {
+        //         //AfterImagePool.Instance.GetFromPool();
+        //         GhostTrailPool.Instance.GetGhost();
+        //         _lastPosition = _character.transform.position;
+        //     }
+        // }
+    }
+
     private void FixedUpdate()
     {
         _velocity = _rigidbody.velocity;
@@ -74,44 +91,58 @@ public class CharacterDash : MonoBehaviour
 
     private void OnDash(InputAction.CallbackContext context)
     {
-        _dashNeed = true;
+        if (_canDash)
+        {
+            _dashNeed = true;
+        }
     }
     
     private void Dash()
     {
         _rigidbody.velocity = Vector2.zero;
-        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>().normalized;
-
         _canDash = false;
 
         Dashed?.Invoke();
-        Camera.main.transform.DOShakePosition(0.2f, 0.5f, 14, 90, false, true);
-        StartCoroutine(WaitDash(direction));
+        _isDashing = true;
+
+        StartCoroutine(WaitDash(GetDashDirection()));
     }
 
-    private IEnumerator WaitDash(Vector2 direction)
+    private IEnumerator WaitDash(Vector2 direction)//TODO: rename ?
     {
-        //CharacterMovementBlocker.Instance.DisableMovement();
-        
-        DashStatusChanged.Invoke(true);
-        
-        var orGravity = _rigidbody.gravityScale;
+        DashStatusChanged?.Invoke(true);
 
         DOVirtual.Float(_maxDrag, _minDrag, _dragChangeTime, RigidbodyDrag);
         
         _rigidbody.gravityScale = 0f;
+
+        _velocity = direction * _speed;
         
-        _velocity = direction * new Vector2(_speed, _speed);
         yield return new WaitForSeconds(_duration);
-        
-        //CharacterMovementBlocker.Instance.EnableMovement();
-        
-        DashStatusChanged.Invoke(false);
+
+        DashStatusChanged?.Invoke(false);
         
         if (_isGrounded)
             _canDash = true;
-        
+
+        _isDashing = false;
+        _rigidbody.velocity = Vector2.zero;
         //_rigidbody.gravityScale = 0.8f;
+    }
+
+    private Vector2 GetDashDirection()
+    {
+        int left = -1;
+        int right = 1;
+        
+        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>().normalized;
+
+        if (direction == Vector2.zero)
+        {
+            direction.x = _character.IsFacingLeft ? left : right;
+        }
+
+        return direction;
     }
 
     private void RigidbodyDrag(float x)

@@ -1,31 +1,43 @@
+using System.Collections;
+using Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CharacterEffects : MonoBehaviour
 {
     [Header("Components")] 
+    [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private CharacterStates _characterStates;
-    
+
     [Header("Jump")] 
     [SerializeField] private AudioSource _jumpSound;
     [SerializeField] private ParticleSystem _jumpDustEffect;
     
     [Header("Dash")]
     [SerializeField] private AudioSource _dashSound;
-    [FormerlySerializedAs("_dashDust")] [SerializeField] private ParticleSystem _dashDustEffect;
+    [SerializeField] private ParticleSystem _dashDustEffect;
+    [SerializeField, Range(0f, 15f)] private float _cameraShakeIntensity;
+    [SerializeField, Range(0, 1f)] private float _cameraShakeTime;
+
+    [Header("Ghost trail")]
+    [SerializeField] private bool _isTrailEnable;
+    [SerializeField, Range(2, 10)] private int _ghostsCount;
+    [SerializeField, Range(0f, 1f)] private float _trailDuration;
 
     [Header("Walk")]
     [SerializeField] private AudioSource _walkSound;
     
     [Header("Hurt")]
     [SerializeField] private AudioSource _hitSound;
-
+    
     private CharacterMovement _characterMovement;
     private CharacterDash _characterDash;
     private CharacterJump _characterJump;
     private Animator _animator;
 
-    private void Awake()
+    private Coroutine _shakeCoroutine;
+    private Vector3 _characterLastPosition;
+
+    private void Awake() //TODO: change to start?
     {
         _characterJump = GetComponent<CharacterJump>();
         _characterDash = GetComponent<CharacterDash>();
@@ -50,7 +62,7 @@ public class CharacterEffects : MonoBehaviour
         
         if (state == CharacterStates.States.Jump)
         {
-            PlayJumpEffects();
+            //PlayJumpEffects();
         }
         else if (state == CharacterStates.States.Dash)
         {
@@ -76,6 +88,12 @@ public class CharacterEffects : MonoBehaviour
     {
         _dashSound.PlayOneShot(_dashSound.clip);
         _dashDustEffect.Play();
+        StartCoroutine(ShakeCamera());
+
+        if (_isTrailEnable)
+        {
+            StartCoroutine(ShowGhostTrail());
+        }
     }
 
     private void PlayHurtEffect()
@@ -85,13 +103,38 @@ public class CharacterEffects : MonoBehaviour
 
     private void OnJumped()
     {
-        //_jumpSound.Play();
-        //_jumpDustEffect.Play();
+        _jumpSound.Play();
+        _jumpDustEffect.Play();
     }
 
     private void OnDash()
     {
         //_dashSound.Play();
         //_dashDustEffect.Play();
+    }
+
+    private IEnumerator ShakeCamera()
+    {
+        CinemachineBasicMultiChannelPerlin _perlin =
+            _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        
+        _perlin.m_AmplitudeGain = _cameraShakeIntensity;
+
+        yield return new WaitForSeconds(_cameraShakeTime);
+
+        _perlin.m_AmplitudeGain = 0f;
+    }
+    
+    private IEnumerator ShowGhostTrail()
+    {
+        float delayBetweenGhosts = _trailDuration / (_ghostsCount - 1);
+        
+        GhostTrailPool.Instance.GetGhost().Show();
+        
+        for (int i = 0; i < _ghostsCount - 1; i++)
+        {
+            yield return new WaitForSeconds(delayBetweenGhosts);
+            GhostTrailPool.Instance.GetGhost().Show();
+        }
     }
 }
