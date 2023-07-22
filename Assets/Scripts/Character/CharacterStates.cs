@@ -81,6 +81,11 @@ public class CharacterStates : MonoBehaviour
             _isFalling = false;
         }
 
+        
+    }
+
+    private void FixedUpdate()
+    {
         var newState = UpdateState();
         
         if (_currentState != newState)
