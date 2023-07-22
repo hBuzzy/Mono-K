@@ -41,7 +41,7 @@ public class GhostTrailPool : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GhostTrail ghostInstance = Instantiate(_ghost, transform, true);
-            ghostInstance.Init(_character);
+            ghostInstance.Init(_character, gameObject.layer);
             Add(ghostInstance);
         }
     }

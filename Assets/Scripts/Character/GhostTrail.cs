@@ -49,10 +49,11 @@ public class GhostTrail : MonoBehaviour
         }
     }
 
-    public void Init(Character character)
+    public void Init(Character character, int sortingLayer)
     {
         _character = character;
         _characterSpriteRenderer = _character.GetComponent<SpriteRenderer>();
+        gameObject.layer = sortingLayer;
     }
 
     public void Show()
