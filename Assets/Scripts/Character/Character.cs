@@ -19,22 +19,21 @@ public class Character : MonoBehaviour
     private bool _isOnWall;
     private bool _isCurrentlyOnWall;
     private float _directionX;
-    private bool _canMove;
+    private bool _isFacingLeft;
     
     private CharacterStates _states;
     private PlayerInputActions _playerInput;
     public event Action<bool> GroundedChanged; //TODO: Rename
     public event Action<bool> WalledChanged;
     public event Action<bool> Hurted;
-
+    
     public float DirectionX => _directionX;
-    public bool CanMove => _canMove;
+    public bool IsFacingLeft => _isFacingLeft;
 
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
         _playerInput.Character.Enable();
-        _canMove = true;
     }
 
     private void Start()
@@ -70,9 +69,11 @@ public class Character : MonoBehaviour
         _directionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
         //directionX = Mathf.MoveTowards(input, directionX, 5f * Time.deltaTime);
 
-        if (_directionX != 0)
+        if (_directionX != 0)//TODO: Facing from vilocity?
         {
             _directionX = _directionX > 0 ? 1 : -1;
+
+            _isFacingLeft = _directionX == -1;
         }
         else
         {
