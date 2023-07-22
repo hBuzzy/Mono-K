@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,22 +22,14 @@ public class CharacterDash : MonoBehaviour
 
     private bool _canDash = true;
     private bool _isGrounded;
-    private bool _isDashing;
-
-    private Vector3 _lastPosition;
-    [SerializeField] private float _distanceBetweenImages = 0.1f;
 
     public event Action Dashed;
-    public event Action<bool> DashStatusChanged;
-    
+    public event Action<bool> DashStatusChanged;//TODO: Remove?
+    //TODO: remove drag system? Make it after tests
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
         _character = GetComponent<Character>();
-    }
-
-    private void Start()
-    {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -63,26 +53,12 @@ public class CharacterDash : MonoBehaviour
         _playerInput.Character.Dash.performed -= OnDash;
     }
 
-    private void Update()
-    {
-        // if (_isDashing)
-        // {
-        //     if (Mathf.Abs(_character.transform.position.x - _lastPosition.x) > _distanceBetweenImages)
-        //     {
-        //         //AfterImagePool.Instance.GetFromPool();
-        //         GhostTrailPool.Instance.GetGhost();
-        //         _lastPosition = _character.transform.position;
-        //     }
-        // }
-    }
-
     private void FixedUpdate()
     {
         _velocity = _rigidbody.velocity;
 
         if (_dashNeed && _canDash)
         {
-            //_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
             Dash();
             _rigidbody.velocity = _velocity;
             _dashNeed = false;
@@ -103,7 +79,6 @@ public class CharacterDash : MonoBehaviour
         _canDash = false;
 
         Dashed?.Invoke();
-        _isDashing = true;
 
         StartCoroutine(WaitDash(GetDashDirection()));
     }
@@ -122,12 +97,10 @@ public class CharacterDash : MonoBehaviour
 
         DashStatusChanged?.Invoke(false);
         
+        _rigidbody.velocity = Vector2.zero;
+        
         if (_isGrounded)
             _canDash = true;
-
-        _isDashing = false;
-        _rigidbody.velocity = Vector2.zero;
-        //_rigidbody.gravityScale = 0.8f;
     }
 
     private Vector2 GetDashDirection()

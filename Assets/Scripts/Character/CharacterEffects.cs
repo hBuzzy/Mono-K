@@ -37,17 +37,17 @@ public class CharacterEffects : MonoBehaviour
     private Coroutine _shakeCoroutine;
     private Vector3 _characterLastPosition;
 
-    private void Awake() //TODO: change to start?
+    private void Awake()
     {
         _characterJump = GetComponent<CharacterJump>();
         _characterDash = GetComponent<CharacterDash>();
-        _characterStates.StateChanged += HandleState;
     }
 
     private void OnEnable()
     {
         _characterJump.Jumped += OnJumped;
         _characterDash.Dashed += OnDash;
+        _characterStates.StateChanged += HandleState;
     }
 
     private void OnDisable()
@@ -125,7 +125,7 @@ public class CharacterEffects : MonoBehaviour
         _perlin.m_AmplitudeGain = 0f;
     }
     
-    private IEnumerator ShowGhostTrail()
+    private IEnumerator ShowGhostTrail()//TODO: Make performance tests
     {
         float delayBetweenGhosts = _trailDuration / (_ghostsCount - 1);
         
