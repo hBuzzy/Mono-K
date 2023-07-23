@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
     private Character _character;
+    private CharacterStates _characterStates;
 
     public float _speedChange; //TODO: Make it private after tests
     public Vector2 _velocity; //TODO: Make it private after tests
@@ -34,6 +35,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _playerInput = new PlayerInputActions();
         _character = GetComponent<Character>();
+        _characterStates = GetComponent<CharacterStates>();
     }
 
     private void Start()
@@ -59,9 +61,8 @@ public class CharacterMovement : MonoBehaviour
         directionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
         //directionX = Mathf.MoveTowards(input, directionX, 5f * Time.deltaTime);
         
-        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>().normalized;
-        //Debug.Log(direction);
-        
+        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>();
+
         if (directionX != 0)
         {
             directionX = directionX > 0 ? 1 : -1;
@@ -85,7 +86,10 @@ public class CharacterMovement : MonoBehaviour
     {
         _velocity = _rigidbody.velocity;
 
-        Move();
+        if (_characterStates.GetCurrentState() != CharacterStates.States.Dash)//TODO: Exchange to charater.CanMove???
+        {
+            Move();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
