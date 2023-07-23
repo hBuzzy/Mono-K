@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "73db620d-15a4-48d6-93f3-372c30dd8eae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "4895c160-5597-414d-b282-71611e1e6f0c",
@@ -24,9 +33,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Dash",
+                    "name": "Grab",
                     "type": "Button",
-                    "id": "73db620d-15a4-48d6-93f3-372c30dd8eae",
+                    "id": "261ad17d-8066-4fc8-b38d-bebad2f4fa99",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -106,8 +115,19 @@
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mouse & Keyboard",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ece3be2-4656-4dd2-87dd-af92e6bdd003",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse & Keyboard",
+                    "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

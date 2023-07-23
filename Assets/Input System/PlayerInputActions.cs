@@ -37,6 +37,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""73db620d-15a4-48d6-93f3-372c30dd8eae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""4895c160-5597-414d-b282-71611e1e6f0c"",
@@ -46,9 +55,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""Grab"",
                     ""type"": ""Button"",
-                    ""id"": ""73db620d-15a4-48d6-93f3-372c30dd8eae"",
+                    ""id"": ""261ad17d-8066-4fc8-b38d-bebad2f4fa99"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -128,8 +137,19 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Mouse & Keyboard"",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ece3be2-4656-4dd2-87dd-af92e6bdd003"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse & Keyboard"",
+                    ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -158,8 +178,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Character
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
-        m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
         m_Character_Dash = m_Character.FindAction("Dash", throwIfNotFound: true);
+        m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
+        m_Character_Grab = m_Character.FindAction("Grab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -222,15 +243,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Character;
     private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
     private readonly InputAction m_Character_Jump;
-    private readonly InputAction m_Character_Move;
     private readonly InputAction m_Character_Dash;
+    private readonly InputAction m_Character_Move;
+    private readonly InputAction m_Character_Grab;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
         public CharacterActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
-        public InputAction @Move => m_Wrapper.m_Character_Move;
         public InputAction @Dash => m_Wrapper.m_Character_Dash;
+        public InputAction @Move => m_Wrapper.m_Character_Move;
+        public InputAction @Grab => m_Wrapper.m_Character_Grab;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -243,12 +266,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Grab.started += instance.OnGrab;
+            @Grab.performed += instance.OnGrab;
+            @Grab.canceled += instance.OnGrab;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -256,12 +282,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Grab.started -= instance.OnGrab;
+            @Grab.performed -= instance.OnGrab;
+            @Grab.canceled -= instance.OnGrab;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -291,7 +320,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface ICharacterActions
     {
         void OnJump(InputAction.CallbackContext context);
-        void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
     }
 }
