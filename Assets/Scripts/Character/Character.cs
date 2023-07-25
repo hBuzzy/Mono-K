@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     private bool _isCurrentlyOnWall;
     private float _directionX;
     private bool _isFacingLeft;
+    private bool _canMove;
     
     private CharacterStates _states;
     private PlayerInputActions _playerInput;
@@ -29,6 +30,7 @@ public class Character : MonoBehaviour
     
     public float DirectionX => _directionX;
     public bool IsFacingLeft => _isFacingLeft;
+    public bool CanMove => _canMove;
 
     private void Awake()
     {
@@ -49,25 +51,19 @@ public class Character : MonoBehaviour
     {
         _playerInput.Character.Enable();
         _nightSwitcher.NightStarted += NightStarted;
-    }
-
-    private void NightStarted()
-    {
-        Debug.Log("night");
-
-        _light.enabled = true;
-        _trail.enabled = true;
+        _states.StateChanged += UpdateMoveState;
     }
 
     private void OnDisable()
     {
         _playerInput.Character.Disable();
+        _nightSwitcher.NightStarted -= NightStarted;
+        _states.StateChanged -= UpdateMoveState;
     }
 
     private void Update()
     {
         _directionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
-        //directionX = Mathf.MoveTowards(input, directionX, 5f * Time.deltaTime);
 
         if (_directionX != 0)//TODO: Facing from vilocity?
         {
@@ -79,8 +75,29 @@ public class Character : MonoBehaviour
         {
             _directionX = 0;
         }
+        
         GetGroundState();
         GetWallState();
+    }
+    
+    private void NightStarted()
+    {
+        Debug.Log("night");
+
+        _light.enabled = true;
+        _trail.enabled = true;
+    }
+
+    private void UpdateMoveState(CharacterStates.States state)
+    {
+        if (state == CharacterStates.States.Dash)
+        {
+            _canMove = false;
+        }
+        else
+        {
+            _canMove = true;
+        }
     }
 
     private void GetGroundState() //TODO: Rename
