@@ -10,33 +10,39 @@ public class CharacterJump : MonoBehaviour
     [SerializeField, Range(0.2f, 1.25f)] private float _timeToJumpApex = 0.3f;
     [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 0.65f;
     [SerializeField, Range(1f, 10f)] private float _downwardMovementMultiplier = 2.25f;
-    [SerializeField] private float _wallJumpForce = 10;
+    [SerializeField, Range(10f, 25f)] private float _wallJumpForce = 20f;
     
     [Header("Options")]
-    [SerializeField] private float _speedLimit;
-    [SerializeField, Range(0f, 10f)] private float _jumpCutOff; //TODO: Rename
+    [SerializeField, Range(10f, 20f)] private float _speedLimit = 15f;
+    [SerializeField, Range(0f, 10f)] private float _jumpCutOff = 2.25f; //TODO: Rename
     [SerializeField, Range(0f, 0.3f)] private float _jumpBuffer = 0.15f;
     [SerializeField, Range(0f, 0.3f)] private float _coyoteTime = 0.15f;
     
-    private float _defaultGravityScale = 1f;
-    private float _gravMultiplier = 1f;
+    private float _defaultGravityScale = 1f; //TODO: Make const and reorder?
 
-    [Header("Calculations")] 
+    private Rigidbody2D _rigidbody;
+    private PlayerInputActions _playerInput;
+    private Character _character;
+    private CharacterStates _states;
+    
+    #region Calculations
+    
+    private Vector2 _velocity;
+    private float _gravityMultiplier;
     private float _jumpSpeed;
     private float _jumpBufferCounter;
-    private Vector2 _velocity;
+
+    #endregion
+
+    #region Current states
     
-    [Header("Current State")]
     private bool _desiredJump;
     private bool _pressingJump;
     private bool _isCurrentlyJumping;
     private bool _isGrounded;
     private bool _isTouchingWall;
     
-    private Rigidbody2D _rigidbody;
-    private PlayerInputActions _playerInput;
-    private Character _character;
-    private CharacterStates _states;
+    #endregion
 
     public event Action Jumped;
 
@@ -70,7 +76,7 @@ public class CharacterJump : MonoBehaviour
 
     void Update()
     {
-        if (_states.GetCurrentState() != CharacterStates.States.Dash)
+        if (_character.CanMove)
         {
             SetPhysics();
         }
@@ -81,7 +87,10 @@ public class CharacterJump : MonoBehaviour
     private void SetPhysics()
     {
         Vector2 newGravity = new Vector2(0, (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex));
-        _rigidbody.gravityScale = (newGravity.y / Physics2D.gravity.y) * _gravMultiplier;
+
+        float gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);//TODO: use it instead of Vector2?
+        
+        _rigidbody.gravityScale = (newGravity.y / Physics2D.gravity.y) * _gravityMultiplier;
     }
 
     private void FixedUpdate()
@@ -114,17 +123,17 @@ public class CharacterJump : MonoBehaviour
         {
             if (_isGrounded)
             {
-                _gravMultiplier = _defaultGravityScale;
+                _gravityMultiplier = _defaultGravityScale;
             }
             else
             {
                 if (_pressingJump && _isCurrentlyJumping)
                 {
-                    _gravMultiplier = _upwardMovementMultiplier;
+                    _gravityMultiplier = _upwardMovementMultiplier;
                 }
                 else
                 {
-                    _gravMultiplier = _jumpCutOff;
+                    _gravityMultiplier = _jumpCutOff;
                 }
             }
         }
@@ -132,11 +141,11 @@ public class CharacterJump : MonoBehaviour
         {
             if (_isGrounded)
             {
-                _gravMultiplier = _defaultGravityScale;
+                _gravityMultiplier = _defaultGravityScale;
             }
             else
             {
-                _gravMultiplier = _downwardMovementMultiplier;
+                _gravityMultiplier = _downwardMovementMultiplier;
             }
         }
         else
@@ -146,7 +155,7 @@ public class CharacterJump : MonoBehaviour
                 _isCurrentlyJumping = false;
             }
 
-            _gravMultiplier = _defaultGravityScale;
+            _gravityMultiplier = _defaultGravityScale;
         }
 
         _rigidbody.velocity = new Vector3(_velocity.x, Mathf.Clamp(_velocity.y, -_speedLimit, 100));
