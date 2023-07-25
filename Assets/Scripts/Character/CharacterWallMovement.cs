@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class CharacterSlide : MonoBehaviour
+public class CharacterWallMovement : MonoBehaviour
 {
     private Character _character;
     private Rigidbody2D _rigidbody;
