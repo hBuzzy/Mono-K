@@ -143,7 +143,8 @@ public class CharacterStates : MonoBehaviour
         Land = 5,
         Fall = 6,
         Slide =7,
-        Dash = 8,
-        Hurt = 9
+        DashPreparation = 8,
+        Dash = 9,
+        Hurt = 10
     }
 }
