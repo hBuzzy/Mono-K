@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterDash : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField, Range(0f, 40f)] private float _maxDrag;
-    [SerializeField, Range(0f, 40f)] private float _minDrag;
-    [SerializeField, Range(0f, 3f)] private float _dragChangeTime;
+    [SerializeField] private float _speed = 32;
     [SerializeField, Range(0f, 0.5f)] private float _duration;
     [SerializeField] private float _waitAfterDash;//TODO: rename
-    [SerializeField] private float _dashPreparationTIme; //TODO: Rename?
+    [SerializeField] private float _dashPreparationTime; //TODO: Rename?
     
     private Rigidbody2D _rigidbody;
 
@@ -28,7 +24,7 @@ public class CharacterDash : MonoBehaviour
     public event Action Dashed;
     public event Action PreparingDash;
     public event Action<bool> DashStatusChanged;//TODO: Remove?
-    //TODO: remove drag system? Make it after tests
+
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
@@ -86,27 +82,20 @@ public class CharacterDash : MonoBehaviour
 
     private IEnumerator WaitDash(Vector2 direction)//TODO: rename ?
     {
-        //yield return new WaitForSeconds(_dashPreparationTIme);
         Dashed?.Invoke();
         DashStatusChanged?.Invoke(true);
 
-        DOVirtual.Float(_maxDrag, _minDrag, _dragChangeTime, RigidbodyDrag);
-        
         _rigidbody.gravityScale = 0f;
 
         _velocity = direction * _speed;
         
         yield return new WaitForSeconds(_duration);
-
-        var remVelocity = _rigidbody.velocity;
-
+        
         _rigidbody.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(_waitAfterDash);
         
         DashStatusChanged?.Invoke(false);
-
-        //_rigidbody.velocity = remVelocity;
 
         if (_isGrounded)
             _canDash = true;
@@ -125,10 +114,5 @@ public class CharacterDash : MonoBehaviour
         }
 
         return direction;
-    }
-
-    private void RigidbodyDrag(float x)
-    {
-        _rigidbody.drag = x;
     }
 }
