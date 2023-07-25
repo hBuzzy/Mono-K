@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -34,6 +33,7 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
+        _states = GetComponent<CharacterStates>();
         _playerInput = new PlayerInputActions();
         _playerInput.Character.Enable();
     }
