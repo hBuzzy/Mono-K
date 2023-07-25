@@ -86,7 +86,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _velocity = _rigidbody.velocity;
 
-        if (_characterStates.GetCurrentState() != CharacterStates.States.Dash)//TODO: Exchange to charater.CanMove???
+        if (_character.CanMove)
         {
             Move();
         }
