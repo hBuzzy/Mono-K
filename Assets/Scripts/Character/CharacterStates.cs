@@ -13,7 +13,7 @@ public class CharacterStates : MonoBehaviour
     private CharacterJump _jumpScript;
     private CharacterDash _dashScript;
     private Rigidbody2D _rigidbody;
-    private CharacterSlide _slideScript;
+    private CharacterWallMovement _wallMovementScript;
     private CharacterHurt _hurtScript;
 
     private bool _isGrounded;
@@ -34,7 +34,7 @@ public class CharacterStates : MonoBehaviour
         _movementScript = GetComponent<CharacterMovement>();
         _jumpScript = GetComponent<CharacterJump>();
         _dashScript = GetComponent<CharacterDash>();
-        _slideScript = GetComponent<CharacterSlide>();
+        _wallMovementScript = GetComponent<CharacterWallMovement>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
         _hurtScript = GetComponent<CharacterHurt>();
@@ -59,7 +59,7 @@ public class CharacterStates : MonoBehaviour
         {
             _isHurt = isHurt;
         };
-        _slideScript.SlidingStatusChanged += isSliding =>
+        _wallMovementScript.SlidingStatusChanged += isSliding =>
         {
             _isSliding = isSliding;
         };
