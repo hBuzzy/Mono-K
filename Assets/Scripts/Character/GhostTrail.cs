@@ -53,7 +53,7 @@ public class GhostTrail : MonoBehaviour
     {
         _character = character;
         _characterSpriteRenderer = _character.GetComponent<SpriteRenderer>();
-        gameObject.layer = sortingLayer;
+        _spriteRenderer.sortingLayerID = _characterSpriteRenderer.sortingLayerID;
     }
 
     public void Show()
