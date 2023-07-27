@@ -86,11 +86,9 @@ public class CharacterJump : MonoBehaviour
 
     private void SetPhysics()
     {
-        Vector2 newGravity = new Vector2(0, (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex));
-
-        float gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);//TODO: use it instead of Vector2?
+        float gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);
         
-        _rigidbody.gravityScale = (newGravity.y / Physics2D.gravity.y) * _gravityMultiplier;
+        _rigidbody.gravityScale = (gravityY / Physics2D.gravity.y) * _gravityMultiplier;
     }
 
     private void FixedUpdate()

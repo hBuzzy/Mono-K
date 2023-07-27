@@ -11,21 +11,20 @@ public class CharacterEffects : MonoBehaviour
     [Header("Jump")] 
     [SerializeField] private AudioSource _jumpSound;
     [SerializeField] private ParticleSystem _jumpDustEffect;
-    
+
     [Header("Dash")]
     [SerializeField] private AudioSource _dashSound;
     [SerializeField] private ParticleSystem _dashDustEffect;
     [SerializeField, Range(0f, 15f)] private float _cameraShakeIntensity;
     [SerializeField, Range(0, 1f)] private float _cameraShakeTime;
 
+    [SerializeField] private RippleEffect _rippleEffect;
+
     [Header("Ghost trail")]
     [SerializeField] private bool _isTrailEnable;
     [SerializeField, Range(2, 10)] private int _ghostsCount;
     [SerializeField, Range(0f, 1f)] private float _trailDuration;
 
-    [Header("Walk")]
-    [SerializeField] private AudioSource _walkSound;
-    
     [Header("Hurt")]
     [SerializeField] private AudioSource _hitSound;
     
@@ -36,7 +35,7 @@ public class CharacterEffects : MonoBehaviour
 
     private Coroutine _shakeCoroutine;
     private Vector3 _characterLastPosition;
-
+    
     private void Awake()
     {
         _characterJump = GetComponent<CharacterJump>();
@@ -88,6 +87,8 @@ public class CharacterEffects : MonoBehaviour
     {
         _dashSound.PlayOneShot(_dashSound.clip);
         _dashDustEffect.Play();
+        _rippleEffect.Show();
+        
         StartCoroutine(ShakeCamera());
 
         if (_isTrailEnable)
