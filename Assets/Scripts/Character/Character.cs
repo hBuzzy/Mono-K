@@ -90,7 +90,7 @@ public class Character : MonoBehaviour
 
     private void UpdateMoveState(CharacterStates.States state)
     {
-        if (state == CharacterStates.States.Dash)
+        if (state == CharacterStates.States.Dash || state == CharacterStates.States.Grab)
         {
             _canMove = false;
         }
