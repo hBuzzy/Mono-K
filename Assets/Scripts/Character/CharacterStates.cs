@@ -24,6 +24,7 @@ public class CharacterStates : MonoBehaviour
     private bool _isJump;
     private bool _isSliding;
     private bool _isHurt;
+    private bool _isGrabbing;
     private Vector2 _velocity;
 
     private States _currentState;
@@ -44,6 +45,7 @@ public class CharacterStates : MonoBehaviour
         {
             _isDashing = isDashing;
             //_isJumping = false;
+            _isGrabbing = false;
         };
         _character.GroundedChanged += isGrounded =>
         {
@@ -62,6 +64,10 @@ public class CharacterStates : MonoBehaviour
         _wallMovementScript.SlidingStatusChanged += isSliding =>
         {
             _isSliding = isSliding;
+        };
+        _wallMovementScript.GrabbingStatusChanged += isGrabbing =>
+        {
+            _isGrabbing = isGrabbing;
         };
     }
 
@@ -116,6 +122,11 @@ public class CharacterStates : MonoBehaviour
             return States.Dash;
         }
 
+        if (_isGrabbing)
+        {
+            return States.Grab;
+        }
+
         if (_isSliding)
         {
             return States.Slide;
@@ -145,6 +156,7 @@ public class CharacterStates : MonoBehaviour
         Slide =7,
         DashPreparation = 8,
         Dash = 9,
-        Hurt = 10
+        Hurt = 10,
+        Grab = 11
     }
 }
