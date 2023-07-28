@@ -119,7 +119,7 @@ public class CharacterJump : MonoBehaviour
     {
         if (_rigidbody.velocity.y > 0.01f)
         {
-            if (_isGrounded)
+            if (_isGrounded || _isTouchingWall)
             {
                 _gravityMultiplier = _defaultGravityScale;
             }
