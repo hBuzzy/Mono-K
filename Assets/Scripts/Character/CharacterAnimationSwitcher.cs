@@ -1,4 +1,5 @@
 using UnityEngine;
+using States = CharacterStates.States;
 
 public class CharacterAnimationSwitcher : MonoBehaviour
 {
@@ -38,51 +39,51 @@ public class CharacterAnimationSwitcher : MonoBehaviour
         _states.StateChanged -= AnimateState;
     }
 
-    private void AnimateState(CharacterStates.States state)
+    private void AnimateState(States state)
     {
         var stateAnimation = GetStateAnimation(state);
 
         _animator.CrossFade(stateAnimation, _transitionDuration, 0);
     }
     
-    private int GetStateAnimation(CharacterStates.States state)
+    private int GetStateAnimation(States state)
     {
-        if (state == CharacterStates.States.Hurt)
+        if (state == States.Hurt)
         {
             return _hurt;
         }
 
-        if (state == CharacterStates.States.Grab)
+        if (state == States.Grab)
         {
             return _grab;
         }
         
-        if (state == CharacterStates.States.Slide)
+        if (state == States.Slide)
         {
             return _slide;
         }
 
-        if (state == CharacterStates.States.DashPreparation)
+        if (state == States.DashPreparation)
         {
             return _dashPreparation;
         }
         
-        if (state == CharacterStates.States.Dash)
+        if (state == States.Dash)
         {
             return _dash;
         }
         
-        if (state == CharacterStates.States.Jump)
+        if (state == States.Jump)
         {
             return _jump;
         }
         
-        if (state == CharacterStates.States.Move)
+        if (state == States.Move)
         {
             return _walk;
         }
         
-        if (state == CharacterStates.States.Fall)
+        if (state == States.Fall)
         {
             return _fall;
         }
