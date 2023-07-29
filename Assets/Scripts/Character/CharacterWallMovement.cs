@@ -1,14 +1,16 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using States = CharacterStates.States;
 
 public class CharacterWallMovement : MonoBehaviour
 {
+    [SerializeField, Range(0f, 0.8f)] private float _slidingSpeed;
+    
     private Character _character;
     private Rigidbody2D _rigidbody;
     private PlayerInputActions _playerInput;
     private CharacterStates _states;
-    
     
     private bool _isOnWall;
     private bool _isGrounded;
@@ -23,6 +25,7 @@ public class CharacterWallMovement : MonoBehaviour
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
+        
         _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
         _states = GetComponent<CharacterStates>();
@@ -50,16 +53,16 @@ public class CharacterWallMovement : MonoBehaviour
     {
         var state = _states.GetCurrentState();
 
-        if (state == CharacterStates.States.Dash)
+        if (state == States.Dash)
         {
             _desiredGrab = false; 
             _isGrabbing = false;
             _isSliding = false;
         }
 
-        if (_isOnWall == true && _isGrounded == false)
+        if (_isOnWall && _isGrounded == false)
         {
-            if (_desiredGrab == true)
+            if (_desiredGrab)
             {
                 _isGrabbing = true;
                 _desiredGrab = false;
@@ -96,16 +99,16 @@ public class CharacterWallMovement : MonoBehaviour
         }
         else if (_isSliding)
         {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -0.7f, float.MaxValue));
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -_slidingSpeed, float.MaxValue));
         }
     }
 
-    private void OnGrabStarted(InputAction.CallbackContext obj)
+    private void OnGrabStarted(InputAction.CallbackContext context)
     {
         _desiredGrab = true;
     }
 
-    private void OnGrabCanceled(InputAction.CallbackContext obj)
+    private void OnGrabCanceled(InputAction.CallbackContext context)
     {
         _desiredGrab = false;
         _isGrabbing = false;
