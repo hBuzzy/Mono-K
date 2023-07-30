@@ -1,18 +1,25 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
+[RequireComponent(typeof(Character))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CharacterMovement))]
+[RequireComponent(typeof(CharacterJump))]
+[RequireComponent(typeof(CharacterDash))]
+[RequireComponent(typeof(CharacterWallMovement))]
+[RequireComponent(typeof(CharacterHurt))]
 
 public class CharacterStates : MonoBehaviour
 {
     [SerializeField] private CharacterGround _grounder;
     [SerializeField] private TMP_Text _text;
-    
-    private CharacterMovement _movementScript;
+
     private Character _character;
+    private Rigidbody2D _rigidbody;
+    private CharacterMovement _movementScript;
     private CharacterJump _jumpScript;
     private CharacterDash _dashScript;
-    private Rigidbody2D _rigidbody;
     private CharacterWallMovement _wallMovementScript;
     private CharacterHurt _hurtScript;
 
@@ -21,15 +28,15 @@ public class CharacterStates : MonoBehaviour
     private bool _isJumping;
     private bool _isDashing;
     private bool _isFalling;
-    private bool _isJump;
     private bool _isSliding;
-    private bool _isHurt;
+    private bool _isHurting;
     private bool _isGrabbing;
-    private Vector2 _velocity;
 
+    private Vector2 _velocity;
     private States _currentState;
 
     public event Action<States> StateChanged;
+    
     private void Awake()
     {
         _movementScript = GetComponent<CharacterMovement>();
@@ -39,55 +46,35 @@ public class CharacterStates : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
         _hurtScript = GetComponent<CharacterHurt>();
-        
-        _jumpScript.Jumped += () => { _isJumping = true; };
-        _dashScript.DashingChanged += isDashing =>
-        {
-            _isDashing = isDashing;
-            //_isJumping = false;
-            _isGrabbing = false;
-        };
-        _character.GroundedChanged += isGrounded =>
-        {
-            _isGrounded = isGrounded;
-            //_isJumping = false;
-        };
+    }
 
-        _character.WallTouchingChanged += b =>
-        {
-        };
-        
-        _hurtScript.Hurting += isHurt =>
-        {
-            _isHurt = isHurt;
-        };
-        _wallMovementScript.SlidingChanged += isSliding =>
-        {
-            _isSliding = isSliding;
-        };
-        _wallMovementScript.GrabbingChanged += isGrabbing =>
-        {
-            _isGrabbing = isGrabbing;
-        };
+    private void OnEnable()
+    {
+        _jumpScript.Jumped += OnJumped;
+        _dashScript.DashingChanged += OnDashingChanged;
+        _character.GroundedChanged += OnGroundedChanged;
+        _hurtScript.HurtingChanged += OnHurtingChanged;
+        _wallMovementScript.SlidingChanged += OnSlidingChanged;
+        _wallMovementScript.GrabbingChanged += OnGrabbingChanged;
+    }
+
+    private void OnDisable()
+    {
+        _jumpScript.Jumped -= OnJumped;
+        _dashScript.DashingChanged -= OnDashingChanged;
+        _character.GroundedChanged -= OnGroundedChanged;
+        _hurtScript.HurtingChanged -= OnHurtingChanged;
+        _wallMovementScript.SlidingChanged -= OnSlidingChanged;
+        _wallMovementScript.GrabbingChanged -= OnGrabbingChanged;
     }
 
     private void Update()
     {
         _velocity = _rigidbody.velocity;
-        _isGrounded = _grounder.GetOnGround();
-    
-        _isMoving = _movementScript.MovementDirectionX != 0;
 
-        if (_isGrounded == false)
-        {
-            _isFalling = _rigidbody.velocity.y < 0f;
-        }
-        else
-        {
-            _isFalling = false;
-        }
+        _isMoving = _movementScript.MovementDirectionX != 0f;
 
-        
+        _isFalling = (_velocity.y < 0f && _isGrounded == false);
     }
 
     private void FixedUpdate()
@@ -96,7 +83,7 @@ public class CharacterStates : MonoBehaviour
         
         if (_currentState != newState)
         {
-            if (_currentState == States.Jump)
+            if (_currentState == States.Jump)//TODO: Now need cuz base script isn't reset that value. Fix base script logic
                 _isJumping = false;
             
             _currentState = newState;
@@ -112,7 +99,7 @@ public class CharacterStates : MonoBehaviour
 
     private States UpdateState()
     {
-        if (_isHurt)
+        if (_isHurting)
         {
             return States.Hurt;
         }
@@ -144,7 +131,42 @@ public class CharacterStates : MonoBehaviour
 
         return _isFalling ? States.Fall : States.Idle;
     }
-    
+
+    private void OnJumped()
+    {
+        _isJumping = true;
+    }
+
+    private void OnDashingChanged(bool isDashing)
+    {
+        _isDashing = isDashing;
+
+        if (_isDashing == true)
+        {
+            _isGrabbing = false;
+        }
+    }
+
+    private void OnHurtingChanged(bool isHurting)
+    {
+        _isHurting = isHurting;
+    }
+
+    private void OnSlidingChanged(bool isSliding)
+    {
+        _isSliding = isSliding;
+    }
+
+    private void OnGrabbingChanged(bool isGrabbing)
+    {
+        _isGrabbing = isGrabbing;
+    }
+
+    private void OnGroundedChanged(bool isGrounded)
+    {
+        _isGrounded = isGrounded;
+    }
+
     public enum States
     {
         Idle = 1,

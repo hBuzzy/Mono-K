@@ -13,7 +13,7 @@ public class CharacterHurt : MonoBehaviour
 
     private Coroutine _currentCoroutine;
 
-    public event Action<bool> Hurting; 
+    public event Action<bool> HurtingChanged; 
 
     private void Awake()
     {
@@ -46,14 +46,14 @@ public class CharacterHurt : MonoBehaviour
 
     private IEnumerator Hurt()
     {
-        Hurting?.Invoke(true);
+        HurtingChanged?.Invoke(true);
         
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.simulated = false;
         
         yield return new WaitForSeconds(1);
         
-        Hurting?.Invoke(false);
+        HurtingChanged?.Invoke(false);
         
         _respawner.MoveToCheckPoint(_character);
         

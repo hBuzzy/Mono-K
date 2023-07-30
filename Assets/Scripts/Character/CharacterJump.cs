@@ -57,22 +57,20 @@ public class CharacterJump : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInput.Enable();
+        _playerInput.Character.Enable();
         _playerInput.Character.Jump.started += OnJumpStarted;
         _playerInput.Character.Jump.canceled += OnJumpCanceled;
-        
-        _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
-        _character.WallTouchingChanged += isTouchingWall =>
-        {
-            _isTouchingWall = isTouchingWall;
-        };
+        _character.GroundedChanged += OnGroundedChanged;
+        _character.WallTouchingChanged += OnWallTouchingChanged;
     }
 
     private void OnDisable()
     {
-        _playerInput.Disable();
+        _playerInput.Character.Disable();
         _playerInput.Character.Jump.started -= OnJumpStarted;
         _playerInput.Character.Jump.canceled -= OnJumpCanceled;
+        _character.GroundedChanged -= OnGroundedChanged;
+        _character.WallTouchingChanged -= OnWallTouchingChanged;
     }
 
     void Update()
@@ -232,5 +230,15 @@ public class CharacterJump : MonoBehaviour
             _isJumpRequired = false;
             _jumpBufferCounter = 0;
         }
+    }
+
+    private void OnGroundedChanged(bool isGrounded)
+    {
+        _isGrounded = isGrounded;
+    }
+
+    private void OnWallTouchingChanged(bool isTouchingWall)
+    {
+        _isTouchingWall = isTouchingWall;
     }
 }
