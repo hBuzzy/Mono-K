@@ -22,8 +22,7 @@ public class CharacterStates : MonoBehaviour
     private CharacterDash _dashScript;
     private CharacterWallMovement _wallMovementScript;
     private CharacterHurt _hurtScript;
-
-    private bool _isGrounded;
+    
     private bool _isMoving;
     private bool _isJumping;
     private bool _isDashing;
@@ -52,7 +51,6 @@ public class CharacterStates : MonoBehaviour
     {
         _jumpScript.Jumped += OnJumped;
         _dashScript.DashingChanged += OnDashingChanged;
-        _character.GroundedChanged += OnGroundedChanged;
         _hurtScript.HurtingChanged += OnHurtingChanged;
         _wallMovementScript.SlidingChanged += OnSlidingChanged;
         _wallMovementScript.GrabbingChanged += OnGrabbingChanged;
@@ -62,7 +60,6 @@ public class CharacterStates : MonoBehaviour
     {
         _jumpScript.Jumped -= OnJumped;
         _dashScript.DashingChanged -= OnDashingChanged;
-        _character.GroundedChanged -= OnGroundedChanged;
         _hurtScript.HurtingChanged -= OnHurtingChanged;
         _wallMovementScript.SlidingChanged -= OnSlidingChanged;
         _wallMovementScript.GrabbingChanged -= OnGrabbingChanged;
@@ -74,7 +71,7 @@ public class CharacterStates : MonoBehaviour
 
         _isMoving = _movementScript.MovementDirectionX != 0f;
 
-        _isFalling = (_velocity.y < 0f && _isGrounded == false);
+        _isFalling = (_velocity.y < 0f && _character.IsGrounded == false);
     }
 
     private void FixedUpdate()
@@ -124,7 +121,7 @@ public class CharacterStates : MonoBehaviour
             return States.Jump;
         }
 
-        if (_isGrounded)
+        if (_character.IsGrounded)
         {
             return _isMoving ? States.Move : States.Idle;
         }
@@ -160,11 +157,6 @@ public class CharacterStates : MonoBehaviour
     private void OnGrabbingChanged(bool isGrabbing)
     {
         _isGrabbing = isGrabbing;
-    }
-
-    private void OnGroundedChanged(bool isGrounded)
-    {
-        _isGrounded = isGrounded;
     }
 
     public enum States

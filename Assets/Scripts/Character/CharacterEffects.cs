@@ -1,10 +1,12 @@
 using System.Collections;
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
 
 public class CharacterEffects : MonoBehaviour
 {
-    [Header("Components")] 
+    [Header("Components")]
+    [SerializeField] private Camera _cameraMain;
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private CharacterStates _characterStates;
 
@@ -90,7 +92,7 @@ public class CharacterEffects : MonoBehaviour
         _rippleEffect.Show();
         
         StartCoroutine(ShakeCamera());
-
+        
         if (_isTrailEnable)
         {
             StartCoroutine(ShowGhostTrail());
@@ -114,11 +116,11 @@ public class CharacterEffects : MonoBehaviour
         //_dashDustEffect.Play();
     }
 
-    private IEnumerator ShakeCamera()
+    private IEnumerator ShakeCamera()//TODO: Need rafactor
     {
         CinemachineBasicMultiChannelPerlin _perlin =
             _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        
+
         _perlin.m_AmplitudeGain = _cameraShakeIntensity;
 
         yield return new WaitForSeconds(_cameraShakeTime);

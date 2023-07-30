@@ -12,9 +12,7 @@ public class CharacterWallMovement : MonoBehaviour
     private PlayerInputActions _playerInput;
     private CharacterStates _states;
     private CharacterMovement _characterMovement;
-
-    private bool _isTouchingWall;
-    private bool _isGrounded;
+    
     private bool _isSliding;
     private bool _isGrabbing;
     private bool _isGrabRequired;
@@ -70,8 +68,6 @@ public class CharacterWallMovement : MonoBehaviour
         
         _playerInput.Character.Grab.started += OnGrabStarted;
         _playerInput.Character.Grab.canceled += OnGrabCanceled;
-        _character.WallTouchingChanged += OnWallTouchingChanged;
-        _character.GroundedChanged += OnGroundedChanged;
     }
 
     private void OnDisable()
@@ -79,8 +75,6 @@ public class CharacterWallMovement : MonoBehaviour
         _playerInput.Character.Disable();
         _playerInput.Character.Grab.started -= OnGrabStarted;
         _playerInput.Character.Grab.canceled -= OnGrabCanceled;
-        _character.WallTouchingChanged -= OnWallTouchingChanged;
-        _character.GroundedChanged -= OnGroundedChanged;
     }
 
     private void Update()
@@ -110,7 +104,7 @@ public class CharacterWallMovement : MonoBehaviour
 
     private void UpdateStates()
     {
-        if (_isTouchingWall && _isGrounded == false)
+        if (_character.IsTouchingWall && _character.IsGrounded == false)
         {
             if (_isGrabRequired && IsGrabbing == false)
             {
@@ -145,15 +139,5 @@ public class CharacterWallMovement : MonoBehaviour
     {
         _isGrabRequired = false;
         IsGrabbing = false;
-    }
-
-    private void OnWallTouchingChanged(bool isTouchingWall)
-    {
-        _isTouchingWall = isTouchingWall;
-    }
-
-    private void OnGroundedChanged(bool isGrounded)
-    {
-        _isGrounded = isGrounded;
     }
 }

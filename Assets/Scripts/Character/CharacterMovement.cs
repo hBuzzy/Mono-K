@@ -28,9 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private float _speedChange; //TODO: Make it private after tests
     private float previousDirectionX;
     private float _movementDirectionX; //TODO: Make it private after tests
-   
-    private bool _isGrounded;
-    private bool _isTouchingWall;
+    
     private bool _isOnPlatform;
 
     public float MovementDirectionX => _movementDirectionX;
@@ -51,8 +49,6 @@ public class CharacterMovement : MonoBehaviour
     private void OnEnable()
     {
         _playerInput.Character.Enable();
-        _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
-        _character.WallTouchingChanged += isWallTouch => { _isTouchingWall = isWallTouch; };
     }
 
     private void OnDisable()
@@ -64,7 +60,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _movementDirectionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
 
-        if (IsDirectionChanged() && _isTouchingWall == false)
+        if (IsDirectionChanged() && _character.IsTouchingWall == false)
         {
             FlipDirection();
             previousDirectionX = _movementDirectionX;
@@ -112,9 +108,11 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
-        float acceleration = _isGrounded ? _acceleration : _airAcceleration;
-        float deceleration = _isGrounded ? _deceleration : _airDeceleration;
-        float turnSpeed = _isGrounded ? _turnSpeed : _airTurnSpeed;
+        bool isGrounded = _character.IsGrounded;
+        
+        float acceleration = isGrounded ? _acceleration : _airAcceleration;
+        float deceleration = isGrounded ? _deceleration : _airDeceleration;
+        float turnSpeed = isGrounded ? _turnSpeed : _airTurnSpeed;
 
         if (_movementDirectionX == 0) //TODO: Refactoring 
         {

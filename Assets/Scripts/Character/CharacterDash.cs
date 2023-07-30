@@ -19,7 +19,6 @@ public class CharacterDash : MonoBehaviour
     private Character _character;
 
     private bool _canDash = true;
-    private bool _isGrounded;
 
     public event Action Dashed;
     public event Action PreparingDash;
@@ -36,14 +35,20 @@ public class CharacterDash : MonoBehaviour
     {
         _playerInput.Character.Enable();
         _playerInput.Character.Dash.performed += OnDash;
-        _character.GroundedChanged += OnGroundedChanged;
     }
 
     private void OnDisable()
     {
         _playerInput.Character.Disable();
         _playerInput.Character.Dash.performed -= OnDash;
-        _character.GroundedChanged -= OnGroundedChanged;
+    }
+
+    private void Update()
+    {
+        if (_canDash == false && _character.IsGrounded)
+        {
+            _canDash = true;
+        }
     }
 
     private void FixedUpdate()
@@ -89,7 +94,7 @@ public class CharacterDash : MonoBehaviour
         
         DashingChanged?.Invoke(false);
 
-        if (_isGrounded)
+        if (_character.IsGrounded)
         {
             _canDash = true;
         }
@@ -105,15 +110,5 @@ public class CharacterDash : MonoBehaviour
         }
 
         return direction;
-    }
-
-    private void OnGroundedChanged(bool isGrounded)
-    {
-        _isGrounded = isGrounded;
-        
-        if (_isGrounded == true)
-        {
-            _canDash = true;
-        }
     }
 }

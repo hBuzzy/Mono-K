@@ -39,9 +39,7 @@ public class CharacterJump : MonoBehaviour
     private bool _isJumpRequired;
     private bool _isJumpButtonPressing;
     private bool _isCurrentlyJumping;
-    private bool _isGrounded;
-    private bool _isTouchingWall;
-    
+
     #endregion
 
     public event Action Jumped;
@@ -60,8 +58,6 @@ public class CharacterJump : MonoBehaviour
         _playerInput.Character.Enable();
         _playerInput.Character.Jump.started += OnJumpStarted;
         _playerInput.Character.Jump.canceled += OnJumpCanceled;
-        _character.GroundedChanged += OnGroundedChanged;
-        _character.WallTouchingChanged += OnWallTouchingChanged;
     }
 
     private void OnDisable()
@@ -69,8 +65,6 @@ public class CharacterJump : MonoBehaviour
         _playerInput.Character.Disable();
         _playerInput.Character.Jump.started -= OnJumpStarted;
         _playerInput.Character.Jump.canceled -= OnJumpCanceled;
-        _character.GroundedChanged -= OnGroundedChanged;
-        _character.WallTouchingChanged -= OnWallTouchingChanged;
     }
 
     void Update()
@@ -118,7 +112,7 @@ public class CharacterJump : MonoBehaviour
     {
         if (_rigidbody.velocity.y > 0.01f)
         {
-            if (_isGrounded || _isTouchingWall)
+            if (_character.IsGrounded || _character.IsTouchingWall)
             {
                 _gravityMultiplier = _defaultGravityScale;
             }
@@ -136,7 +130,7 @@ public class CharacterJump : MonoBehaviour
         }
         else if (_rigidbody.velocity.y < -0.01f)
         {
-            if (_isGrounded)
+            if (_character.IsGrounded)
             {
                 _gravityMultiplier = _defaultGravityScale;
             }
@@ -147,7 +141,7 @@ public class CharacterJump : MonoBehaviour
         }
         else
         {
-            if (_isGrounded || _isTouchingWall)//TODO: Добавить на стене
+            if (_character.IsGrounded || _character.IsTouchingWall)//TODO: Добавить на стене
             {
                 _isCurrentlyJumping = false;
             }
@@ -160,7 +154,7 @@ public class CharacterJump : MonoBehaviour
 
     private void Jump()
     {
-        if (_isGrounded)
+        if (_character.IsGrounded)
         {
             JumpFromGround();
         }
@@ -230,15 +224,5 @@ public class CharacterJump : MonoBehaviour
             _isJumpRequired = false;
             _jumpBufferCounter = 0;
         }
-    }
-
-    private void OnGroundedChanged(bool isGrounded)
-    {
-        _isGrounded = isGrounded;
-    }
-
-    private void OnWallTouchingChanged(bool isTouchingWall)
-    {
-        _isTouchingWall = isTouchingWall;
     }
 }

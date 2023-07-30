@@ -13,23 +13,20 @@ public class Character : MonoBehaviour
     [SerializeField] private Light2D _light;
     [SerializeField] private TrailRenderer _trail;
     
-    private float _inputX;
-    private float _facingDirectionX = 1f;
-
-    private bool _isGrounded;
-    private bool _isCurrentlyGrounded;
-    private bool _isOnWall;
-    private bool _isCurrentlyOnWall;
-    private bool _canMove;
-    
     private CharacterStates _states;
     private PlayerInputActions _playerInput;
-    public event Action<bool> GroundedChanged;
-    public event Action<bool> WallTouchingChanged;
+    
+    private float _inputX;
+    private float _facingDirectionX = 1f;
+    
+    private bool _canMove;
 
     public float InputX => _inputX;
     public float FacingDirectionX => _facingDirectionX;
+    
     public bool CanMove => _canMove;
+    public bool IsTouchingWall => _waller.GetOnWall();//TODO: Refactor checkers
+    public bool IsGrounded => _grounder.GetOnGround();
 
     private void Awake()
     {
@@ -65,9 +62,6 @@ public class Character : MonoBehaviour
         {
             _facingDirectionX = _inputX;
         }
-        
-        GetGroundState();
-        GetWallState();
     }
     
     private void NightStarted()
@@ -78,7 +72,7 @@ public class Character : MonoBehaviour
         _trail.enabled = true;
     }
 
-    private void UpdateMoveState(CharacterStates.States state)
+    private void UpdateMoveState(CharacterStates.States state)//TODO:Rename
     {
         if (state == CharacterStates.States.Dash || state == CharacterStates.States.Grab)
         {
@@ -87,28 +81,6 @@ public class Character : MonoBehaviour
         else
         {
             _canMove = true;
-        }
-    }
-
-    private void GetGroundState() //TODO: Rename
-    {
-        _isCurrentlyGrounded = _grounder.GetOnGround();
-
-        if (_isGrounded != _isCurrentlyGrounded)
-        {
-            _isGrounded = _isCurrentlyGrounded;
-            GroundedChanged?.Invoke(_isGrounded);   
-        }
-    }
-    
-    private void GetWallState() //TODO: Rename
-    {
-        _isCurrentlyOnWall = _waller.GetOnWall();
-
-        if (_isOnWall != _isCurrentlyOnWall)
-        {
-            _isOnWall = _isCurrentlyOnWall;
-            WallTouchingChanged?.Invoke(_isOnWall);   
         }
     }
 }
