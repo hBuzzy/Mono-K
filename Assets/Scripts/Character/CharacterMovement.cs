@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -20,16 +21,19 @@ public class CharacterMovement : MonoBehaviour
     private Character _character;
     private CharacterStates _characterStates;
 
-    public float _speedChange; //TODO: Make it private after tests
-    public Vector2 _velocity; //TODO: Make it private after tests
-    public Vector2 _desiredVelocity; // TODO: Make it private after tests
-    public float previousDirectionX;
-    public float directionX; //TODO: Make it private after tests
-    private bool _isGrounded;
-    private bool _isWallTouch;
-
-    private bool _isOnPlatform;
+    private Vector2 _velocity; //TODO: Make it private after tests
+    private Vector2 _desiredVelocity; // TODO: Make it private after tests
     private Vector2 _platformVelocity;
+    
+    private float _speedChange; //TODO: Make it private after tests
+    private float previousDirectionX;
+    private float _movementDirectionX; //TODO: Make it private after tests
+   
+    private bool _isGrounded;
+    private bool _isTouchingWall;
+    private bool _isOnPlatform;
+
+    public float MovementDirectionX => _movementDirectionX;
 
     private void Awake()
     {
@@ -48,7 +52,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _playerInput.Character.Enable();
         _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
-        _character.WalledChanged += isWallTouch => { _isWallTouch = isWallTouch; };
+        _character.WallTouchingChanged += isWallTouch => { _isTouchingWall = isWallTouch; };
     }
 
     private void OnDisable()
@@ -58,28 +62,16 @@ public class CharacterMovement : MonoBehaviour
     
     private void Update()
     {
-        directionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
-        //directionX = Mathf.MoveTowards(input, directionX, 5f * Time.deltaTime);
-        
-        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>();
+        _movementDirectionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
 
-        if (directionX != 0)
-        {
-            directionX = directionX > 0 ? 1 : -1;
-        }
-        else
-        {
-            directionX = 0;
-        }
-        
-        if (IsDirectionChanged() && _isWallTouch == false)
+        if (IsDirectionChanged() && _isTouchingWall == false)
         {
             FlipDirection();
-            previousDirectionX = directionX;
+            previousDirectionX = _movementDirectionX;
         }
 
         float friction = 0;
-        _desiredVelocity = new Vector2(directionX, 0f) * Mathf.Max(_maxMoveSpeed - friction, 0f);
+        _desiredVelocity = new Vector2(_movementDirectionX, 0f) * Mathf.Max(_maxMoveSpeed - friction, 0f);
     }
 
     private void FixedUpdate()
@@ -124,13 +116,13 @@ public class CharacterMovement : MonoBehaviour
         float deceleration = _isGrounded ? _deceleration : _airDeceleration;
         float turnSpeed = _isGrounded ? _turnSpeed : _airTurnSpeed;
 
-        if (directionX == 0) //TODO: Refactoring 
+        if (_movementDirectionX == 0) //TODO: Refactoring 
         {
             _speedChange = deceleration * Time.deltaTime;
         }
         else
         {
-            if (Mathf.Sign(directionX) != Mathf.Sign(_velocity.x))
+            if (Mathf.Sign(_movementDirectionX) != Mathf.Sign(_velocity.x))
             {
                 _speedChange = turnSpeed * Time.deltaTime;
             }
@@ -140,8 +132,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-
-        if (_isOnPlatform && directionX == 0)
+        if (_isOnPlatform && _movementDirectionX == 0)
         {
             _desiredVelocity.x += _platformVelocity.x;
         }
@@ -151,16 +142,16 @@ public class CharacterMovement : MonoBehaviour
         _rigidbody.velocity = _velocity;
     }
 
-    private void FlipDirection()
+    private void FlipDirection()//TODO: Change it with facing and velocity?
     {
-        _spriteRenderer.flipX = directionX == (float)MoveDirectionX.Left;
+        _spriteRenderer.flipX = _movementDirectionX == (float)MoveDirectionX.Left;
     }
 
     private bool IsDirectionChanged()
     {
-        return directionX != previousDirectionX && directionX != (float)MoveDirectionX.Idle;
+        return _movementDirectionX != previousDirectionX && _movementDirectionX != (float)MoveDirectionX.Idle;
     }
-    
+
     private enum MoveDirectionX
     {
         Left = -1,

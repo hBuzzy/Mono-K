@@ -41,7 +41,7 @@ public class CharacterStates : MonoBehaviour
         _hurtScript = GetComponent<CharacterHurt>();
         
         _jumpScript.Jumped += () => { _isJumping = true; };
-        _dashScript.DashStatusChanged += isDashing =>
+        _dashScript.DashingChanged += isDashing =>
         {
             _isDashing = isDashing;
             //_isJumping = false;
@@ -53,7 +53,7 @@ public class CharacterStates : MonoBehaviour
             //_isJumping = false;
         };
 
-        _character.WalledChanged += b =>
+        _character.WallTouchingChanged += b =>
         {
         };
         
@@ -61,11 +61,11 @@ public class CharacterStates : MonoBehaviour
         {
             _isHurt = isHurt;
         };
-        _wallMovementScript.SlidingStatusChanged += isSliding =>
+        _wallMovementScript.SlidingChanged += isSliding =>
         {
             _isSliding = isSliding;
         };
-        _wallMovementScript.GrabbingStatusChanged += isGrabbing =>
+        _wallMovementScript.GrabbingChanged += isGrabbing =>
         {
             _isGrabbing = isGrabbing;
         };
@@ -76,7 +76,7 @@ public class CharacterStates : MonoBehaviour
         _velocity = _rigidbody.velocity;
         _isGrounded = _grounder.GetOnGround();
     
-        _isMoving = _movementScript.directionX != 0;
+        _isMoving = _movementScript.MovementDirectionX != 0;
 
         if (_isGrounded == false)
         {

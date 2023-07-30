@@ -36,8 +36,8 @@ public class CharacterJump : MonoBehaviour
 
     #region Current states
     
-    private bool _desiredJump;
-    private bool _pressingJump;
+    private bool _isJumpRequired;
+    private bool _isJumpButtonPressing;
     private bool _isCurrentlyJumping;
     private bool _isGrounded;
     private bool _isTouchingWall;
@@ -60,8 +60,9 @@ public class CharacterJump : MonoBehaviour
         _playerInput.Enable();
         _playerInput.Character.Jump.started += OnJumpStarted;
         _playerInput.Character.Jump.canceled += OnJumpCanceled;
+        
         _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
-        _character.WalledChanged += isTouchingWall =>
+        _character.WallTouchingChanged += isTouchingWall =>
         {
             _isTouchingWall = isTouchingWall;
         };
@@ -95,7 +96,7 @@ public class CharacterJump : MonoBehaviour
     {
         _velocity = _rigidbody.velocity;
 
-        if (_desiredJump)
+        if (_isJumpRequired)
         {
             Jump();
             return;
@@ -106,13 +107,13 @@ public class CharacterJump : MonoBehaviour
 
     private void OnJumpStarted(InputAction.CallbackContext context)
     {
-        _desiredJump = true;
-        _pressingJump = true;
+        _isJumpRequired = true;
+        _isJumpButtonPressing = true;
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext context)
     {
-        _pressingJump = false;
+        _isJumpButtonPressing = false;
     }
 
     private void CalculateGravity()
@@ -125,7 +126,7 @@ public class CharacterJump : MonoBehaviour
             }
             else
             {
-                if (_pressingJump && _isCurrentlyJumping)
+                if (_isJumpButtonPressing && _isCurrentlyJumping)
                 {
                     _gravityMultiplier = _upwardMovementMultiplier;
                 }
@@ -166,14 +167,14 @@ public class CharacterJump : MonoBehaviour
             JumpFromGround();
         }
 
-        if (_states.GetCurrentState() == CharacterStates.States.Slide)
+        if (_states.GetCurrentState() == CharacterStates.States.Slide) //TODO:  Add Grabbing?
         {
             JumpFromWall();
         }
 
         if (_jumpBuffer == 0)
         {
-            _desiredJump = false;
+            _isJumpRequired = false;
         }
         _rigidbody.velocity = _velocity;
     }
@@ -181,8 +182,9 @@ public class CharacterJump : MonoBehaviour
     private void JumpFromGround()
     {
         Jumped?.Invoke();
+        
         _jumpBufferCounter = 0;
-        _desiredJump = false;
+        _isJumpRequired = false;
 
         var rem = _jumpSpeed;
 
@@ -192,7 +194,7 @@ public class CharacterJump : MonoBehaviour
             _jumpSpeed = Mathf.Max(_jumpSpeed - _velocity.y, 0f);
         }
         else if (_velocity.y < 0f) {
-            _jumpSpeed += Mathf.Abs(_rigidbody.velocity.y);
+            _jumpSpeed += Mathf.Abs(_rigidbody.velocity.y); //TODO: Exchange it with = instead of += ?
         }
             
         if (_jumpSpeed > rem * 1.3 && rem != 0) //TODO: Create Methhod or fix this bug
@@ -206,27 +208,19 @@ public class CharacterJump : MonoBehaviour
 
     private void JumpFromWall()
     {
-        //_rigidbody.velocity = Vector2.zero;
-        
         Jumped?.Invoke();
-        _jumpBufferCounter = 0;
-        _desiredJump = false;
         
-        if (_character.IsFacingLeft)
-        {
-            _velocity += new Vector2(_wallJumpForce, _wallJumpForce);
-        }
-        else
-        {
-            _velocity += new Vector2(-_wallJumpForce, _wallJumpForce);
-        }
+        _jumpBufferCounter = 0;
+        _isJumpRequired = false;
+        
+        _velocity += new Vector2(-_character.FacingDirectionX * _wallJumpForce, _wallJumpForce);
         
         _isCurrentlyJumping = true;
     }
 
     private void CalculateBuffer()
     {
-        if (_jumpBuffer <= 0 || _desiredJump == false)
+        if (_jumpBuffer <= 0 || _isJumpRequired == false)
         {
             return;
         }
@@ -235,7 +229,7 @@ public class CharacterJump : MonoBehaviour
 
         if (_jumpBufferCounter > _jumpBuffer)
         {
-            _desiredJump = false;
+            _isJumpRequired = false;
             _jumpBufferCounter = 0;
         }
     }

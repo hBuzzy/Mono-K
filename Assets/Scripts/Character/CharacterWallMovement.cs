@@ -5,22 +5,54 @@ using States = CharacterStates.States;
 
 public class CharacterWallMovement : MonoBehaviour
 {
-    [SerializeField, Range(0f, 0.8f)] private float _slidingSpeed;
+    [SerializeField, Range(0f, 0.5f)] private float _slidingSpeed;
     
     private Character _character;
     private Rigidbody2D _rigidbody;
     private PlayerInputActions _playerInput;
     private CharacterStates _states;
-    
-    private bool _isOnWall;
+    private CharacterMovement _characterMovement;
+
+    private bool _isTouchingWall;
     private bool _isGrounded;
     private bool _isSliding;
-    private bool _isSlidingRem;
     private bool _isGrabbing;
-    private bool _desiredGrab;
+    private bool _isGrabRequired;
+    
+    #region Properties
 
-    public event Action<bool> SlidingStatusChanged;
-    public event Action<bool> GrabbingStatusChanged;
+    private bool IsSliding
+    {
+        get => _isSliding;
+        
+        set
+        {
+            if (_isSliding == value)
+                return;
+
+            _isSliding = value;
+            SlidingChanged?.Invoke(_isSliding);
+        }
+    }
+
+    private bool IsGrabbing
+    {
+        get => _isGrabbing;
+        
+        set
+        {
+            if (_isGrabbing == value)
+                return;
+
+            _isGrabbing = value;
+            GrabbingChanged?.Invoke(_isGrabbing);
+        }
+    }
+
+    #endregion
+
+    public event Action<bool> SlidingChanged;
+    public event Action<bool> GrabbingChanged;
 
     private void Awake()
     {
@@ -29,89 +61,99 @@ public class CharacterWallMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
         _states = GetComponent<CharacterStates>();
+        _characterMovement = GetComponent<CharacterMovement>();
     }
     
     private void OnEnable()
     {
         _playerInput.Character.Enable();
+        
         _playerInput.Character.Grab.started += OnGrabStarted;
         _playerInput.Character.Grab.canceled += OnGrabCanceled;
-        
-        _character.WalledChanged += isOnWall => { _isOnWall = isOnWall; };
-        _character.GroundedChanged += isGrounded => { _isGrounded = isGrounded; };
+        _character.WallTouchingChanged += OnWallTouchingChanged;
+        _character.GroundedChanged += OnGroundedChanged;
     }
-
 
     private void OnDisable()
     {
         _playerInput.Character.Disable();
         _playerInput.Character.Grab.started -= OnGrabStarted;
         _playerInput.Character.Grab.canceled -= OnGrabCanceled;
+        _character.WallTouchingChanged -= OnWallTouchingChanged;
+        _character.GroundedChanged -= OnGroundedChanged;
     }
 
     private void Update()
     {
-        var state = _states.GetCurrentState();
+        States characterState = _states.GetCurrentState();
 
-        if (state == States.Dash)
+        if (characterState == States.Dash)
         {
-            _desiredGrab = false; 
-            _isGrabbing = false;
-            _isSliding = false;
+            _isGrabRequired = false; 
+            IsGrabbing = false;
+            IsSliding = false;
         }
 
-        if (_isOnWall && _isGrounded == false)
-        {
-            if (_desiredGrab)
-            {
-                _isGrabbing = true;
-                _desiredGrab = false;
-                GrabbingStatusChanged?.Invoke(_isGrabbing);
-            }
-            else
-            {
-                if (_character.DirectionX != 0 && _rigidbody.velocity.y <= 0)
-                {
-                    _isSliding = true;
-                }
-                else
-                {
-                    _isSliding = false;
-                }
-            }
-        }
-        else
-        {
-            _isSliding = false;
-            _isGrabbing = false;
-        }
+        UpdateStates();
 
-        if (_isSliding != _isSlidingRem)
-        {
-            _isSlidingRem = _isSliding;
-            SlidingStatusChanged?.Invoke(_isSliding);
-        }
-
-        if (_isGrabbing)
+        if (IsGrabbing)
         {
             _rigidbody.gravityScale = 0f;
             _rigidbody.velocity = Vector2.zero;
         }
-        else if (_isSliding)
+        else if (IsSliding)
         {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -_slidingSpeed, float.MaxValue));
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,
+                Mathf.Clamp(_rigidbody.velocity.y, -_slidingSpeed, float.MaxValue));
+        }
+    }
+
+    private void UpdateStates()
+    {
+        if (_isTouchingWall && _isGrounded == false)
+        {
+            if (_isGrabRequired && IsGrabbing == false)
+            {
+                _isGrabRequired = false;
+                IsGrabbing = true;
+            }
+            else
+            {
+                if (_characterMovement.MovementDirectionX != 0 && _rigidbody.velocity.y <= 0)
+                {
+                    IsSliding = true;
+                }
+                else
+                {
+                    IsSliding = false;
+                }
+            }
+        }
+        else
+        { 
+            IsSliding = false;
+            IsGrabbing = false;
         }
     }
 
     private void OnGrabStarted(InputAction.CallbackContext context)
     {
-        _desiredGrab = true;
+        _isGrabRequired = true;
     }
 
     private void OnGrabCanceled(InputAction.CallbackContext context)
     {
-        _desiredGrab = false;
-        _isGrabbing = false;
-        GrabbingStatusChanged?.Invoke(_isGrabbing);
+        _isGrabRequired = false;
+        IsGrabbing = false;
+    }
+
+    private void OnWallTouchingChanged(bool isTouchingWall)
+    {
+        _isTouchingWall = isTouchingWall;
+    }
+
+    private void OnGroundedChanged(bool isGrounded)
+    {
+        _isGrounded = isGrounded;
     }
 }

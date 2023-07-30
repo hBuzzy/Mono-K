@@ -12,23 +12,23 @@ public class Character : MonoBehaviour
     [SerializeField] private NightSwitcher _nightSwitcher;
     [SerializeField] private Light2D _light;
     [SerializeField] private TrailRenderer _trail;
+    
+    private float _inputX;
+    private float _facingDirectionX = 1f;
 
     private bool _isGrounded;
     private bool _isCurrentlyGrounded;
     private bool _isOnWall;
     private bool _isCurrentlyOnWall;
-    private float _directionX;
-    private bool _isFacingLeft;
     private bool _canMove;
     
     private CharacterStates _states;
     private PlayerInputActions _playerInput;
-    public event Action<bool> GroundedChanged; //TODO: Rename
-    public event Action<bool> WalledChanged;
-    public event Action<bool> Hurted;
-    
-    public float DirectionX => _directionX;
-    public bool IsFacingLeft => _isFacingLeft;
+    public event Action<bool> GroundedChanged;
+    public event Action<bool> WallTouchingChanged;
+
+    public float InputX => _inputX;
+    public float FacingDirectionX => _facingDirectionX;
     public bool CanMove => _canMove;
 
     private void Awake()
@@ -40,10 +40,6 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        _isGrounded = false;
-        _isCurrentlyGrounded = false;
-        _isOnWall = false;
-        _isCurrentlyOnWall = false;
         _states = GetComponent<CharacterStates>();
     }
 
@@ -63,17 +59,11 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        _directionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
+        _inputX = _playerInput.Character.Move.ReadValue<Vector2>().x;
 
-        if (_directionX != 0)//TODO: Facing from vilocity?
+        if (_inputX != 0f)
         {
-            _directionX = _directionX > 0 ? 1 : -1;
-
-            _isFacingLeft = _directionX == -1;
-        }
-        else
-        {
-            _directionX = 0;
+            _facingDirectionX = _inputX;
         }
         
         GetGroundState();
@@ -118,7 +108,7 @@ public class Character : MonoBehaviour
         if (_isOnWall != _isCurrentlyOnWall)
         {
             _isOnWall = _isCurrentlyOnWall;
-            WalledChanged?.Invoke(_isOnWall);   
+            WallTouchingChanged?.Invoke(_isOnWall);   
         }
     }
 }

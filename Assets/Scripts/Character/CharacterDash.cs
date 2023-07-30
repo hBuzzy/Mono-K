@@ -13,7 +13,7 @@ public class CharacterDash : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
     private Vector2 _velocity;
-    private bool _dashNeed;
+    private bool _isDashRequired;
     
     private PlayerInputActions _playerInput;
     private Character _character;
@@ -23,7 +23,7 @@ public class CharacterDash : MonoBehaviour
 
     public event Action Dashed;
     public event Action PreparingDash;
-    public event Action<bool> DashStatusChanged;//TODO: Remove?
+    public event Action<bool> DashingChanged;//TODO: Remove?
 
     private void Awake()
     {
@@ -34,33 +34,25 @@ public class CharacterDash : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInput.Enable();
+        _playerInput.Character.Enable();
         _playerInput.Character.Dash.performed += OnDash;
-        _character.GroundedChanged += isGrounded =>
-        {
-            _isGrounded = isGrounded;
-            if (_isGrounded == true)
-            {
-                _canDash = true;
-            }
-        };
+        _character.GroundedChanged += OnGroundedChanged;
     }
 
     private void OnDisable()
     {
-        _playerInput.Disable();
+        _playerInput.Character.Disable();
         _playerInput.Character.Dash.performed -= OnDash;
+        _character.GroundedChanged -= OnGroundedChanged;
     }
 
     private void FixedUpdate()
     {
-        //_velocity = _rigidbody.velocity;//TODO: Count only when dashing.
-
-        if (_dashNeed && _canDash)
+        if (_isDashRequired && _canDash)
         {
             Dash();
             _rigidbody.velocity = _velocity;
-            _dashNeed = false;
+            _isDashRequired = false;
         }
     }
 
@@ -68,10 +60,10 @@ public class CharacterDash : MonoBehaviour
     {
         if (_canDash)
         {
-            _dashNeed = true;
+            _isDashRequired = true;
         }
     }
-    
+
     private void Dash()
     {
         _rigidbody.velocity = Vector2.zero;
@@ -83,7 +75,7 @@ public class CharacterDash : MonoBehaviour
     private IEnumerator WaitDash(Vector2 direction)//TODO: rename ?
     {
         Dashed?.Invoke();
-        DashStatusChanged?.Invoke(true);
+        DashingChanged?.Invoke(true);
 
         _rigidbody.gravityScale = 0f;
 
@@ -95,24 +87,33 @@ public class CharacterDash : MonoBehaviour
 
         yield return new WaitForSeconds(_waitAfterDash);
         
-        DashStatusChanged?.Invoke(false);
+        DashingChanged?.Invoke(false);
 
         if (_isGrounded)
+        {
             _canDash = true;
+        }
     }
 
     private Vector2 GetDashDirection()
     {
-        int left = -1;
-        int right = 1;
-        
-        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>();
+        Vector2 direction = _playerInput.Character.Move.ReadValue<Vector2>().normalized;
 
         if (direction == Vector2.zero)
         {
-            direction.x = _character.IsFacingLeft ? left : right;
+            direction.x = _character.FacingDirectionX;
         }
 
         return direction;
+    }
+
+    private void OnGroundedChanged(bool isGrounded)
+    {
+        _isGrounded = isGrounded;
+        
+        if (_isGrounded == true)
+        {
+            _canDash = true;
+        }
     }
 }
