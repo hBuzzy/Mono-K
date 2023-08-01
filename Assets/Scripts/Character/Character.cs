@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CharacterStates))]
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private CharacterGround _grounder; //TODO: Rename
-    [SerializeField] private CharacterWallChecker _waller;//TODO: Rename
+    [SerializeField] private CharacterGround _groundDetector; //TODO: Rename
+    [SerializeField] private CharacterWallChecker _wallDetector;//TODO: Rename
     [SerializeField] private Transform _respawnPoint;
     [SerializeField] private NightSwitcher _nightSwitcher;
     [SerializeField] private Light2D _light;
@@ -25,21 +26,15 @@ public class Character : MonoBehaviour
     public float FacingDirectionX => _facingDirectionX;
     
     public bool CanMove => _canMove;
-    public bool IsTouchingWall => _waller.GetOnWall();//TODO: Refactor checkers
-    public bool IsGrounded => _grounder.GetOnGround();
+    public bool IsTouchingWall => _wallDetector.IsTouchingWall;//TODO: Refactor checkers
+    public bool IsGrounded => _groundDetector.GetOnGround();
 
     private void Awake()
     {
-        _states = GetComponent<CharacterStates>();
         _playerInput = new PlayerInputActions();
-        _playerInput.Character.Enable();
-    }
-
-    private void Start()
-    {
         _states = GetComponent<CharacterStates>();
     }
-
+    
     private void OnEnable()
     {
         _playerInput.Character.Enable();
@@ -74,7 +69,7 @@ public class Character : MonoBehaviour
 
     private void UpdateMoveState(CharacterStates.States state)//TODO:Rename
     {
-        if (state == CharacterStates.States.Dash || state == CharacterStates.States.Grab)
+        if (state == CharacterStates.States.Dash || state == CharacterStates.States.Grab || state == CharacterStates.States.DashPreparation)
         {
             _canMove = false;
         }

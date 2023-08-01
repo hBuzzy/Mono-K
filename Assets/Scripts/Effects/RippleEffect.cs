@@ -5,14 +5,14 @@ public class RippleEffect : MonoBehaviour
 {
     [Header("Ripple material")]
     [SerializeField] private Material _material;
-    
+
     [Header("Variables")]
     [SerializeField, Range(0f, 1.5f)] private float _time;
-    
-    private const float MaxDistance = 1f;
-    private const float MinDistance = -0.1f;
 
     private readonly int _rippleDistance = Shader.PropertyToID("_RippleDistance");
+
+    private const float MaxDistance = 1f;
+    private const float MinDistance = -0.1f;
 
     public void Show()
     {

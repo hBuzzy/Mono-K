@@ -36,8 +36,8 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
-        _character = GetComponent<Character>();
         _characterStates = GetComponent<CharacterStates>();
+        _character = GetComponent<Character>();
     }
 
     private void Start()
@@ -59,7 +59,8 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         _movementDirectionX = _playerInput.Character.Move.ReadValue<Vector2>().x;
-
+            
+        //TODO: If char jump from left wall to  the right but pressing left input char locking at left while must look at right cuz he move in right
         if (IsDirectionChanged() && _character.IsTouchingWall == false)
         {
             FlipDirection();
@@ -72,10 +73,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _velocity = _rigidbody.velocity;
-
         if (_character.CanMove)
         {
+            _velocity = _rigidbody.velocity;
             Move();
         }
     }
@@ -139,7 +139,7 @@ public class CharacterMovement : MonoBehaviour
 
         _rigidbody.velocity = _velocity;
     }
-
+    
     private void FlipDirection()//TODO: Change it with facing and velocity?
     {
         _spriteRenderer.flipX = _movementDirectionX == (float)MoveDirectionX.Left;

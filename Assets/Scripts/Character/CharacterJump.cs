@@ -71,13 +71,13 @@ public class CharacterJump : MonoBehaviour
     {
         if (_character.CanMove)
         {
-            SetPhysics();
+            SetGravity();
         }
 
         CalculateBuffer();
     }
 
-    private void SetPhysics()
+    private void SetGravity()
     {
         float gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);
         
@@ -95,17 +95,6 @@ public class CharacterJump : MonoBehaviour
         }
 
         CalculateGravity();
-    }
-
-    private void OnJumpStarted(InputAction.CallbackContext context)
-    {
-        _isJumpRequired = true;
-        _isJumpButtonPressing = true;
-    }
-
-    private void OnJumpCanceled(InputAction.CallbackContext context)
-    {
-        _isJumpButtonPressing = false;
     }
 
     private void CalculateGravity()
@@ -224,5 +213,16 @@ public class CharacterJump : MonoBehaviour
             _isJumpRequired = false;
             _jumpBufferCounter = 0;
         }
+    }
+
+    private void OnJumpStarted(InputAction.CallbackContext context)
+    {
+        _isJumpRequired = true;
+        _isJumpButtonPressing = true;
+    }
+
+    private void OnJumpCanceled(InputAction.CallbackContext context)
+    {
+        _isJumpButtonPressing = false;
     }
 }

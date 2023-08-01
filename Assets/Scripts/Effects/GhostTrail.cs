@@ -9,6 +9,8 @@ public class GhostTrail : MonoBehaviour
     [SerializeField] private float _alphaMultiplier = 0.85f;
     [SerializeField] private Color _color;
     
+    private readonly int _ghostColor = Shader.PropertyToID("_GhostColor");
+    
     private Character _character;
     private SpriteRenderer _characterSpriteRenderer;
     private SpriteRenderer _spriteRenderer;
@@ -20,6 +22,7 @@ public class GhostTrail : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.material.SetColor(_ghostColor, _color);
     }
 
     private void OnEnable()
@@ -41,7 +44,7 @@ public class GhostTrail : MonoBehaviour
     {
         _currentAlpha *= _alphaMultiplier;
         _color.a = _alpha;
-        _spriteRenderer.color = _color;
+        //_spriteRenderer.color = _color;
 
         if (Time.time >= (_timeActivated + _activeTime))
         {

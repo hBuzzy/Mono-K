@@ -21,7 +21,7 @@ public class CharacterDash : MonoBehaviour
     private bool _canDash = true;
 
     public event Action Dashed;
-    public event Action PreparingDash;
+    public event Action<bool> PreparingDashChanged;
     public event Action<bool> DashingChanged;//TODO: Remove?
 
     private void Awake()
@@ -74,30 +74,48 @@ public class CharacterDash : MonoBehaviour
         _rigidbody.velocity = Vector2.zero;
         _canDash = false;
 
-        StartCoroutine(WaitDash(GetDashDirection()));
+        StartCoroutine(PerformDash(GetDashDirection()));
     }
 
-    private IEnumerator WaitDash(Vector2 direction)//TODO: rename ?
+    private IEnumerator PerformDash(Vector2 direction)//TODO: rename ?
     {
+        /*PreparingDashChanged?.Invoke(true);
+        _rigidbody.gravityScale = 0f;
+        _rigidbody.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1f);
+        
+        PreparingDashChanged?.Invoke(false);*/
+        
         Dashed?.Invoke();
         DashingChanged?.Invoke(true);
 
         _rigidbody.gravityScale = 0f;
 
         _velocity = direction * _speed;
-        
+
         yield return new WaitForSeconds(_duration);
-        
+
         _rigidbody.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(_waitAfterDash);
-        
+
         DashingChanged?.Invoke(false);
 
         if (_character.IsGrounded)
         {
             _canDash = true;
         }
+
+    }
+
+    private IEnumerator PrepareDash()
+    {
+        PreparingDashChanged?.Invoke(true);
+        
+        yield return new WaitForSeconds(1f);
+        
+        PreparingDashChanged?.Invoke(false);
+        
     }
 
     private Vector2 GetDashDirection()

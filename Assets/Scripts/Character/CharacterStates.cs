@@ -25,6 +25,7 @@ public class CharacterStates : MonoBehaviour
     
     private bool _isMoving;
     private bool _isJumping;
+    private bool _isDashPreparation;
     private bool _isDashing;
     private bool _isFalling;
     private bool _isSliding;
@@ -51,6 +52,7 @@ public class CharacterStates : MonoBehaviour
     {
         _jumpScript.Jumped += OnJumped;
         _dashScript.DashingChanged += OnDashingChanged;
+        _dashScript.PreparingDashChanged += OnPreparingDashChanged;
         _hurtScript.HurtingChanged += OnHurtingChanged;
         _wallMovementScript.SlidingChanged += OnSlidingChanged;
         _wallMovementScript.GrabbingChanged += OnGrabbingChanged;
@@ -99,6 +101,11 @@ public class CharacterStates : MonoBehaviour
         if (_isHurting)
         {
             return States.Hurt;
+        }
+
+        if (_isDashPreparation)
+        {
+            return States.DashPreparation;
         }
         
         if (_isDashing)
@@ -157,6 +164,11 @@ public class CharacterStates : MonoBehaviour
     private void OnGrabbingChanged(bool isGrabbing)
     {
         _isGrabbing = isGrabbing;
+    }
+
+    private void OnPreparingDashChanged(bool isDashPreparation)
+    {
+        _isDashPreparation = isDashPreparation;
     }
 
     public enum States
