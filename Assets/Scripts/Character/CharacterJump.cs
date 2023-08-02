@@ -78,10 +78,7 @@ public class CharacterJump : MonoBehaviour
             _currentGravity = _defaultGravity;
         }
 
-        if (NeedUpdateGravity())
-        {
-            _character.SetGravity(_currentGravity);
-        }
+        _character.SetGravity(_currentGravity);
         
         CalculateBuffer();
     }
