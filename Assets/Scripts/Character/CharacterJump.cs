@@ -34,7 +34,7 @@ public class CharacterJump : MonoBehaviour
     private float _cutOffGravity;
     private float _defaultGravity;
     private float _currentGravity;
-    private float _jumpBufferCounter;
+    private float _jumpBufferCounter; //TODO: Rename?
     
     private bool _isJumpRequired;
     private bool _isJumpButtonPressing;
@@ -156,7 +156,7 @@ public class CharacterJump : MonoBehaviour
 
     private void Jump(Vector2 velocity)
     {
-        _jumpBufferCounter = 0;
+        _jumpBufferCounter = 0f;
         _isJumpRequired = false;
         _isCurrentlyJumping = true;
         
@@ -202,17 +202,17 @@ public class CharacterJump : MonoBehaviour
 
     private void CalculateBuffer()
     {
-        if (_jumpBuffer <= 0 || _isJumpRequired == false)
+        if (_jumpBuffer <= 0f || _isJumpRequired == false)
         {
             return;
         }
 
         _jumpBufferCounter += Time.deltaTime;
 
-        if (_jumpBufferCounter > _jumpBuffer)
+        if (_jumpBufferCounter >= _jumpBuffer)
         {
             _isJumpRequired = false;
-            _jumpBufferCounter = 0;
+            _jumpBufferCounter = 0f;
         }
     }
 

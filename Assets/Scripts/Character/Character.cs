@@ -23,7 +23,7 @@ public class Character : MonoBehaviour
     private float _inputX;
     private float _facingDirectionX = 1f;
     
-    private bool _canMove;
+    private bool _canMove = true;
 
     public Vector2 Velocity => _rigidbody.velocity;
     
@@ -84,9 +84,8 @@ public class Character : MonoBehaviour
 
     private void UpdateMoveAbility()
     {
-        if (_currentState == CharacterStates.States.Dash ||
-            _currentState == CharacterStates.States.Grab ||
-            _currentState == CharacterStates.States.DashPreparation)
+        if (_currentState == States.Dash || _currentState == States.Grab ||
+            _currentState == States.DashPreparation)
         {
             _rigidbody.gravityScale = 0f;
             _rigidbody.velocity = Vector2.zero;

@@ -25,7 +25,7 @@ public class CharacterEffects : MonoBehaviour
     [Header("Ghost trail")]
     [SerializeField] private bool _isTrailEnable;
     [SerializeField, Range(2, 10)] private int _ghostsCount;
-    [SerializeField, Range(0f, 1f)] private float _trailDuration;
+    [SerializeField, Range(0f, 0.3f)] private float _trailDuration;
 
     [Header("Hurt")]
     [SerializeField] private AudioSource _hitSound;
@@ -47,14 +47,13 @@ public class CharacterEffects : MonoBehaviour
     private void OnEnable()
     {
         _characterJump.Jumped += OnJumped;
-        _characterDash.Dashed += OnDash;
         _characterStates.StateChanged += HandleState;
     }
 
     private void OnDisable()
     {
         _characterJump.Jumped -= OnJumped;
-        _characterDash.Dashed -= OnDash;
+        _characterStates.StateChanged -= HandleState;
     }
 
     private void HandleState(CharacterStates.States state)
@@ -63,7 +62,7 @@ public class CharacterEffects : MonoBehaviour
         
         if (state == CharacterStates.States.Jump)
         {
-            //PlayJumpEffects();
+            PlayJumpEffects();
         }
         else if (state == CharacterStates.States.Dash)
         {
@@ -81,7 +80,7 @@ public class CharacterEffects : MonoBehaviour
 
     private void PlayJumpEffects()
     {
-        _jumpSound.Play();
+        _jumpSound.PlayOneShot(_jumpSound.clip);
         _jumpDustEffect.Play();
     }
 
@@ -106,8 +105,8 @@ public class CharacterEffects : MonoBehaviour
 
     private void OnJumped()
     {
-        _jumpSound.Play();
-        _jumpDustEffect.Play();
+        /*_jumpSound.Play();
+        _jumpDustEffect.Play();*/
     }
 
     private void OnDash()
