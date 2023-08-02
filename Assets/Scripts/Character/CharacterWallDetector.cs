@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterWallChecker : MonoBehaviour
+public class CharacterWallDetector : MonoBehaviour
 {
     [SerializeField] private LayerMask _wallMask;
     
