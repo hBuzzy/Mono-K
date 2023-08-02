@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CharacterStates))]
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class Character : MonoBehaviour
 {
@@ -16,6 +15,7 @@ public class Character : MonoBehaviour
     
     private CharacterStates _states;
     private PlayerInputActions _playerInput;
+    private Rigidbody2D _rigidbody;
     
     private float _inputX;
     private float _facingDirectionX = 1f;
@@ -28,11 +28,14 @@ public class Character : MonoBehaviour
     public bool CanMove => _canMove;
     public bool IsTouchingWall => _wallDetector.IsTouchingWall;//TODO: Refactor checkers
     public bool IsGrounded => _groundDetector.GetOnGround();
+    public Vector2 Velocity => _rigidbody.velocity;
+    public float GravityScale => _rigidbody.gravityScale;
 
     private void Awake()
     {
         _playerInput = new PlayerInputActions();
         _states = GetComponent<CharacterStates>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
     
     private void OnEnable()
@@ -56,6 +59,22 @@ public class Character : MonoBehaviour
         if (_inputX != 0f)
         {
             _facingDirectionX = _inputX;
+        }
+    }
+
+    public void SetVelocity(Vector2 velocity)
+    {
+        if (_canMove)
+        {
+            _rigidbody.velocity = velocity;
+        }
+    }
+
+    public void SetGravity(float gravityScale)
+    {
+        if (_canMove)
+        {
+            _rigidbody.gravityScale = gravityScale;
         }
     }
     
