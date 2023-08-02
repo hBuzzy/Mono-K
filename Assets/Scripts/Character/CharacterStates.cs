@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class CharacterStates : MonoBehaviour
 {
-    [SerializeField] private CharacterGround _grounder;
+    [SerializeField] private CharacterGroundDetector _grounder;
     [SerializeField] private TMP_Text _text;
 
     private Character _character;
@@ -103,14 +103,14 @@ public class CharacterStates : MonoBehaviour
             return States.Hurt;
         }
 
-        if (_isDashPreparation)
-        {
-            return States.DashPreparation;
-        }
-        
         if (_isDashing)
         {
             return States.Dash;
+        }
+        
+        if (_isDashPreparation)
+        {
+            return States.DashPreparation;
         }
 
         if (_isGrabbing)
