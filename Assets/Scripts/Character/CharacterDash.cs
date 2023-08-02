@@ -10,17 +10,13 @@ public class CharacterDash : MonoBehaviour
     [SerializeField] private float _waitAfterDash;//TODO: rename
     [SerializeField] private float _dashPreparationTime; //TODO: Rename?
     
-    private Rigidbody2D _rigidbody;
-
-    private Vector2 _velocity;
-    private bool _isDashRequired;
-    
     private PlayerInputActions _playerInput;
     private Character _character;
+    private Coroutine _dashCoroutine;
 
+    private bool _isDashRequired;
     private bool _canDash = true;
-
-    public event Action Dashed;
+    
     public event Action<bool> PreparingDashChanged;
     public event Action<bool> DashingChanged;//TODO: Remove?
 
@@ -28,7 +24,6 @@ public class CharacterDash : MonoBehaviour
     {
         _playerInput = new PlayerInputActions();
         _character = GetComponent<Character>();
-        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
@@ -55,67 +50,53 @@ public class CharacterDash : MonoBehaviour
     {
         if (_isDashRequired && _canDash)
         {
-            Dash();
-            _rigidbody.velocity = _velocity;
-            _isDashRequired = false;
+            _dashCoroutine ??= StartCoroutine(Dash());
         }
     }
 
-    private void OnDash(InputAction.CallbackContext context)
+    private IEnumerator Dash()
     {
-        if (_canDash)
-        {
-            _isDashRequired = true;
-        }
-    }
-
-    private void Dash()
-    {
-        _rigidbody.velocity = Vector2.zero;
+        _isDashRequired = false;
         _canDash = false;
-
-        StartCoroutine(PerformDash(GetDashDirection()));
-    }
-
-    private IEnumerator PerformDash(Vector2 direction)//TODO: rename ?
-    {
-        /*PreparingDashChanged?.Invoke(true);
-        _rigidbody.gravityScale = 0f;
-        _rigidbody.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
         
-        PreparingDashChanged?.Invoke(false);*/
+        Vector2 direction = GetDashDirection();
         
-        Dashed?.Invoke();
-        DashingChanged?.Invoke(true);
+        yield return PrepareDash();
 
-        _rigidbody.gravityScale = 0f;
-
-        _velocity = direction * _speed;
-
-        yield return new WaitForSeconds(_duration);
-
-        _rigidbody.velocity = Vector2.zero;
-
-        yield return new WaitForSeconds(_waitAfterDash);
-
-        DashingChanged?.Invoke(false);
-
+        yield return PerformDash(direction);
+        
         if (_character.IsGrounded)
         {
             _canDash = true;
         }
 
+        _dashCoroutine = null;
     }
 
     private IEnumerator PrepareDash()
     {
         PreparingDashChanged?.Invoke(true);
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_dashPreparationTime);
         
         PreparingDashChanged?.Invoke(false);
+    }
+
+    private IEnumerator PerformDash(Vector2 direction)
+    {
+        DashingChanged?.Invoke(true);
+
+        yield return new WaitForFixedUpdate();
         
+        _character.SetVelocity(direction * _speed);
+
+        yield return new WaitForSeconds(_duration);
+
+        _character.SetVelocity(Vector2.zero);
+
+        yield return new WaitForSeconds(_waitAfterDash);
+
+        DashingChanged?.Invoke(false);   
     }
 
     private Vector2 GetDashDirection()
@@ -128,5 +109,13 @@ public class CharacterDash : MonoBehaviour
         }
 
         return direction;
+    }
+
+    private void OnDash(InputAction.CallbackContext context)
+    {
+        if (_canDash)
+        {
+            _isDashRequired = true;
+        }
     }
 }
