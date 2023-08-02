@@ -5355,7 +5355,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: f93aaf7af59602b11fdd877c00000000cd0002e71b717b7ca52902c401c4d9781387e42f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: -1
@@ -10257,7 +10257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c716524d75c407144ac11ca267552359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundLength: 0.05
+  _groundLength: 0.1
   _colliderOffset: {x: 0.33, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
@@ -10309,10 +10309,10 @@ MonoBehaviour:
   _wallMask:
     serializedVersion: 2
     m_Bits: 64
-  _leftGrounderOffset: {x: 0.45, y: 1, z: 0}
-  _leftRadius: 0.07
-  _rightGrounderOffset: {x: -0.35, y: 1, z: 0}
-  _rightRadius: 0.07
+  _leftOffset: {x: 0.45, y: 1, z: 0}
+  _leftRadius: 0.05
+  _rightOffset: {x: -0.35, y: 1, z: 0}
+  _rightRadius: 0.05
 --- !u!1 &6246220513528880300
 GameObject:
   m_ObjectHideFlags: 0
@@ -10437,15 +10437,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1006491227
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: -1673730943, guid: a35f3ea9bbae46d4188adcc687636e46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.4583334, y: 2}
+  m_Size: {x: 1.032258, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10559,6 +10559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f357c186edf49945b646ceda87349cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraMain: {fileID: 0}
   _camera: {fileID: 0}
   _characterStates: {fileID: 4189989981966594841}
   _jumpSound: {fileID: 6246220515253709217}
@@ -10584,8 +10585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec6b0ba18803b84c85154aa4b35d90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grounder: {fileID: 7032348094196184594}
-  _waller: {fileID: 5332808629970498781}
+  _groundDetector: {fileID: 7032348094196184594}
+  _wallDetector: {fileID: 5332808629970498781}
   _respawnPoint: {fileID: 0}
   _nightSwitcher: {fileID: 0}
   _light: {fileID: 2000066166}
@@ -10623,11 +10624,6 @@ MonoBehaviour:
   _deceleration: 76
   _airAcceleration: 80
   _airDeceleration: 80
-  _speedChange: 0
-  _velocity: {x: 0, y: 0}
-  _desiredVelocity: {x: 0, y: 0}
-  previousDirectionX: 0
-  directionX: 0
 --- !u!114 &1077856834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10640,6 +10636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6dbddebd9a4a5d98b1fabcc9b61e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slidingSpeed: 0.15
 --- !u!114 &6246220514414204064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10656,7 +10653,7 @@ MonoBehaviour:
   _timeToJumpApex: 0.3
   _upwardMovementMultiplier: 0.65
   _downwardMovementMultiplier: 2.25
-  _wallJumpForce: 20
+  _wallJumpForce: 17
   _speedLimit: 20
   _jumpCutOff: 2.25
   _jumpBuffer: 0.15
@@ -10673,10 +10670,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40d23b2044d4b428f5754875ff7aadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 32
-  _duration: 0.21
-  _waitAfterDash: 0
-  _dashPreparationTime: 0
+  _speed: 44.5
+  _endSpeed: 30
+  _duration: 0.1
+  _endDuration: 0.075
+  _preparationTime: 0.075
+  _dashBuffer: 0.15
 --- !u!114 &2942855119232582093
 MonoBehaviour:
   m_ObjectHideFlags: 0
