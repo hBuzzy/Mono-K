@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using States = CharacterStates.States;
@@ -16,21 +17,25 @@ public class CharacterJump : MonoBehaviour
     [SerializeField, Range(10f, 20f)] private float _speedLimit = 15f;
     [SerializeField, Range(0f, 10f)] private float _jumpCutOff = 2.25f; //TODO: Rename
     [SerializeField, Range(0f, 0.3f)] private float _jumpBuffer = 0.15f;
-    [SerializeField, Range(0f, 0.3f)] private float _coyoteTime = 0.15f;
+    [SerializeField, Range(0f, 0.3f)] private float _coyoteTime = 0.15f; //TODO: NEed?;
     
-    private const float DefaultGravityScale = 1f;
+    private const float DefaultGravityMultiplier = 1f;
     private const float ComparisonError = 0.01f;
 
     private Rigidbody2D _rigidbody;
     private PlayerInputActions _playerInput;
     private Character _character;
     private CharacterStates _states;
-    
-    private Vector2 _velocity;
-    private float _gravityMultiplier;
-    private float _jumpSpeed;
-    private float _jumpBufferCounter;
 
+    private Vector2 _velocity;
+
+    private float _jumpGravity;
+    private float _fallGravity;
+    private float _cutOffGravity;
+    private float _defaultGravity;
+    private float _currentGravity;
+    private float _jumpBufferCounter;
+    
     private bool _isJumpRequired;
     private bool _isJumpButtonPressing;
     private bool _isCurrentlyJumping;
@@ -39,10 +44,17 @@ public class CharacterJump : MonoBehaviour
 
     void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _character = GetComponent<Character>();
-        _states = GetComponent<CharacterStates>();
         _playerInput = new PlayerInputActions();
+        _states = GetComponent<CharacterStates>();
+    }
+
+    private void Start()
+    {
+        _character = GetComponent<Character>();
+        _defaultGravity = GetGravityScale(DefaultGravityMultiplier);
+        _jumpGravity = GetGravityScale(_upwardMovementMultiplier);
+        _fallGravity = GetGravityScale(_downwardMovementMultiplier);
+        _cutOffGravity = GetGravityScale(_jumpCutOff);
     }
 
     private void OnEnable()
@@ -61,17 +73,17 @@ public class CharacterJump : MonoBehaviour
 
     private void Update()
     {
-        SetGravity();
+        if (_character.IsGrounded && Math.Abs(_currentGravity - _defaultGravity) > float.Epsilon)
+        {
+            _currentGravity = _defaultGravity;
+        }
 
-        CalculateBuffer();
-    }
-
-    private void SetGravity()
-    {
-        float gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);
-        float gravityScale = (gravityY / Physics2D.gravity.y) * _gravityMultiplier;
+        if (NeedUpdateGravity())
+        {
+            _character.SetGravity(_currentGravity);
+        }
         
-        _character.SetGravity(gravityScale);
+        CalculateBuffer();
     }
 
     private void FixedUpdate()
@@ -88,76 +100,38 @@ public class CharacterJump : MonoBehaviour
             _isJumpRequired = false;
         }
 
-        CalculateGravity();
+        _currentGravity = GetGravity();
+        LimitFallSpeed();
     }
 
-    private void CalculateGravity()
+    private float GetGravity()
     {
-        if (_rigidbody.velocity.y > ComparisonError)
+        if (_character.Velocity.y > ComparisonError)
         {
             if (_character.IsGrounded || _character.IsTouchingWall)
             {
-                _gravityMultiplier = DefaultGravityScale;
+                return _defaultGravity;
             }
-            else
+
+            if (_isJumpButtonPressing && _isCurrentlyJumping)
             {
-                if (_isJumpButtonPressing && _isCurrentlyJumping)
-                {
-                    _gravityMultiplier = _upwardMovementMultiplier;
-                }
-                else
-                {
-                    _gravityMultiplier = _jumpCutOff;
-                }
-            }
-        }
-        else if (_rigidbody.velocity.y < -ComparisonError)
-        {
-            if (_character.IsGrounded)
-            {
-                _gravityMultiplier = DefaultGravityScale;
-            }
-            else
-            {
-                _gravityMultiplier = _downwardMovementMultiplier;
-            }
-        }
-        else
-        {
-            if (_character.IsGrounded || _character.IsTouchingWall)//TODO: Добавить на стене
-            {
-                _isCurrentlyJumping = false;
+                return _jumpGravity;
             }
 
-            _gravityMultiplier = DefaultGravityScale;
+            return _cutOffGravity;
         }
-        
-        LimitFallSpeed();//TODO: Move out?
-    }
 
-    private void CalculateBuffer()
-    {
-        if (_jumpBuffer <= 0 || _isJumpRequired == false)
+        if (_character.Velocity.y < -ComparisonError)
         {
-            return;
+            return _character.IsGrounded ? _defaultGravity : _fallGravity;
         }
 
-        _jumpBufferCounter += Time.deltaTime;
-
-        if (_jumpBufferCounter > _jumpBuffer)
+        if (_character.IsGrounded || _character.IsTouchingWall)//TODO: Need here? Maybe need it out
         {
-            _isJumpRequired = false;
-            _jumpBufferCounter = 0;
+            _isCurrentlyJumping = false;
         }
-    }
 
-    private void LimitFallSpeed()
-    {
-        float maxSpeed = 100f; //TODO: Raplace with positive speed limit?
-        
-        Vector2 velocity = new Vector2(_velocity.x, Mathf.Clamp(_velocity.y, -_speedLimit, maxSpeed));
-        
-        _character.SetVelocity(velocity);
+        return _defaultGravity;
     }
 
     private bool CanJump(States state)
@@ -167,16 +141,15 @@ public class CharacterJump : MonoBehaviour
 
     private bool TryJump()
     {
-        var state = _states.GetCurrentState();
+        States state = _states.GetCurrentState();
         
         if (_isJumpRequired && CanJump(state))
         {
-            var velocity = GetJumpVelocity(state);
+            Vector2 velocity = GetJumpVelocity(state);
 
             if (velocity != Vector2.zero)
             {
                 Jump(velocity);
-
                 return true;
             }
         }
@@ -211,32 +184,59 @@ public class CharacterJump : MonoBehaviour
         return Vector2.zero;
     }
 
-    private Vector2 GetVelocityFromGround()//TODO:Need refactoring for fox
+    private Vector2 GetVelocityFromGround()
     {
-        var rem = _jumpSpeed;
+        _character.SetGravity(_defaultGravity);
 
-        _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _character.GravityScale * _jumpHeight);
-        
-        /*if (_velocity.y > 0f)
+        float velocityY = Mathf.Sqrt(-2f * Physics2D.gravity.y * _character.GravityScale * _jumpHeight);
+
+        if (_velocity.y < 0f)
         {
-            _jumpSpeed += Mathf.Max(_jumpSpeed - _velocity.y, 0f);
+            velocityY += Mathf.Abs(_velocity.y);
         }
-        else if (_velocity.y < 0f)
-        {
-            _jumpSpeed += Mathf.Abs(_velocity.y); //TODO: Exchange it with = instead of += ?
-        }*/
-            
-        /*if (_jumpSpeed > rem * 1.3 && rem != 0) //TODO: Create Methhod or fix this bug
-        {
-            _jumpSpeed = rem;
-        }*/
 
-        return new Vector2(0f, _jumpSpeed);
+        return new Vector2(0f, velocityY);
     }
 
     private Vector2 GetVelocityFromWall()
     {
         return new Vector2(-_character.FacingDirectionX * _wallJumpForce, _wallJumpForce);
+    }
+
+    private void CalculateBuffer()
+    {
+        if (_jumpBuffer <= 0 || _isJumpRequired == false)
+        {
+            return;
+        }
+
+        _jumpBufferCounter += Time.deltaTime;
+
+        if (_jumpBufferCounter > _jumpBuffer)
+        {
+            _isJumpRequired = false;
+            _jumpBufferCounter = 0;
+        }
+    }
+
+    private float GetGravityScale(float gravityMultiplier)
+    {
+        float gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);
+        return (gravityY / Physics2D.gravity.y) * gravityMultiplier;
+    }
+
+    private void LimitFallSpeed()
+    {
+        float maxSpeed = 100f; //TODO: Raplace with positive speed limit?
+        
+        Vector2 velocity = new Vector2(_velocity.x, Mathf.Clamp(_velocity.y, -_speedLimit, maxSpeed));
+        
+        _character.SetVelocity(velocity);
+    }
+
+    private bool NeedUpdateGravity()
+    {
+        return Math.Abs(_currentGravity - _character.GravityScale) < float.Epsilon;
     }
 
     private void OnJumpStarted(InputAction.CallbackContext context)
