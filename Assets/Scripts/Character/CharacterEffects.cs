@@ -87,8 +87,8 @@ public class CharacterEffects : MonoBehaviour
     private void PlayDashEffect()
     {
         _dashSound.PlayOneShot(_dashSound.clip);
-        _dashDustEffect.Play();
-        _rippleEffect.Show();
+        _dashDustEffect.Play(); 
+        //_rippleEffect.Show();
         
         StartCoroutine(ShakeCamera());
         

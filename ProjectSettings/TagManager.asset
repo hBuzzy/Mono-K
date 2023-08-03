@@ -39,32 +39,26 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Parallax background
-    uniqueID: 3197901789
+    uniqueID: 2990850661
     locked: 0
   - name: Background
-    uniqueID: 2058304249
+    uniqueID: 3329828051
     locked: 0
-  - name: Inveroument background
-    uniqueID: 2969736949
+  - name: Inveroument bacground
+    uniqueID: 3201810145
     locked: 0
   - name: Water
-    uniqueID: 2089278751
+    uniqueID: 426671417
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
-    uniqueID: 3875668173
-    locked: 0
   - name: Inveroument foreground
-    uniqueID: 2088464667
+    uniqueID: 805125901
     locked: 0
   - name: Character
-    uniqueID: 3288476069
+    uniqueID: 3364156335
     locked: 0
   - name: Grass
-    uniqueID: 2027537409
-    locked: 0
-  - name: CameraSortingLayer
-    uniqueID: 803505939
+    uniqueID: 1866551281
     locked: 0

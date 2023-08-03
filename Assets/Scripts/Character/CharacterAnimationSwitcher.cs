@@ -6,9 +6,7 @@ public class CharacterAnimationSwitcher : MonoBehaviour
     [SerializeField] private CharacterStates _states;
 
     private readonly int _idle = Animator.StringToHash("Idle");
-    private readonly int _jumpStart= Animator.StringToHash("JumpStart");
     private readonly int _jump = Animator.StringToHash("Jump");
-    private readonly int _jumpEnd = Animator.StringToHash("JumpEnd");
     private readonly int _fall = Animator.StringToHash("Fall");
     private readonly int _walk = Animator.StringToHash("Walk");
     private readonly int _dashPreparation = Animator.StringToHash("DashPreparation");

@@ -5,10 +5,17 @@ using UnityEngine.InputSystem;
 
 public class CharacterDash : MonoBehaviour
 {
-    [SerializeField] private float _speed = 32;
-    [SerializeField, Range(0f, 0.5f)] private float _duration;
-    [SerializeField] private float _waitAfterDash;//TODO: rename
-    [SerializeField] private float _dashPreparationTime; //TODO: Rename?
+    [Header("Speed")]
+    [SerializeField, Range(30f, 60f)] private float _speed = 50f;
+    [SerializeField, Range(0f, 40f)] private float _endSpeed = 25f;
+    
+    [Header("Time")]
+    [SerializeField, Range(0f, 0.3f)] private float _duration;
+    [SerializeField, Range(0, 0.3f)] private float _endDuration;
+    
+    [Header("Assistance")]
+    [SerializeField, Range(0f, 0.15f)] private float _preparationTime; //TODO: Rename?
+    [SerializeField, Range(0f, 0.3f)] private float _dashBuffer;
     
     private PlayerInputActions _playerInput;
     private Character _character;
@@ -16,6 +23,8 @@ public class CharacterDash : MonoBehaviour
 
     private bool _isDashRequired;
     private bool _canDash = true;
+
+    private float _dashBufferCounter; //TODO: Rename?
     
     public event Action<bool> PreparingDashChanged;
     public event Action<bool> DashingChanged;//TODO: Remove?
@@ -40,10 +49,12 @@ public class CharacterDash : MonoBehaviour
 
     private void Update()
     {
-        if (_canDash == false && _character.IsGrounded)
+        if (_canDash == false && _dashCoroutine == null && _character.IsGrounded)
         {
             _canDash = true;
         }
+        
+        CalculateBuffer();
     }
 
     private void FixedUpdate()
@@ -56,28 +67,26 @@ public class CharacterDash : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        _dashBufferCounter = 0f;
         _isDashRequired = false;
         _canDash = false;
         
-        Vector2 direction = GetDashDirection();
         
         yield return PrepareDash();
 
-        yield return PerformDash(direction);
+        yield return PerformDash(GetDashDirection());
         
         if (_character.IsGrounded)
         {
             _canDash = true;
         }
-
-        _dashCoroutine = null;
     }
 
     private IEnumerator PrepareDash()
     {
         PreparingDashChanged?.Invoke(true);
         
-        yield return new WaitForSeconds(_dashPreparationTime);
+        yield return new WaitForSeconds(_preparationTime);
         
         PreparingDashChanged?.Invoke(false);
     }
@@ -91,11 +100,15 @@ public class CharacterDash : MonoBehaviour
         _character.SetVelocity(direction * _speed);
 
         yield return new WaitForSeconds(_duration);
+        
+        _character.SetVelocity(direction * _endSpeed);
+        
+        yield return new WaitForSeconds(_endDuration);
 
         _character.SetVelocity(Vector2.zero);
 
-        yield return new WaitForSeconds(_waitAfterDash);
-
+        _dashCoroutine = null;
+        
         DashingChanged?.Invoke(false);   
     }
 
@@ -111,11 +124,24 @@ public class CharacterDash : MonoBehaviour
         return direction;
     }
 
+    private void CalculateBuffer()
+    {
+        if (_dashBuffer == 0f || _isDashRequired == false)
+        {
+            return;
+        }
+
+        _dashBufferCounter += Time.deltaTime;
+
+        if (_dashBufferCounter >= _dashBuffer)
+        {
+            _isDashRequired = false;
+            _dashBufferCounter = 0f;
+        }
+    }
+
     private void OnDash(InputAction.CallbackContext context)
     {
-        if (_canDash)
-        {
-            _isDashRequired = true;
-        }
+        _isDashRequired = true;
     }
 }

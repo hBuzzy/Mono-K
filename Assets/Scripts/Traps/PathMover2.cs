@@ -10,9 +10,9 @@ public class PathMover2 : MonoBehaviour
     [SerializeField] private Transform _lookAt;
     [SerializeField] private Ease _ease;
     [SerializeField] private LoopType _loopType;
-    
+    [SerializeField] private float _duration;
+
     private Vector3[] _wayPoints;
-    
     
     private void Start()
     {
@@ -20,7 +20,7 @@ public class PathMover2 : MonoBehaviour
 
         transform.position = _wayPoints[0];
 
-        transform.DOPath(_wayPoints, 4, _pathType)
+        transform.DOPath(_wayPoints, 3, _pathType)
             .SetLoops(-1, _loopType)
             .SetEase(_ease);
     }
