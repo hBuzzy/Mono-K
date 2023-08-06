@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class GhostTrailPool : MonoBehaviour
+public class CharacterGhostsPool : MonoBehaviour
 {
-    public static GhostTrailPool Instance { get; private set; }
+    public static CharacterGhostsPool Instance { get; private set; }
     
-    [SerializeField] private GhostTrail _ghost;
+    [SerializeField] private CharacterGhost _characterGhost;
     [SerializeField] private Character _character;
     
     [SerializeField] private int _startValue;
     [SerializeField] private int _extendValue;
     
-    private readonly Queue<GhostTrail> _ghosts = new Queue<GhostTrail>();
+    private readonly Queue<CharacterGhost> _ghosts = new Queue<CharacterGhost>();
 
     private void Awake()
     {
@@ -33,7 +31,7 @@ public class GhostTrailPool : MonoBehaviour
         ExtendPool(_startValue);
     }
 
-    public GhostTrail GetGhost()
+    public CharacterGhost GetGhost()
     {
         if (_ghosts.Count == 0)
         {
@@ -43,20 +41,20 @@ public class GhostTrailPool : MonoBehaviour
         return _ghosts.Dequeue();
     }
     
-    public void Add(GhostTrail ghost)
+    public void Add(CharacterGhost characterGhost)
     {
-        ghost.gameObject.SetActive(false);
-        _ghosts.Enqueue(ghost);
+        characterGhost.gameObject.SetActive(false);
+        _ghosts.Enqueue(characterGhost);
     }
 
     private void ExtendPool(int amount)//TOdo: maybe creat only large wthout adding new?
     {
         for (int i = 0; i < amount; i++)
         {
-            GhostTrail ghostInstance = Instantiate(_ghost, transform, true);
-            ghostInstance.Init(_character, gameObject.layer);
+            CharacterGhost characterGhostInstance = Instantiate(_characterGhost, transform, true);
+            characterGhostInstance.Init(_character);
             
-            Add(ghostInstance);
+            Add(characterGhostInstance);
         }
     }
 }
