@@ -53,6 +53,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3635766485
+    locked: 0
   - name: Inveroument foreground
     uniqueID: 805125901
     locked: 0
@@ -61,4 +64,7 @@ TagManager:
     locked: 0
   - name: Grass
     uniqueID: 1866551281
+    locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 4163838859
     locked: 0
