@@ -5091,7 +5091,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 43e43896ca28174478275b3f0e066f23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5352,10 +5352,10 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.6
   m_Color: {r: 1, g: 0.75438607, b: 0, a: 0.69411767}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: f93aaf7af59602b11fdd877c00000000cd0002e71b717b7ca52902c401c4d9781387e42f
+  m_ApplyToSortingLayers: d32479c6e1bed7be397d6e19000000000d3ffd2faff384c8f14f416fd564b5d8
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: -1
@@ -5374,7 +5374,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 3
+  m_PointLightOuterRadius: 9
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -10162,7 +10162,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 43e43896ca28174478275b3f0e066f23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10309,10 +10309,10 @@ MonoBehaviour:
   _wallMask:
     serializedVersion: 2
     m_Bits: 64
-  _leftOffset: {x: 0.45, y: 1, z: 0}
-  _leftRadius: 0.05
-  _rightOffset: {x: -0.35, y: 1, z: 0}
-  _rightRadius: 0.05
+  _leftOffset: {x: -0.4, y: 1, z: 0}
+  _leftRadius: 0.07
+  _rightOffset: {x: 0.45, y: 1, z: 0}
+  _rightRadius: 0.07
 --- !u!1 &6246220513528880300
 GameObject:
   m_ObjectHideFlags: 0
@@ -10437,9 +10437,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1006491227
+  m_SortingLayerID: -930810961
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1673730943, guid: a35f3ea9bbae46d4188adcc687636e46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10523,7 +10523,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 6eb83877621a11348abf9b6ffc60d474, type: 2}
+  m_Material: {fileID: 6200000, guid: d6304ed48e10fa347be11393bd1a5c3d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10571,7 +10571,7 @@ MonoBehaviour:
   _rippleEffect: {fileID: 0}
   _isTrailEnable: 1
   _ghostsCount: 3
-  _trailDuration: 0.17
+  _trailDuration: 0.14
   _hitSound: {fileID: 144438168}
 --- !u!114 &3998059049248421854
 MonoBehaviour:
@@ -10653,7 +10653,7 @@ MonoBehaviour:
   _timeToJumpApex: 0.3
   _upwardMovementMultiplier: 0.65
   _downwardMovementMultiplier: 2.25
-  _wallJumpForce: 17
+  _wallJumpForce: 17.5
   _speedLimit: 20
   _jumpCutOff: 2.25
   _jumpBuffer: 0.15
@@ -10670,10 +10670,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40d23b2044d4b428f5754875ff7aadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 44.5
+  _speed: 50
   _endSpeed: 30
-  _duration: 0.1
-  _endDuration: 0.075
+  _duration: 0.085
+  _endDuration: 0.07
   _preparationTime: 0.075
   _dashBuffer: 0.15
 --- !u!114 &2942855119232582093
@@ -10688,7 +10688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d700a95fd96d4bbfb126c2cbcb3b2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _respawner: {fileID: 0}
 --- !u!114 &2116116509693199299
 MonoBehaviour:
   m_ObjectHideFlags: 0
