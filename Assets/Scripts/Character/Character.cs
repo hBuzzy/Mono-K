@@ -82,10 +82,14 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+    }
+
     private void UpdateMoveAbility()
     {
-        if (_currentState == States.Dash || _currentState == States.Grab ||
-            _currentState == States.DashPreparation)
+        if (_currentState is States.Dash or States.Grab or States.DashPreparation or States.Hurt)
         {
             _rigidbody.gravityScale = 0f;
             _rigidbody.velocity = Vector2.zero;
@@ -97,7 +101,7 @@ public class Character : MonoBehaviour
         }
     }
     
-    private void NightStarted()
+    private void NightStarted()//TODO: Refactoring
     {
         Debug.Log("night");
 

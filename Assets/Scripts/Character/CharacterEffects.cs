@@ -131,12 +131,12 @@ public class CharacterEffects : MonoBehaviour
     {
         float delayBetweenGhosts = _trailDuration / (_ghostsCount - 1);
         
-        GhostTrailPool.Instance.GetGhost().Show();
+        CharacterGhostsPool.Instance.GetGhost().Show();
         
         for (int i = 0; i < _ghostsCount - 1; i++)
         {
             yield return new WaitForSeconds(delayBetweenGhosts);
-            GhostTrailPool.Instance.GetGhost().Show();
+            CharacterGhostsPool.Instance.GetGhost().Show();
         }
     }
 }

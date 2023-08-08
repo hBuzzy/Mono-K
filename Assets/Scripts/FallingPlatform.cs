@@ -2,15 +2,23 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class FallingPlatform : MonoBehaviour
 {
-
+    
     [Header("Shaking")] 
-    [SerializeField, Range(0f, 7f)] private float _duration;
+    [SerializeField, Range(0f, 7f)] private float _vibratoDuration;
     [SerializeField] private Vector2 _strength;
     [SerializeField, Range(0, 10)] private int _vibrato;
     [SerializeField, Range(0,  90)] private int _randomness;
 
+    [Header("Times")]
+    [SerializeField, Range(0f, 3f)] private float _fallTime;
+    [SerializeField, Range(0f, 3f)] private float _respawnTime;
+    
     [SerializeField] private Brick[] _bricks;
     
     private BoxCollider2D _boxCollider;
@@ -33,10 +41,7 @@ public class FallingPlatform : MonoBehaviour
     {
         if (other.TryGetComponent(out Character character))
         {
-            if (_currentCoroutine == null)
-            {
-                StartCoroutine(Fall());
-            }
+            _currentCoroutine ??= StartCoroutine(Fall());
         }
     }
 
@@ -44,14 +49,14 @@ public class FallingPlatform : MonoBehaviour
     {
         ShakeBreaks();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_vibratoDuration);
 
         _boxCollider.enabled = false;
         _capsuleCollider.enabled = false;
         
-        yield return DropBricks(2f);
+        yield return DropBricks(_fallTime);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_respawnTime);
         
         foreach (var brick in _bricks)
         {
@@ -70,7 +75,7 @@ public class FallingPlatform : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            _bricks[i].transform.DOShakePosition(_duration, (Vector3)_strength, _vibrato, _randomness, false, true);
+            _bricks[i].transform.DOShakePosition(_vibratoDuration, (Vector3)_strength, _vibrato, _randomness);
         }
     }
 
