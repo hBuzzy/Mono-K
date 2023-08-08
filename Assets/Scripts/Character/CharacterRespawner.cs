@@ -1,22 +1,32 @@
-using System;
 using UnityEngine;
 
 public class CharacterRespawner : MonoBehaviour
 {
-    [SerializeField] private CheckPoint _startPoint;
+    public static CharacterRespawner Instance { get; private set; }
     
-    //[SerializeField] private Transform[] _checkpoints;
-
+    [SerializeField] private CheckPoint _startPoint;
+    [SerializeField] private Character _character;
+    
     private CheckPoint _currentPoint;
 
     private void Awake()
     {
-        _currentPoint = _startPoint;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void Update()
+    private void Start()
     {
-        
+        _currentPoint = _startPoint;
+        //MoveCharacterToCheckPoint();
+        _currentPoint.Check(false);
     }
 
     public void SetCheckPoint(CheckPoint checkPoint)
@@ -25,8 +35,8 @@ public class CharacterRespawner : MonoBehaviour
         _currentPoint = checkPoint;
     }
 
-    public void MoveToCheckPoint(Character character)
+    public void MoveCharacterToCheckPoint()
     {
-        character.transform.position = _currentPoint.RespawnPoint.position;
+        _character.SetPosition(_currentPoint.RespawnPoint.position);
     }
 }

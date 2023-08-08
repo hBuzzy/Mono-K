@@ -1,36 +1,57 @@
-using System;
 using UnityEngine;
-
-[RequireComponent(typeof(BoxCollider2D))]
+using UnityEngine.Rendering.Universal;
 
 public class CheckPoint : MonoBehaviour
 {
-    [SerializeField] private CharacterRespawner _respawner;
+    [Header("Light options")]
+    [SerializeField] private Light2D _light;
+    [SerializeField, Range(0f, 5f)] private float _checkedLightIntensity;
+    [SerializeField, Range(0f, 5f)] private float _uncheckedLightIntensity;
+    
+    [Header("Respawn")]
     [SerializeField] private Transform _respawnPoint;
 
-    private bool _isActive;
+    [Header("Sounds")] 
+    [SerializeField] private AudioSource _checkedSound;
+    
+    private bool _isChecked;
     
     public Transform RespawnPoint => _respawnPoint;
 
+    private void Start()
+    { 
+        SetLightIntensity();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_isActive)
+        if (_isChecked)
             return;
         
-        if (other.TryGetComponent(out Character character))
+        if (other.TryGetComponent(out Character character) && _isChecked == false)
         {
             Check();
-            _respawner.SetCheckPoint(this);
+            CharacterRespawner.Instance.SetCheckPoint(this);
         }
     }
 
     public void Uncheck()
     {
-        _isActive = false;
+        _isChecked = false;
+        SetLightIntensity();
     }
 
-    private void Check()
+    public void Check(bool isSoundRequired = true)
     {
-        _isActive = true;
+        _isChecked = true; 
+        SetLightIntensity();
+        
+        if (isSoundRequired)
+            _checkedSound.PlayOneShot(_checkedSound.clip);
+    }
+
+    private void SetLightIntensity()
+    {
+        _light.intensity = _isChecked ? _checkedLightIntensity : _uncheckedLightIntensity;
     }
 }
