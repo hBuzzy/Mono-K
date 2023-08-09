@@ -5,26 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="529811f1-928d-4f13-bf97-9286e0b8a519" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/Outline.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/Outline.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/PathMover3.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/PathMover3.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brick1_0.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brick1_0.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Cake.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Cake.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CheckPoint.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CheckPoint.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/DissolveLit.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/DissolveLit.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Outline_Lit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Outline_Lit.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/OutlineLiitEffect.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Shaders/OutlineLiitEffect.shadergraph" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Nell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Nell.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 3.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 4.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform 5.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cake.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDash.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterEffects.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterHurt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterHurt.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterJump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterJump.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterRespawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterRespawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CheckPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CheckPoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FallingPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FallingPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Effects/CharacterGhost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/CharacterGhost.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RockHeadEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RockHeadEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traps/PathMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/PathMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Sounds.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/Sounds.mixer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Character/idle sheet-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Character/idle sheet-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Character/itch hurt 2 sheet-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Character/itch hurt 2 sheet-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Character/itch jump sheet-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Character/itch jump sheet-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Character/itch run-Sheet sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Character/itch run-Sheet sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Character/wall slide-Sheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Character/wall slide-Sheet.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Character/wall slide-Sheet1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Character/wall slide-Sheet1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +76,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Programms\Unity Hub\Editor\2022.3.5f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Programms\Unity Hub\Editor\2022.3.6f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\nikba\Github\Mono-K -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\nikba\Github\Mono-K" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -75,7 +84,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Programms\Unity Hub\Editor\2022.3.5f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Programms\Unity Hub\Editor\2022.3.6f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\nikba\Github\Mono-K -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\nikba\Github\Mono-K" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -118,6 +127,10 @@
       <workItem from="1691283830445" duration="4670000" />
       <workItem from="1691335603591" duration="3208000" />
       <workItem from="1691367205100" duration="3697000" />
+      <workItem from="1691456712313" duration="1188000" />
+      <workItem from="1691493829955" duration="3481000" />
+      <workItem from="1691510293491" duration="4389000" />
+      <workItem from="1691532304388" duration="11814000" />
     </task>
     <servers />
   </component>
