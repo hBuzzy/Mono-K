@@ -1,89 +1,96 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Core.PathCore;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class PathMover : MonoBehaviour
 {
-    [SerializeField] private Transform _path;
-    [SerializeField, Range(0f, 3f)] private float _waitBeforeStart;
-    
-    [Header("Sequence settings")]
-    [SerializeField] private LoopType _loopType;
-    [SerializeField] private int _loopsNumber;
+    [Header("Path settings")]
     [SerializeField] private bool _isLooped;
-    [SerializeField] private float _delay;
+    [SerializeField] private LoopType _loopType;
+    [SerializeField] private float _waitBeforeStart;
 
-    [Header("Move")]
+    [Header("Moving between points")]
     [SerializeField] private float _duration;
     [SerializeField] private bool _isSpeedBased;
     [SerializeField] private float _waitAtPoint;
     [SerializeField] private Ease _ease;
     
-    private List<Vector3> _wayPoints;
+    [Header("Path")]
+    [SerializeField] private Transform[] _wayPoints;
 
-    public event Action Moving;
-    public event Action WaitingAtPoint;
+    private int _currentPointIndex;
+    private int _movingDirection = 1;
+    
+    public event Action Moved;
+    
+    private void OnValidate()
+    {
+        if (_loopType == LoopType.Incremental)
+            _loopType = LoopType.Restart;
+    }
 
     private void Start()
     {
-        _loopsNumber = _isLooped ? -1 : _loopsNumber;
-
-        FillPoints();
-
-        if (_wayPoints.Count > 0)
-        {
-            transform.position = _wayPoints[0];
-            StartCoroutine(PlaySequence());
-        }
-        else
-        {
-            throw new InvalidDataException();
-        }
+        transform.position = _wayPoints[0].position;
+        StartCoroutine(Move());
     }
-
-    private IEnumerator PlaySequence()
+    
+    private void OnDrawGizmos()
+    {                                                                   
+        if (_wayPoints == null || _wayPoints.Length < 2)                          
+        {                                                               
+            return;                                                     
+        }                                                               
+                                                                       
+        for (int i = 0; i < _wayPoints.Length - 1; i++)                      
+        {                                                               
+            Gizmos.DrawLine(_wayPoints[i].position, _wayPoints[i + 1].position);  
+        }                                                           
+    }                                                                   
+    
+    private IEnumerator Move()
     {
-        int index = 0;
-        int loopNumber = 0;
-
-        yield return new WaitForSeconds(Random.Range(0, 2));
+        yield return new WaitForSeconds(_waitBeforeStart);
+        
+        int nextPointIndex = 0;
         
         while (enabled)
         {
-            if (index >= _wayPoints.Count)
-            {
-                yield return new WaitForSeconds(_delay);
-                
-                index = 0;
-                
-                if (_loopType == LoopType.Yoyo)
-                {
-                    _wayPoints.Reverse();
-                    index = 1;
-                }
-            }
-
+            nextPointIndex = _currentPointIndex + _movingDirection;
             
-            yield return GetTween(_wayPoints[index]).WaitForCompletion();
-
-            if (_waitAtPoint > 0)
-            {
-                WaitingAtPoint?.Invoke();
-                yield return new WaitForSeconds(_waitAtPoint);
-            }
-
-            index++;
+            yield return GetTween(GetNextPoint(nextPointIndex)).WaitForCompletion();
+            
+            yield return new WaitForSeconds(_waitAtPoint);
         }
+    }
+
+    private Vector3 GetNextPoint(int nextIndex)//TODO: Refactoring or make strategy
+    {
+        if (_loopType == LoopType.Restart)
+        {
+            if (nextIndex >= _wayPoints.Length)
+            {
+                transform.position = _wayPoints[0].position;
+                _currentPointIndex = 0;
+            }
+        }
+
+        if (_loopType == LoopType.Yoyo)
+        {
+            if (nextIndex >= _wayPoints.Length)
+            {
+                _movingDirection = -1;
+            }
+            else if (nextIndex < 0)
+            {
+                _movingDirection = 1;
+            }
+        }
+
+        _currentPointIndex += _movingDirection;
+
+        return _wayPoints[_currentPointIndex].position;
     }
 
     private Tween GetTween(Vector3 target)
@@ -96,16 +103,6 @@ public class PathMover : MonoBehaviour
 
     private void InvokeMove()
     {
-        Moving?.Invoke();
-    }
-    
-    private void FillPoints()
-    {
-        _wayPoints = new List<Vector3>();
-
-        for (int i = 0; i < _path.childCount; i++)
-        {
-            _wayPoints.Add(_path.GetChild(i).position);
-        }
+        Moved?.Invoke();
     }
 }
