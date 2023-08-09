@@ -19,12 +19,12 @@ public class RockHeadEffects : MonoBehaviour
 
     private void OnEnable()
     {
-        _pathMover.Moving += PlayMoveEffects;
+        _pathMover.Moved += PlayMoveEffects;
     }
 
     private void OnDisable()
     {
-        _pathMover.Moving -= PlayMoveEffects;
+        _pathMover.Moved -= PlayMoveEffects;
     }
 
     private void PlayMoveEffects()
