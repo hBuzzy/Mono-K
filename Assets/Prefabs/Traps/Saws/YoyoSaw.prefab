@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 2034404900679998826}
   - component: {fileID: 2034404900679998827}
   - component: {fileID: 6855435326437892822}
-  - component: {fileID: -7732857281871972482}
   - component: {fileID: 6723905284339453617}
-  - component: {fileID: -4427611780003568558}
   m_Layer: 0
   m_Name: YoyoSaw
   m_TagString: Untagged
@@ -34,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1883126128117593386}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2034404900679998826
@@ -130,18 +129,6 @@ MonoBehaviour:
   _waitAtPoint: 0.3
   _ease: 1
   _wayPoints: []
---- !u!114 &-7732857281871972482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034404900679998828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47dc26979ae44adbae0ac8616924caec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6723905284339453617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,13 +179,46 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!58 &-4427611780003568558
+--- !u!1 &3495106595621560836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1883126128117593386}
+  - component: {fileID: 7854975502300259199}
+  - component: {fileID: 6048837062395664311}
+  m_Layer: 0
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1883126128117593386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495106595621560836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2034404900679998825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7854975502300259199
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034404900679998828}
+  m_GameObject: {fileID: 3495106595621560836}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -227,3 +247,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.9
+--- !u!114 &6048837062395664311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495106595621560836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b11e1e21ad84d1db3f160596e76e1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

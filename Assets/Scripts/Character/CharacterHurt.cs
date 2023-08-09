@@ -3,11 +3,10 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Character))]
 
 public class CharacterHurt : MonoBehaviour
 {
-    [SerializeField] private CharacterRespawner _respawner;
-    
     private Rigidbody2D _rigidbody;
     private Character _character;
 
@@ -36,7 +35,7 @@ public class CharacterHurt : MonoBehaviour
         
     }
 
-    public void OnHurt()
+    public void Die()
     {
         if (_currentCoroutine == null)
         {
@@ -44,18 +43,18 @@ public class CharacterHurt : MonoBehaviour
         }
     }
 
-    private IEnumerator Hurt()
+    private IEnumerator Hurt()//TODO: refactor
     {
         HurtingChanged?.Invoke(true);
         
-        _rigidbody.velocity = Vector2.zero;
+        //_rigidbody.velocity = Vector2.zero; //FIX IT cuz char moving
         _rigidbody.simulated = false;
         
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);//TODO: Magic Number
         
         HurtingChanged?.Invoke(false);
         
-        _respawner.MoveToCheckPoint(_character);
+        CharacterRespawner.Instance.MoveCharacterToCheckPoint();
         
         _rigidbody.simulated = true;
 
