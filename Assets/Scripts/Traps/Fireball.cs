@@ -26,7 +26,7 @@ public class Fireball : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out CharacterHurt character))
         {
-            character.OnHurt();
+            character.Die();
             StartCoroutine(Explosion());
         }
     }
