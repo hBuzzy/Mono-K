@@ -53,11 +53,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
-    uniqueID: 3635766485
-    locked: 0
   - name: Inveroument foreground
     uniqueID: 805125901
+    locked: 0
+  - name: Ground
+    uniqueID: 3635766485
     locked: 0
   - name: Character
     uniqueID: 3364156335
