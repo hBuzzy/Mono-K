@@ -5,64 +5,580 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="529811f1-928d-4f13-bf97-9286e0b8a519" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AsyncExtentions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AsyncExtentions.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/SpikeHeadHitBoxes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/SpikeHeadHitBoxes.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/Explosion.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/Explosion.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/FireballAnimations.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/FireballAnimations.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/Idle.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/Idle.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/Move.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fireball/Move.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/BackToNormal.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/BackToNormal.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/Idle.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/PrepareAttack.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/PrepareAttack.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/SpearAnimations.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Traps/Spear/SpearAnimations.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/lamp.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/lamp.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Spear.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Spear.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Spears.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Spears.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Traps/Heads/SpikeHead_InOutBack.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Traps/Heads/SpikeHead_InOutBack.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Candles/Candle1/Candle1.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Candles/Candle1/Candle1.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Dissolve_Lit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Dissolve_Lit.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/DissolveEffect.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Shaders/DissolveEffect.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/Ripple.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/Ripple.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/RippleFinal.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/RippleFinal.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/RippleFull.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/RippleFull.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Cake.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Cake.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CheckPoint.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CheckPoint.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candelbrum.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candelbrum.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candle1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candle1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candle2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candle2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/Chandelier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/Chandelier.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBig.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBig.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBigBlue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBigBlue.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBigBlue.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBigBlue.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/lamp 1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/lamp 1.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/lamp.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/lamp.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigGreenTree1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigGreenTree1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigGreenTree2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigGreenTree2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigGreenTree3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigGreenTree3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigLightGreenTree1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigLightGreenTree1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigLightGreenTree2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigLightGreenTree2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigLightGreenTree3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BigLightGreenTree3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BranchLeft.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BranchLeft.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BranchRight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/BranchRight.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallGreenTree1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallGreenTree1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallGreenTree2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallGreenTree2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallGreenTree3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallGreenTree3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallLightGreenTree1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallLightGreenTree1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallLightGreenTree2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallLightGreenTree2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallLightGreenTree3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Trees/SmallLightGreenTree3.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDash.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterEffects.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterJump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterJump.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterRespawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterRespawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterWallMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterWallMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Door.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Door.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Effects/CharacterGhost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/CharacterGhost.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Effects/Outline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/Outline.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NightSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NightSwitcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Saw.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Saw.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Spear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spear.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Spear.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traps/Fireball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Fireball.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/Universal Renderer Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Universal Renderer Data.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRP.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRP.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sounds/Sounds.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/Sounds.mixer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Materials/table_noshadow.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Materials/table_noshadow.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Palette/Cave.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Palette/Cave.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_152.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_152.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_152.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_152.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_153.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_153.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_153.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_153.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_154.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_154.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_154.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_154.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_155.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_155.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_155.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_155.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_156.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_156.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_156.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_156.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_157.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_157.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_157.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_157.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_158.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_158.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_158.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Cave/mainlev_build_158.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Assets.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Assets.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Assets1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Assets1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit-Sheet-Black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit-Sheet-Black.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit-Sheet-White.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit-Sheet-White.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit-Sheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit-Sheet.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Hit-Vanish/Hit.aseprite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle-Sheet-White.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle-Sheet-White.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle-Sheet-export-Back.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle-Sheet-export-Back.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle-Sheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle-Sheet.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Idle/Idle.aseprite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run-Sheet-Black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run-Sheet-Black.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run-Sheet-White.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run-Sheet-White.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run-Sheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run-Sheet.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Run/Run.aseprite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base-Sheet-White.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base-Sheet-White.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base-Sheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base-Sheet.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base-SheetBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base-SheetBlack.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Boar/Walk/Walk-Base.aseprite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Effects/fire_fx_v1.0/png/orange/loops/burning_loop_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Effects/fire_fx_v1.0/png/orange/loops/burning_loop_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Effects/fire_fx_v1.0/png/orange/start/burning_start_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Effects/fire_fx_v1.0/png/orange/start/burning_start_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-0.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-attack-4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-0.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-die-3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-0.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-hurt-3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-0.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-idle-3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-0.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/Individual Sprites/slime-move-3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/slime-Sheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Slime/slime-Sheet.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/arch_7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/blank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/blank.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_10.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_11.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_12.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_13.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_14.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_15.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_16.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_left_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_left_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_left_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_left_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_right_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_right_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_right_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/brick_side_right_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_corner_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_corner_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_corner_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_corner_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_transparent_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_transparent_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_transparent_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/ceiling_transparent_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/column_8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/damaged_brick_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_corner_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_corner_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_corner_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_corner_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_transition_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_transition_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_transition_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_carpet_transition_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_corner_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_corner_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_corner_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_corner_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_carpet_transition_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_carpet_transition_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_carpet_transition_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_carpet_transition_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_transition_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_transition_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_transition_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_tile_wood_transition_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_corner_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_corner_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_corner_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_corner_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_transition_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_transition_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_transition_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_carpet_transition_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_corner_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_corner_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_corner_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/floor_wood_corner_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_10.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_11.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_12.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/lion_column_9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/merlons_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_shadow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_shadow.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_wall_connection_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_wall_connection_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_wall_connection_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/platform_wall_connection_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/spikes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/spikes.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_tile_carpet_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/stairs_wood_carpet_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/tile_side_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/tile_side_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/tile_side_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/tile_side_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_10.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_11.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_12.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_13.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_14.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_15.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_16.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_17.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_18.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/wall_9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_big_6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_tall_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_tall_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_tall_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_tall_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_tall_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_glass_tall_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_small_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_small_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_small_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_small_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_tall_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_tall_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_tall_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_tall_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_tall_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tiles Medieval/window_tall_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_damaged.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/chest/chest_damaged.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Palette/Castle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Palette/Castle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/arch_1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/arch_1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/arch_2.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/arch_2.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/arch_7.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/arch_7.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_0.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_0.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_10.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_10.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_11.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_11.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_12.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_12.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_13.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_13.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_14.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_14.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_15.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_15.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_16.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_16.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_17.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_17.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_18.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_18.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_19.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_19.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_2.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_2.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_20.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_20.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_21.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_21.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_22.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_22.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_23.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_23.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_24.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_24.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_25.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_25.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_26.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_26.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_27.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_27.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_28.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_28.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_29.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_29.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_3.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_3.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_30.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_30.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_31.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_31.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_32.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_32.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_33.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_33.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_34.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_34.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_35.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_35.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_36.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_36.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_37.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_37.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_38.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_38.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_39.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_39.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_4.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_4.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_40.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_40.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_41.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_41.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_42.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_42.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_43.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_43.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_44.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_44.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_45.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_45.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_5.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_5.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_6.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_6.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_7.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_7.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_8.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_8.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_9.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Tiles/Castle new/Без имени-1_9.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +589,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Blit.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Runtime/2D/Light2DManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.8/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -104,6 +622,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Build/Mono-K.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\nikba\Github\Mono-K\Build" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:\Programms\Unity Hub\Editor\2022.3.6f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\nikba\Github\Mono-K -debugCodeOptimization" />
@@ -162,6 +688,13 @@
       <workItem from="1691532304388" duration="11814000" />
       <workItem from="1691601428893" duration="13311000" />
       <workItem from="1691704336552" duration="11302000" />
+      <workItem from="1691797865896" duration="1875000" />
+      <workItem from="1691833183711" duration="5935000" />
+      <workItem from="1691882072192" duration="1900000" />
+      <workItem from="1691962898454" duration="444000" />
+      <workItem from="1692014352449" duration="228000" />
+      <workItem from="1692024842427" duration="340000" />
+      <workItem from="1692028152684" duration="1804000" />
     </task>
     <servers />
   </component>
