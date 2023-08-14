@@ -342,6 +342,34 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "c45af8f74bec474db1faf40fcbe0f60e"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "8206cfa1038e4b498b75c78a588120da"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "c45af8f74bec474db1faf40fcbe0f60e"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a2112bdb79a74ef4a6f6aca3bfcb6b89"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "c711f863db4b4f2da6630790eee11b50"
                 },
                 "m_SlotId": 0
@@ -419,34 +447,6 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "b50dad0f87a642f789376330f025522a"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "f60ac92beb2b4a5a88738c5f25a8060f"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "8206cfa1038e4b498b75c78a588120da"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "f60ac92beb2b4a5a88738c5f25a8060f"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "a2112bdb79a74ef4a6f6aca3bfcb6b89"
                 },
                 "m_SlotId": 0
             }
@@ -1312,10 +1312,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1570.5198974609375,
-            "y": -656.0399169921875,
-            "width": 0.0,
-            "height": 0.0
+            "x": -1786.0001220703125,
+            "y": -689.0,
+            "width": 124.0,
+            "height": 173.0
         }
     },
     "m_Slots": [
@@ -2443,7 +2443,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "a4416b5acf7b49dfae695382fb4415e2",
     "m_Id": 0,
-    "m_DisplayName": "Distance",
+    "m_DisplayName": "RippleDistance",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2747,10 +2747,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1389.0,
-            "y": -370.99993896484377,
-            "width": 121.0001220703125,
-            "height": 33.999969482421878
+            "x": -1183.0,
+            "y": -550.0000610351563,
+            "width": 121.0,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -3114,10 +3114,10 @@
     "m_Guid": {
         "m_GuidSerialized": "e5871c04-5cff-4e50-a05d-e79c3bed1a85"
     },
-    "m_Name": "Distance",
+    "m_Name": "RippleDistance",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Distance",
-    "m_DefaultReferenceName": "_Distance",
+    "m_RefNameGeneratedByDisplayName": "RippleDistance",
+    "m_DefaultReferenceName": "_RippleDistance",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -3282,9 +3282,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1347.9998779296875,
-            "y": -668.9999389648438,
-            "width": 208.0,
+            "x": -1447.0001220703125,
+            "y": -689.0,
+            "width": 208.0001220703125,
             "height": 278.0
         }
     },
