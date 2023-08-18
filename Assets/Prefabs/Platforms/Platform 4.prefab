@@ -107,6 +107,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8132938300038533474}
     m_Modifications:
+    - target: {fileID: 1966069531728528495, guid: 3847096efa1f7af4d919b8fa3afcd50c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966069531728528495, guid: 3847096efa1f7af4d919b8fa3afcd50c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 805125901
+      objectReference: {fileID: 0}
     - target: {fileID: 3488339153211953598, guid: 3847096efa1f7af4d919b8fa3afcd50c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -208,6 +216,14 @@ PrefabInstance:
     - target: {fileID: 3836975344615633979, guid: 02cda081455bfbc4ab3778f458156cd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317038941811364018, guid: 02cda081455bfbc4ab3778f458156cd8, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317038941811364018, guid: 02cda081455bfbc4ab3778f458156cd8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 805125901
       objectReference: {fileID: 0}
     - target: {fileID: 7160269329456537668, guid: 02cda081455bfbc4ab3778f458156cd8, type: 3}
       propertyPath: m_Name
