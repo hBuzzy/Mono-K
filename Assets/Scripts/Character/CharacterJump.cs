@@ -159,10 +159,10 @@ public class CharacterJump : MonoBehaviour
         _jumpBufferCounter = 0f;
         _isJumpRequired = false;
         _isCurrentlyJumping = true;
-        
+        _character.SetVelocity(Vector2.zero); // NEEED ?
         Jumped?.Invoke();
 
-        _velocity += velocity;
+        _velocity = velocity;
         _character.SetVelocity(_velocity);
     }
 
