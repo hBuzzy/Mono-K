@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1119957771}
   - component: {fileID: 1119957770}
   - component: {fileID: 1859759213812302504}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: BrickLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 1201026056}
   - component: {fileID: 1201026055}
   - component: {fileID: 1201026054}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: BrickCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 4087654330149988176}
   - component: {fileID: 6351745696550675099}
   - component: {fileID: 6351745696550675101}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: FallingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 6473062672268266080}
   - component: {fileID: 7212504662473728759}
   - component: {fileID: 1527699802446447916}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: BrickRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
