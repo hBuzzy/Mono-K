@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSound: {fileID: 817124723664970363}
+  _waitBeforeStart: 0
   _waitBeforeAttack: 2
   _spears:
   - {fileID: 599654977418595322}
