@@ -1,26 +1,28 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using States = CharacterStates.States;
 
-public class CharacterJump : MonoBehaviour
+public class CharacterJump : MonoBehaviour //TODO: Need separate awake and start?
 {
-    [Header("Jumping Stats")]
+    [Header("Jump stats")]
     [SerializeField, Range(2f, 5.5f)] private float _jumpHeight = 2.25f;
     [SerializeField, Range(0.2f, 1.25f)] private float _timeToJumpApex = 0.3f;
-    [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 0.65f;//TODO: rename
-    [SerializeField, Range(1f, 10f)] private float _downwardMovementMultiplier = 2.25f;//TODO: rename
     [SerializeField, Range(10f, 25f)] private float _wallJumpForce = 20f;
     
-    [Header("Options")]
+    [Header("Gravity multipliers")]
+    [SerializeField, Range(0f, 5f)] private float _jumpUpwardMultiplier = 0.65f;
+    [SerializeField, Range(0f, 10f)] private float _jumpDownwardMultiplier = 2.25f;
+    [SerializeField, Range(1f, 10f)] private float _fallMultiplier = 2.25f;
+
+    [Header("Assists")]
     [SerializeField, Range(10f, 20f)] private float _speedLimit = 15f;
-    [SerializeField, Range(0f, 10f)] private float _jumpCutOff = 2.25f; //TODO: Rename
     [SerializeField, Range(0f, 0.3f)] private float _jumpBuffer = 0.15f;
     [SerializeField, Range(0f, 0.3f)] private float _coyoteTime = 0.15f; //TODO: NEed?;
     
     private const float DefaultGravityMultiplier = 1f;
     private const float ComparisonError = 0.01f;
+    private const float CoyoteError = 0.03f;
 
     private Rigidbody2D _rigidbody;
     private PlayerInputActions _playerInput;
@@ -29,12 +31,14 @@ public class CharacterJump : MonoBehaviour
 
     private Vector2 _velocity;
 
-    private float _jumpGravity;
+    private float _gravityY;
+    private float _jumpUpwardGravity;
+    private float _jumpDownwardGravity;
     private float _fallGravity;
-    private float _cutOffGravity;
     private float _defaultGravity;
     private float _currentGravity;
-    private float _jumpBufferCounter; //TODO: Rename?
+    private float _jumpBufferCounter;
+    private float _coyoteTimeCounter;
     
     private bool _isJumpRequired;
     private bool _isJumpButtonPressing;
@@ -46,15 +50,17 @@ public class CharacterJump : MonoBehaviour
     {
         _playerInput = new PlayerInputActions();
         _states = GetComponent<CharacterStates>();
+        
+        _gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);
     }
 
     private void Start()
     {
         _character = GetComponent<Character>();
         _defaultGravity = GetGravityScale(DefaultGravityMultiplier);
-        _jumpGravity = GetGravityScale(_upwardMovementMultiplier);
-        _fallGravity = GetGravityScale(_downwardMovementMultiplier);
-        _cutOffGravity = GetGravityScale(_jumpCutOff);
+        _jumpUpwardGravity = GetGravityScale(_jumpUpwardMultiplier);
+        _fallGravity = GetGravityScale(_fallMultiplier);
+        _jumpDownwardGravity = GetGravityScale(_jumpDownwardMultiplier);
     }
 
     private void OnEnable()
@@ -73,14 +79,15 @@ public class CharacterJump : MonoBehaviour
 
     private void Update()
     {
-        if (_character.IsGrounded && Math.Abs(_currentGravity - _defaultGravity) > float.Epsilon)
-        {
-            _currentGravity = _defaultGravity;
-        }
+        //if (_character.IsGrounded && Math.Abs(_currentGravity - _defaultGravity) > 0.05f)//NEED ?
+        //{
+        //    _currentGravity = _defaultGravity;
+        //}
 
         _character.SetGravity(_currentGravity);
         
         CalculateBuffer();
+        CalculateCoyoteTime();
     }
 
     private void FixedUpdate()
@@ -89,7 +96,7 @@ public class CharacterJump : MonoBehaviour
 
         if (TryJump())
         {
-            return;
+            //return;
         }
 
         if (_jumpBuffer == 0f)
@@ -112,10 +119,10 @@ public class CharacterJump : MonoBehaviour
 
             if (_isJumpButtonPressing && _isCurrentlyJumping)
             {
-                return _jumpGravity;
+                return _jumpUpwardGravity;
             }
 
-            return _cutOffGravity;
+            return _jumpDownwardGravity;
         }
 
         if (_character.Velocity.y < -ComparisonError)
@@ -133,35 +140,38 @@ public class CharacterJump : MonoBehaviour
 
     private bool CanJump(States state)
     {
-        return _character.IsGrounded || state == States.Slide;
+        return _character.IsGrounded || state == States.Slide ||
+               (_coyoteTimeCounter > CoyoteError && _coyoteTimeCounter < _coyoteTime);
     }
 
-    private bool TryJump()
+    private bool TryJump()//TODO: If tere's no need to ckip cur fixupdate then separate taht funciton
     {
         States state = _states.GetCurrentState();
+
+        if (!_isJumpRequired || !CanJump(state))
+            return false;
         
-        if (_isJumpRequired && CanJump(state))
-        {
-            Vector2 velocity = GetJumpVelocity(state);
+        _character.SetGravity(_defaultGravity); //TODO: Sweetch to upjump and fix wall juumping?
+        Vector2 velocity = GetJumpVelocity(state);
 
-            if (velocity != Vector2.zero)
-            {
-                Jump(velocity);
-                return true;
-            }
-        }
-
-        return false;
+        if (velocity == Vector2.zero) 
+            return false;
+            
+        //_character.SetGravity(_defaultGravity);
+        Jump(velocity);
+            
+        return true;
     }
 
     private void Jump(Vector2 velocity)
     {
         _jumpBufferCounter = 0f;
+        _coyoteTimeCounter = 0f;
         _isJumpRequired = false;
         _isCurrentlyJumping = true;
-        _character.SetVelocity(Vector2.zero); // NEEED ?
+        //_character.SetVelocity(Vector2.zero); // NEEED ?
         Jumped?.Invoke();
-
+        
         _velocity = velocity;
         _character.SetVelocity(_velocity);
     }
@@ -181,18 +191,12 @@ public class CharacterJump : MonoBehaviour
         return Vector2.zero;
     }
 
-    private Vector2 GetVelocityFromGround()
+    private Vector2 GetVelocityFromGround()//TODO: Insted of 0 for x make it character.velocity.x?
     {
-        _character.SetGravity(_defaultGravity);
-
-        float velocityY = Mathf.Sqrt(-2f * Physics2D.gravity.y * _character.GravityScale * _jumpHeight);
-
-        if (_velocity.y < 0f)
-        {
-            velocityY += Mathf.Abs(_velocity.y);
-        }
-
-        return new Vector2(0f, velocityY);
+       // _character.SetGravity(_defaultGravity);
+        float velocityY = Mathf.Sqrt(-2 * Physics2D.gravity.y * _character.GravityScale * _jumpHeight);
+        
+        return new Vector2(_character.Velocity.x, velocityY);
     }
 
     private Vector2 GetVelocityFromWall()
@@ -203,9 +207,7 @@ public class CharacterJump : MonoBehaviour
     private void CalculateBuffer()
     {
         if (_jumpBuffer <= 0f || _isJumpRequired == false)
-        {
             return;
-        }
 
         _jumpBufferCounter += Time.deltaTime;
 
@@ -216,10 +218,21 @@ public class CharacterJump : MonoBehaviour
         }
     }
 
+    private void CalculateCoyoteTime()
+    {
+        if (_isCurrentlyJumping == false && _character.IsGrounded == false)
+        {
+            _coyoteTimeCounter += Time.deltaTime;
+        }
+        else
+        {
+            _coyoteTimeCounter = 0;
+        }
+    }
+
     private float GetGravityScale(float gravityMultiplier)
     {
-        float gravityY = (-2 * _jumpHeight) / (_timeToJumpApex * _timeToJumpApex);
-        return (gravityY / Physics2D.gravity.y) * gravityMultiplier;
+        return (_gravityY / Physics2D.gravity.y) * gravityMultiplier;
     }
 
     private void LimitFallSpeed()
@@ -229,11 +242,6 @@ public class CharacterJump : MonoBehaviour
         Vector2 velocity = new Vector2(_velocity.x, Mathf.Clamp(_velocity.y, -_speedLimit, maxSpeed));
         
         _character.SetVelocity(velocity);
-    }
-
-    private bool NeedUpdateGravity()
-    {
-        return Math.Abs(_currentGravity - _character.GravityScale) < float.Epsilon;
     }
 
     private void OnJumpStarted(InputAction.CallbackContext context)
