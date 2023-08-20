@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - Traps
   - Character
-  - 
+  - Platform
   - 
   - 
   - 
@@ -44,14 +44,23 @@ TagManager:
   - name: Background
     uniqueID: 3329828051
     locked: 0
-  - name: Inveroument bacground
+  - name: Inveroument background
     uniqueID: 3201810145
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Traps
+    uniqueID: 471036667
     locked: 0
   - name: Water
     uniqueID: 426671417
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Lava
+    uniqueID: 2152827605
+    locked: 0
+  - name: Rain
+    uniqueID: 3364535285
     locked: 0
   - name: Inveroument foreground
     uniqueID: 805125901
@@ -64,7 +73,4 @@ TagManager:
     locked: 0
   - name: Grass
     uniqueID: 1866551281
-    locked: 0
-  - name: CameraSortingLayer
-    uniqueID: 4163838859
     locked: 0
