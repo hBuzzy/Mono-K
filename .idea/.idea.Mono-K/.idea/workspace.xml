@@ -5,28 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="529811f1-928d-4f13-bf97-9286e0b8a519" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Platforms/MovingPlatform.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TimerView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TimerView.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Candles/Candle1/Candle1.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Candles/Candle1/Candle1.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Dissolve_Lit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Dissolve_Lit.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Shaders/DissolveEffect.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Shaders/DissolveEffect.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Barrel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Barrel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Cake.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Cake.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/DoorSwither.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/DoorSwither.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Fireball.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Fireball.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candelbrum.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/Candelbrum.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBig.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBig.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBigBlue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/TorchBigBlue.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Nell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Nell.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platform.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platform.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platforms/MovingPlatform.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platforms/MovingPlatform.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/VerticalDoorLeft.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/VerticalDoorLeft.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/VerticalDoorRight.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/VerticalDoorRight.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 12.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 12.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 2.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 2/Main Camera Profile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 2/Main Camera Profile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 3.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 3.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 4.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 4.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 5.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 5.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Rooms/Movement 1.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Rooms/Movement 1.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Rooms/Movement.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Rooms/Movement.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cake.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterAnimationSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterAnimationSwitcher.cs" afterDir="false" />
@@ -39,192 +45,22 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStates.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStates.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStates.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStates.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterWallMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterWallMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CircleMover.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CircleMover.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Door.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Door.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DoorSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DoorLever.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DoorSwitcher.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DoorLever.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Effects/CharacterGhost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/CharacterGhost.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Effects/Outline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/Outline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Platforms/MovingPlatform.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/NightSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NightSwitcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ParallaxBackground.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ParallaxBackground.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathMover2.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathMover2.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PieBasket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PieBasket.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/PathMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathMover.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/PathMover.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PieBasket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/PieBasket.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PieBasket.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/PieBasket.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Saw.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Saw.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneSwitcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Universal Renderer Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Universal Renderer Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRP.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRP.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Chandelier.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Chandelier.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/NEED Cave_Parralax/bookshelf_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/NEED Cave_Parralax/bookshelf_2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/Gui.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/Gui.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/Props-Rocks.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/Props-Rocks.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/barrel_damaged.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/barrel_damaged.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_blue_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_blue_1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_blue_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_blue_2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_red_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_red_1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_red_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/curtain_red_2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/flag_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/flag_blue.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/langdebeve.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/langdebeve.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/potion_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/potion_2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/potion_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/potion_3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/potion_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/potion_4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/sign.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/sign.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/sword_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/sword_1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/sword_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Props/sword_2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_0.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_0.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_3.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_4.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_5.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_6.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_7.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_8.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_9.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_9.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_a.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_alt.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_alt.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_ampersand.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_ampersand.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_angle_bracket_left.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_angle_bracket_left.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_angle_bracket_right.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_angle_bracket_right.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_down.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_down.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_left.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_left.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_right.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_right.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_up.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_arrow_up.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_asterisk.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_asterisk.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_at.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_at.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_b.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_b.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_backslash.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_backslash.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_backspace.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_backspace.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_bracket_left.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_bracket_left.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_bracket_right.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_bracket_right.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_c.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_c.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_caps.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_caps.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_caret.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_caret.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_colon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_colon.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_comma.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_comma.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_control.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_control.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_curly_bracket_left.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_curly_bracket_left.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_curly_bracket_right.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_curly_bracket_right.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_d.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_d.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_dash.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_dash.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_delete.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_delete.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_dot.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_dot.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_double_quote.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_double_quote.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_e.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_e.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_end.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_end.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_enter.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_enter.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_enter_icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_enter_icon.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_equal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_equal.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_escape.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_escape.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_exclamation.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_exclamation.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f10.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f10.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f11.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f11.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f12.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f12.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f3.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f4.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f5.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f6.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f7.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f8.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f9.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_f9.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_forwardslash.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_forwardslash.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_function.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_function.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_g.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_g.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_grave_accent.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_grave_accent.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_h.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_h.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_hash.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_hash.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_home.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_home.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_i.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_i.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_insert.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_insert.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_j.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_j.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_k.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_k.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_l.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_l.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_m.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_m.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_money.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_money.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_n.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_n.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_num.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_num.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_o.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_o.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_p.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_p.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_page_down.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_page_down.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_page_up.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_page_up.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_pause.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_pause.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_percent.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_percent.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_plus.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_plus.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_print.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_print.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_q.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_q.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_question_mark.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_question_mark.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_quote.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_quote.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_r.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_r.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_s.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_s.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_scroll.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_scroll.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_semicolon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_semicolon.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_shift.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_shift.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_shift_icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_shift_icon.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_space_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_space_2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_space_4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_space_4.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_spacebar.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_spacebar.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_square_bracket_left.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_square_bracket_left.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_square_bracket_right.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_square_bracket_right.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_t.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_t.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tab.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tab.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tab_icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tab_icon.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tab_icon_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tab_icon_2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tilde.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_tilde.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_u.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_u.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_underscore.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_underscore.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_v.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_v.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_vertical_bar.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_vertical_bar.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_w.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_w.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_windows.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_windows.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_x.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_x.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_y.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_y.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_z.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Buttons/Tiles White/pxkw_z.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lamp.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lamp.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_5.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_6.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/lever_floor/lever_floor_7.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/Без имени-1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/Без имени-1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap/Palette/Castle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap/Palette/Castle.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,6 +76,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Runtime/2D/Light2DManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.8/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2TTstLNXXs3JeLKyCkAbDEq9VaL" />
   <component name="ProjectViewState">
@@ -350,7 +187,11 @@
       <workItem from="1692483317827" duration="4000" />
       <workItem from="1692493496670" duration="1087000" />
       <workItem from="1692536920423" duration="1302000" />
-      <workItem from="1692538319977" duration="2074000" />
+      <workItem from="1692538319977" duration="7277000" />
+      <workItem from="1692563472968" duration="3315000" />
+      <workItem from="1692574342040" duration="6812000" />
+      <workItem from="1692581785637" duration="3368000" />
+      <workItem from="1692618637425" duration="8368000" />
     </task>
     <servers />
   </component>

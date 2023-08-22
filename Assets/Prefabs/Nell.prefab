@@ -306,7 +306,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5363,7 +5363,7 @@ MonoBehaviour:
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
+  m_NormalMapQuality: 1
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
@@ -5436,7 +5436,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -10363,16 +10363,16 @@ GameObject:
   - component: {fileID: 6246220514414203993}
   - component: {fileID: 6246220514414203998}
   - component: {fileID: 6246220514414204075}
-  - component: {fileID: 6246220514414203994}
   - component: {fileID: 6246220514414203992}
   - component: {fileID: 3998059049248421854}
-  - component: {fileID: 4189989981966594841}
   - component: {fileID: 6246220514414204074}
   - component: {fileID: 1077856834}
   - component: {fileID: 6246220514414204064}
   - component: {fileID: 6246220514414203996}
   - component: {fileID: 2942855119232582093}
   - component: {fileID: 2116116509693199299}
+  - component: {fileID: 2598062359353678860}
+  - component: {fileID: 390617958977274295}
   m_Layer: 8
   m_Name: Nell
   m_TagString: Untagged
@@ -10439,7 +10439,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -930810961
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1673730943, guid: a35f3ea9bbae46d4188adcc687636e46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10535,19 +10535,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6246220514414203994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6246220514414204073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c300963db43730b4193dee81c2c49d3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _states: {fileID: 4189989981966594841}
 --- !u!114 &6246220514414203992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10562,13 +10549,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraMain: {fileID: 0}
   _camera: {fileID: 0}
-  _characterStates: {fileID: 4189989981966594841}
+  _characterStates: {fileID: 390617958977274295}
   _jumpSound: {fileID: 6246220515253709217}
   _jumpDustEffect: {fileID: 659078820}
   _dashSound: {fileID: 6246220515044426002}
   _dashDustEffect: {fileID: 2129674047}
   _cameraShakeIntensity: 7
   _cameraShakeTime: 0.1
+  _ripple: {fileID: 0}
   _rippleEffect: {fileID: 0}
   _isTrailEnable: 1
   _ghostsCount: 3
@@ -10591,21 +10579,6 @@ MonoBehaviour:
   _respawnPoint: {fileID: 0}
   _nightSwitcher: {fileID: 0}
   _light: {fileID: 2000066166}
-  _trail: {fileID: 1640848928107236110}
---- !u!114 &4189989981966594841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6246220514414204073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a9f95d9b54c420a91d09a825746b7f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _grounder: {fileID: 7032348094196184594}
-  _text: {fileID: 0}
 --- !u!114 &6246220514414204074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10702,6 +10675,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86bb5b914960431a95a4c71d3d8168b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _text: {fileID: 0}
+--- !u!114 &2598062359353678860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246220514414204073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3895b710fd1344f9b5582c2832a60c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _states: {fileID: 390617958977274295}
+--- !u!114 &390617958977274295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246220514414204073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1f05ef055547a38db54498df34c338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grounder: {fileID: 7032348094196184594}
   _text: {fileID: 0}
 --- !u!1 &6246220515044426000
 GameObject:
@@ -10975,7 +10975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5466064680118544922
 Transform:
   m_ObjectHideFlags: 0
