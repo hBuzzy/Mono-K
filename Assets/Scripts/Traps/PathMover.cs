@@ -3,7 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class PathMover : MonoBehaviour
+public class PathMover : MonoBehaviour//TODO: NEED refactoring?
 {
     [Header("Path settings")]
     [SerializeField] private bool _isLooped;
