@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class GamePause : MonoBehaviour
 {
     [SerializeField] private PauseMenu _pauseMenu;
+    [SerializeField] private Transform _gameOverMenu;
 
     private PlayerInputActions _playerInput;
     
