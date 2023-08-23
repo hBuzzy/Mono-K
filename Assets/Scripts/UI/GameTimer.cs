@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-[RequireComponent(typeof(TimerView))]
+[RequireComponent(typeof(TimeView))]
 
 public class GameTimer : MonoBehaviour //TODO: refactor connection betwen model and view
 {
     private float _elapsedTime;
     private bool _isActive;
 
-    private TimerView _view;
+    private TimeView _view;
 
     private void Start()
     {
-        _view = GetComponent<TimerView>();
+        _view = GetComponent<TimeView>();
     }
 
     private void OnEnable()
