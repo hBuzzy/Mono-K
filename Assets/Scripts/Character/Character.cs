@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using States = CharacterStates.States;
 
-[RequireComponent(typeof(CharacterStates))]
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class Character : MonoBehaviour
@@ -12,11 +11,12 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform _respawnPoint; //TODO Make it
     [SerializeField] private NightSwitcher _nightSwitcher;
     [SerializeField] private Light2D _light;
-    [SerializeField] private TrailRenderer _trail;
-    
+
     private CharacterStates _states;
     private PlayerInputActions _playerInput;
     private Rigidbody2D _rigidbody;
+    private CharacterDash _dashScript; //NeedBeHere?
+    private Outline _outlineScript;
 
     private States _currentState;
     
@@ -24,6 +24,7 @@ public class Character : MonoBehaviour
     private float _facingDirectionX = 1f;
     
     private bool _canMove = true;
+    private bool _isGamePaused;
 
     public Vector2 Velocity => _rigidbody.velocity;
     
@@ -39,7 +40,9 @@ public class Character : MonoBehaviour
     {
         _playerInput = new PlayerInputActions();
         _states = GetComponent<CharacterStates>();
+       // _states = GetComponent<CharacterStateHandler>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _dashScript = GetComponent<CharacterDash>();
     }
     
     private void OnEnable()
@@ -47,6 +50,8 @@ public class Character : MonoBehaviour
         _playerInput.Character.Enable();
         _nightSwitcher.NightStarted += NightStarted;
         _states.StateChanged += OnStateChanged;
+
+        GamePause.Instance.PauseChanged += OnGamePauseChanged;
     }
 
     private void OnDisable()
@@ -82,6 +87,12 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void AddForce(Vector2 force)
+    {
+        _rigidbody.AddForce(force, ForceMode2D.Impulse);
+    }
+
+
     public void SetPosition(Vector2 position)
     {
         transform.position = position;
@@ -89,7 +100,7 @@ public class Character : MonoBehaviour
 
     private void UpdateMoveAbility()
     {
-        if (_currentState is States.Dash or States.Grab or States.DashPreparation or States.Hurt)
+        if (_isGamePaused || _currentState is States.Dash or States.Grab or States.DashPreparation or States.Hurt)
         {
             _rigidbody.gravityScale = 0f;
             _rigidbody.velocity = Vector2.zero;
@@ -100,18 +111,26 @@ public class Character : MonoBehaviour
             _canMove = true;
         }
     }
-    
+
     private void NightStarted()//TODO: Refactoring
     {
         Debug.Log("night");
 
         _light.enabled = true;
-        _trail.enabled = true;
+        _dashScript.enabled = true;
+        //_outlineScript.enabled = true;
+        //_trail.enabled = true;
     }
 
     private void OnStateChanged(States state)//TODO:Rename
     {
         _currentState = state;
+        UpdateMoveAbility();
+    }
+
+    private void OnGamePauseChanged(bool isPaused)
+    {
+        _isGamePaused = isPaused;
         UpdateMoveAbility();
     }
 }
