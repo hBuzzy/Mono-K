@@ -74,3 +74,6 @@ TagManager:
   - name: Grass
     uniqueID: 1866551281
     locked: 0
+  - name: UI
+    uniqueID: 4247322555
+    locked: 0
