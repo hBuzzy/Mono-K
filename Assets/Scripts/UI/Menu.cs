@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour, IClosable
 {
     public event Action Closed;
 

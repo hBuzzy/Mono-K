@@ -1,17 +1,23 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-public class TimeView : MonoBehaviour
+public class GameTimerView : View<float>
 {
     [SerializeField] private TMP_Text _timeText;
+    [SerializeField] private GameTimer _gameTimer;
 
-    public void Render(float time)
+    private void OnEnable()
     {
-        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-        
-        string hours = timeSpan.Hours == 0 ? "" : $"{timeSpan.Hours}:";
-        
-        _timeText.text = $"{hours}{timeSpan.Minutes:00}:{timeSpan.Seconds:00}";
+        _gameTimer.TimeChanged += Render;
+    }
+
+    private void OnDisable()
+    {
+        _gameTimer.TimeChanged -= Render;
+    }
+
+    protected override void Render(float seconds)
+    {
+        _timeText.text = DataConvector.TimeToString(seconds);
     }
 }

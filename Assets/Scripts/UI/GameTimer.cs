@@ -1,49 +1,34 @@
 ﻿using System;
 using UnityEngine;
 
-[RequireComponent(typeof(TimeView))]
+[RequireComponent(typeof(GameTimerView))]
 
-public class GameTimer : MonoBehaviour //TODO: refactor connection betwen model and view
+public class GameTimer : MonoBehaviour
 {
-    private float _elapsedTime;
     private bool _isActive;
+    
+    private float _elapsedTIme;
+    private int _currentSeconds;
 
-    private TimeView _view;
-
-    private void Start()
-    {
-        _view = GetComponent<TimeView>();
-    }
+    public float ElapsedTIme => _elapsedTIme;
+    
+    public event Action<float> TimeChanged;
 
     private void OnEnable()
     {
-        //TODO: Subscribe to night started
-        //TODO: Subscribe to game (reached end pouint) ended
-    }
-
-    private void OnDisable()
-    {
-        //throw new NotImplementedException();
+        _elapsedTIme = 0;
     }
 
     private void Update()
     {
-        _elapsedTime += Time.deltaTime;
-        _view.Render(_elapsedTime);
-    }
-
-    private void OnStart()
-    {
+        _elapsedTIme += Time.deltaTime;
         
-    }
+        int passedSeconds = (int)_elapsedTIme;
 
-    private void OnPause()
-    {
-        
-    }
+        if (passedSeconds == _currentSeconds)
+            return;
 
-    private void OnStop()
-    {
-        
+        _currentSeconds = passedSeconds;
+        TimeChanged?.Invoke(_elapsedTIme);
     }
 }
