@@ -7,10 +7,10 @@ public class HitBox : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.TryGetComponent(out CharacterHurt character))
+        if (other.gameObject.TryGetComponent(out CharacterDeath character))
         {
             CharacterEntered?.Invoke();
-            character.Die();
+            character.TakeDamage();
         }
     }
 }

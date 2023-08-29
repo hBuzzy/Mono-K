@@ -1,17 +1,28 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(PathMover))]
+[RequireComponent(typeof(Animator))]
 
-public class SpikeHead : MonoBehaviour //TODO: Need it?
+public class SpikeHead : MonoBehaviour
 {
     [SerializeField] private SpikeHeadHitBoxes _hitBoxes;
     [SerializeField] private AudioSource _moveSound;
+    [SerializeField] private AudioSource _hitSound;
+    
+    private const float AnimationTransitionDuration = 0.1f;
+
+    private readonly int _leftHit = Animator.StringToHash("LeftHit");
+    private readonly int _rightHit = Animator.StringToHash("RightHit");
+    private readonly int _topHit = Animator.StringToHash("TopHit");
+    private readonly int _bottomHit = Animator.StringToHash("BottomHit");
 
     private PathMover _pathMover;
+    private Animator _animator;
     
     private void Awake()
     {
         _pathMover = GetComponent<PathMover>();
+        _animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -30,20 +41,27 @@ public class SpikeHead : MonoBehaviour //TODO: Need it?
     {
         if (hitSide == Sides.Left)
         {
-            Debug.Log("Left");
+            AnimateState(_leftHit);
         }
         else if (hitSide == Sides.Right)
         {
-            Debug.Log("right");
+            AnimateState(_rightHit);
         }
-        else if (hitSide == Sides.Up)
+        else if (hitSide == Sides.Top)
         {
-            Debug.Log("up");
+            AnimateState(_topHit);
         }
-        else if (hitSide == Sides.Down)
+        else if (hitSide == Sides.Bottom)
         {
-            Debug.Log("Down");
+            AnimateState(_bottomHit);
         }
+        
+        _hitSound.PlayOneShot(_hitSound.clip);
+    }
+
+    private void AnimateState(int animationState)
+    {
+        _animator.CrossFade(animationState, AnimationTransitionDuration);
     }
 
     private void OnMove()

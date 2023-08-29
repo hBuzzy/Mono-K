@@ -29,12 +29,12 @@ public class SpikeHeadHitBoxes : MonoBehaviour //TODO: Need it?
 
     private void OnDownHit()
     {
-        CharacterEntered?.Invoke(Sides.Down);
+        CharacterEntered?.Invoke(Sides.Bottom);
     }
 
     private void OnUpHit()
     {
-        CharacterEntered?.Invoke(Sides.Up);
+        CharacterEntered?.Invoke(Sides.Top);
     }
 
     private void OnRightHit()
@@ -52,6 +52,6 @@ public enum Sides
 {
     Left = 0,
     Right = 1,
-    Up = 2,
-    Down = 3
+    Top = 2,
+    Bottom = 3
 }
