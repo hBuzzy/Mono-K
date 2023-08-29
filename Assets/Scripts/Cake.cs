@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CircleCollider2D))]
 
 public class Cake : MonoBehaviour
 {
@@ -12,17 +13,21 @@ public class Cake : MonoBehaviour
     private readonly int _disappear = Animator.StringToHash("Disappear");
 
     private Animator _animator;
+    private CircleCollider2D _collider;
     private bool _isDisappearFinished;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _collider = GetComponent<CircleCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out PieBasket pieBasket))
         {
+            _collider.enabled = false;
+            
             pieBasket.AddPie();
             StartCoroutine(Disappear());
         }
