@@ -1,13 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterRespawner : MonoBehaviour
 {
-    public static CharacterRespawner Instance { get; private set; }
-    
-    [SerializeField] private CheckPoint _startPoint;
+    [Header("Components")]
     [SerializeField] private Character _character;
+    [SerializeField] private CheckPoint _startPoint;
+    
+    [Header("Death screen")]
+    [SerializeField] private DeathScreen _deathScreen;
+    [SerializeField, Range(0f, 1.5f)] private float _deathScreenDuration;
     
     private CheckPoint _currentPoint;
+    
+    public static CharacterRespawner Instance { get; private set; }
 
     private void Awake()
     {
@@ -25,7 +31,7 @@ public class CharacterRespawner : MonoBehaviour
     private void Start()
     {
         _currentPoint = _startPoint;
-        //MoveCharacterToCheckPoint();
+        //TODO: MoveCharacterToCheckPoint();
         _currentPoint.Check(false);
     }
 
@@ -35,8 +41,14 @@ public class CharacterRespawner : MonoBehaviour
         _currentPoint = checkPoint;
     }
 
-    public void MoveCharacterToCheckPoint()
+    public IEnumerator RespawnCharacter()
     {
+        yield return _deathScreen.Show();
+        
         _character.SetPosition(_currentPoint.RespawnPoint.position);
+
+        yield return new WaitForSeconds(_deathScreenDuration);
+
+        yield return _deathScreen.Hide();
     }
 }
