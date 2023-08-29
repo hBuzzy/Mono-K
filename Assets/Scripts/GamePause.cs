@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 
 public class GamePause : MonoBehaviour
 {
-    [SerializeField] private PauseMenu _pauseMenu;
-    [SerializeField] private Transform _gameOverMenu;
+    [SerializeField] private PauseMenu _pausePauseMenu;
+    [SerializeField] private GameOver _gameOver;
 
     private PlayerInputActions _playerInput;
     
-    public static GamePause Instance { get; private set; } //TODO: Need to be on top?
+    public static GamePause Instance { get; private set; }
     
     public event Action<bool> PauseChanged;
 
@@ -31,21 +31,21 @@ public class GamePause : MonoBehaviour
     private void OnEnable()
     {
         _playerInput.UI.Enable();
-        _playerInput.UI.OpenPauseMenu.performed += Pause;
-        _pauseMenu.Closed += Resume;
+        _playerInput.UI.OpenPauseMenu.performed += OnPauseMenuOpened;
+        _pausePauseMenu.Closed += Resume;
+        _gameOver.GameOverChanged += OnGameOverChanged;
     }
 
     private void OnDisable()
     {
         _playerInput.UI.Disable();
-        _playerInput.UI.OpenPauseMenu.performed -= Pause;
-        _pauseMenu.Closed -= Resume;
+        _playerInput.UI.OpenPauseMenu.performed -= OnPauseMenuOpened;
+        _pausePauseMenu.Closed -= Resume;
+        _gameOver.GameOverChanged += OnGameOverChanged;
     }
 
-    private void Pause(InputAction.CallbackContext obj)
+    private void Pause()
     {
-        _pauseMenu.gameObject.SetActive(true);
-        
         Time.timeScale = 0f;
         PauseChanged?.Invoke(true);
     }
@@ -54,5 +54,24 @@ public class GamePause : MonoBehaviour
     {
         Time.timeScale = 1f;
         PauseChanged?.Invoke(false);
+    }
+
+    private void OnPauseMenuOpened(InputAction.CallbackContext obj)
+    {
+        _pausePauseMenu.gameObject.SetActive(true);//todo: ADD BOOLEAN for check if in cutscene
+        
+        Pause();
+    }
+
+    private void OnGameOverChanged(bool isOver)
+    {
+        if (isOver)
+        {
+            Pause();
+        }
+        else
+        {
+            Resume();
+        }
     }
 }
