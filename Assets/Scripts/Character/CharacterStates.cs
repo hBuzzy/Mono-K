@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterJump))]
 [RequireComponent(typeof(CharacterDash))]
 [RequireComponent(typeof(CharacterWallMovement))]
-[RequireComponent(typeof(CharacterHurt))]
+[RequireComponent(typeof(CharacterDeath))]
 
 public class CharacterStates : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class CharacterStates : MonoBehaviour
     private CharacterJump _jumpScript;
     private CharacterDash _dashScript;
     private CharacterWallMovement _wallMovementScript;
-    private CharacterHurt _hurtScript;
+    private CharacterDeath _deathScript;
     
     private bool _isMoving;
     private bool _isJumping;
@@ -45,7 +45,7 @@ public class CharacterStates : MonoBehaviour
         _wallMovementScript = GetComponent<CharacterWallMovement>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
-        _hurtScript = GetComponent<CharacterHurt>();
+        _deathScript = GetComponent<CharacterDeath>();
     }
 
     private void OnEnable()
@@ -53,7 +53,7 @@ public class CharacterStates : MonoBehaviour
         _jumpScript.Jumped += OnJumped;
         _dashScript.DashingChanged += OnDashingChanged;
         _dashScript.PreparingDashChanged += OnPreparingDashChanged;
-        _hurtScript.HurtingChanged += OnHurtingChanged;
+        _deathScript.DeathChanged += OnDeathChanged;
         _wallMovementScript.SlidingChanged += OnSlidingChanged;
         _wallMovementScript.GrabbingChanged += OnGrabbingChanged;
     }
@@ -62,7 +62,7 @@ public class CharacterStates : MonoBehaviour
     {
         _jumpScript.Jumped -= OnJumped;
         _dashScript.DashingChanged -= OnDashingChanged;
-        _hurtScript.HurtingChanged -= OnHurtingChanged;
+        _deathScript.DeathChanged -= OnDeathChanged;
         _wallMovementScript.SlidingChanged -= OnSlidingChanged;
         _wallMovementScript.GrabbingChanged -= OnGrabbingChanged;
     }
@@ -151,7 +151,7 @@ public class CharacterStates : MonoBehaviour
         }
     }
 
-    private void OnHurtingChanged(bool isHurting)
+    private void OnDeathChanged(bool isHurting)
     {
         _isHurting = isHurting;
     }
