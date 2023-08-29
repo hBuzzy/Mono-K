@@ -4,11 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueView : View<DialogueLine>
+public class DialogueView : View<DialogueLine>//TODO: Refactoring
 {
     [Header("Model component")]
     [SerializeField] private Dialogue _dialogue;
-    [SerializeField] private AudioSource _audioSource;
+    //[SerializeField] private AudioSource _audioSource;
 
     [Header("View components")] 
     [SerializeField] private Image _dialogueWindow;
@@ -50,8 +50,8 @@ public class DialogueView : View<DialogueLine>
         foreach (var symbol in text)
         {
             _dialogueText.text += symbol;
-            _audioSource.Stop();
-            _audioSource.PlayOneShot(_audioSource.clip);
+            //_audioSource.Stop();
+            //_audioSource.PlayOneShot(_audioSource.clip);
             yield return wait;
         }
     }
