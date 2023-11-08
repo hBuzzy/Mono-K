@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4a573524f84b7997b062e8be94c4f3, type: 3}
+  m_Name: GrannyProfile
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 273f36aa2e553df45a401ad43d1b2beb, type: 3}
+  _name: "\u0411\u0430\u0431\u0443\u043B\u044F"
+  _backgroundColor: {r: 0.006541462, g: 0.46226418, b: 0.17743748, a: 1}
+  _fontColor: {r: 0.1792453, g: 0, b: 0.15822272, a: 1}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62bf6186d163452899de6291595bf578, type: 3}
+  m_Name: End Dialogue
+  m_EditorClassIdentifier: 
+  _typingSpeed: 0.04
+  _delayBetweenLines: 2.5
+  _dialogueLines:
+  - {fileID: 11400000, guid: dd2b9f7432ccab448b55a381ac8cfbf6, type: 2}
+  - {fileID: 11400000, guid: e9f05cd133e1fa143822b2cb6b96183e, type: 2}
+  - {fileID: 11400000, guid: 318e2c767a48d594cb896722c2c86c87, type: 2}
+  - {fileID: 11400000, guid: 4fbd8ceb7fea08b48b4ff35357116542, type: 2}
