@@ -6,15 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="529811f1-928d-4f13-bf97-9286e0b8a519" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mono-K/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Outline_Lit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Outline_Lit.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/GameMusic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/GameMusic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDash.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameLevel.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameLevel.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDeath.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDeath.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterEffects.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterGroundDetector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterGroundDetector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterRespawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterRespawner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStateHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStateHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traps/Spears.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +280,7 @@
       <workItem from="1699097283373" duration="417000" />
       <workItem from="1699207136909" duration="5456000" />
       <workItem from="1699380286443" duration="10396000" />
-      <workItem from="1699463753667" duration="1530000" />
+      <workItem from="1699463753667" duration="4429000" />
     </task>
     <servers />
   </component>

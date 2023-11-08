@@ -44,14 +44,15 @@ public static class CharacterData
     
     public enum States
     {
+        Default = 0,
         Idle = 1,
         Walk = 2,
         Jump = 3,
-        Fall = 5,
-        Slide = 6,
-        DashPreparation = 7,
-        Dash = 8,
-        Die = 9,
-        Grab = 10
+        Fall = 4,
+        Slide = 5,
+        DashPreparation = 6,
+        Dash = 7,
+        Die = 8,
+        Grab = 9
     }
 }
