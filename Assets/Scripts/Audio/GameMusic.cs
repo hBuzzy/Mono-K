@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,14 +17,8 @@ public class GameMusic : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _audioSource.ignoreListenerPause = true;
         _audioSource.loop = false;
-
-        Random random = new Random();
-        _clips = _clips.OrderBy(clip => random.Next()).ToList();
-
-        foreach (var clip in _clips)
-        {
-            Debug.Log(clip.name);
-        }
+        
+        _clips = _clips.OrderBy(clip => new Random().Next()).ToList();
             
         StartCoroutine(PlayMusic());
     }

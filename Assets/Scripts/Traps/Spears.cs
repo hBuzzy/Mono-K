@@ -12,28 +12,29 @@ public class Spears : MonoBehaviour
     [Header("Spears")]
     [SerializeField] private Spear[] _spears;
     
-    CancellationTokenSource disableCancellation = new CancellationTokenSource();
-    CancellationTokenSource destroyCancellation = new CancellationTokenSource();
+    //TODO:
+    CancellationTokenSource _disableCancellation = new ();
+    CancellationTokenSource _destroyCancellation = new ();
 
     private void OnEnable()
     {
-        if (disableCancellation != null)
+        if (_disableCancellation != null)
         {
-            disableCancellation.Dispose();
+            _disableCancellation.Dispose();
         }
-        disableCancellation = new CancellationTokenSource();
-        Run(disableCancellation);
+        _disableCancellation = new CancellationTokenSource();
+        Run(_disableCancellation);
     }
 
     private void OnDisable()
     {
-        disableCancellation.Cancel();
+        _disableCancellation.Cancel();
     }
 
     private void OnDestroy()
     {
-        destroyCancellation.Cancel();
-        destroyCancellation.Dispose();
+        _destroyCancellation.Cancel();
+        _destroyCancellation.Dispose();
     }
 
     private async void Run(CancellationTokenSource tokenSource)
