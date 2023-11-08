@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1281800285}
   - component: {fileID: 1281800286}
   m_Layer: 0
-  m_Name: OpenSound
+  m_Name: MoveSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7097527823844331987}
   m_Layer: 0
-  m_Name: ClosedPoint
+  m_Name: ClosePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,9 +359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf7cb7eb93934f409da8103cb37a1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openedPoint: {fileID: 6069750079903336967}
+  _openPoint: {fileID: 6069750079903336967}
   _closePoint: {fileID: 7097527823844331987}
-  _openSound: {fileID: 1281800286}
+  _moveSound: {fileID: 1281800286}
   _moveDuration: 3
 --- !u!1 &6069750079903336966
 GameObject:
@@ -373,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6069750079903336967}
   m_Layer: 0
-  m_Name: OpenedPoint
+  m_Name: OpenPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8054777466643188566}
   - component: {fileID: 4341751301544181139}
   m_Layer: 0
-  m_Name: Character Ghost
+  m_Name: Red hat Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: be996f21233c9ca4d84840c7e22f3a18, type: 2}
+  - {fileID: 2100000, guid: f4feee62bffcbf147ab88e030c676b8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -930810961
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: f61802524c30cca4981c57bca03ad219, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,5 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299caf2b4e8c0e948b8e628fe8bdde2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeTime: 0.04
-  _intensityChangeSpeed: 3
+  _activeTime: 0.03
+  _intensityChangeSpeed: 1.3

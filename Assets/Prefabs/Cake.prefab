@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2bdb36a123f628e4f89fdf3be78408b2, type: 3}
+  m_Sprite: {fileID: -1583893494, guid: 6d3555f08f50bae428359f31032a7fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -172,8 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _takingSound: {fileID: 5414805975489976434}
-  _cakeImage: {fileID: 7419155497424804824}
-  _waitBeforeDisappear: 0.1
 --- !u!58 &497896293275285785
 CircleCollider2D:
   m_ObjectHideFlags: 0
