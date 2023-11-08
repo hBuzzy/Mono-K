@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    
     [Header("Shaking")] 
     [SerializeField, Range(0f, 7f)] private float _vibratoDuration;
     [SerializeField] private Vector2 _strength;
@@ -25,7 +24,7 @@ public class FallingPlatform : MonoBehaviour
     private CapsuleCollider2D _capsuleCollider;
     private Rigidbody2D _rigidbody;
 
-    private Coroutine _currentCoroutine;
+    private Coroutine _fallCoroutine;
     private Vector3 _defaultPositions;
     
     private void Start()
@@ -41,7 +40,10 @@ public class FallingPlatform : MonoBehaviour
     {
         if (other.TryGetComponent(out Character character))
         {
-            _currentCoroutine ??= StartCoroutine(Fall());
+            if (_fallCoroutine != null)
+                StopCoroutine(_fallCoroutine);
+            
+            _fallCoroutine = StartCoroutine(Fall());
         }
     }
 
@@ -59,16 +61,14 @@ public class FallingPlatform : MonoBehaviour
         yield return new WaitForSeconds(_respawnTime);
         
         foreach (var brick in _bricks)
-        {
             brick.GetBack();
-        }
         
         transform.position = _defaultPositions;
         
         _boxCollider.enabled = true;
         _capsuleCollider.enabled = true;
         
-        _currentCoroutine = null;
+        _fallCoroutine = null;
     }
 
     private void ShakeBreaks()
@@ -84,9 +84,7 @@ public class FallingPlatform : MonoBehaviour
         _rigidbody.isKinematic = false;
 
         foreach (var brick in _bricks)
-        {
             brick.Fall();
-        }
 
         yield return new WaitForSeconds(duration);
 

@@ -10,17 +10,7 @@ public class Dialogue : MonoBehaviour
     private Queue<DialogueLine> _dialogueLines;
 
     public event Action<DialogueLine, float> RenderRequired;
-
-    private void Start()
-    {
-        //_dialogueLines = _dialogueData.GetDialogueQueue();
-    }
-
-    private void OnEnable()
-    {
-        
-    }
-
+    
     public void StartDialogue(DialogueData dialogueData)
     {
         StartCoroutine(RenderDialogue(dialogueData));

@@ -12,6 +12,7 @@ public class CutsceneTrigger : Trigger
         if (other.TryGetComponent(out Character character))
         {
             Triggered?.Invoke();
+            gameObject.SetActive(false);
         }
     }
 }

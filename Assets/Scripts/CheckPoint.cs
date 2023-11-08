@@ -10,9 +10,9 @@ public class CheckPoint : MonoBehaviour
     
     [Header("Respawn")]
     [SerializeField] private Transform _respawnPoint;
-
+    
     [Header("Sounds")] 
-    [SerializeField] private AudioSource _checkedSound;
+    [SerializeField] private AudioSource _activationSound;
     
     private bool _isChecked;
     
@@ -28,7 +28,7 @@ public class CheckPoint : MonoBehaviour
         if (_isChecked)
             return;
         
-        if (other.TryGetComponent(out Character character) && _isChecked == false)
+        if (other.TryGetComponent(out Character character))
         {
             Check();
             CharacterRespawner.Instance.SetCheckPoint(this);
@@ -47,7 +47,7 @@ public class CheckPoint : MonoBehaviour
         SetLightIntensity();
         
         if (isSoundRequired)
-            _checkedSound.PlayOneShot(_checkedSound.clip);
+            _activationSound.PlayOneShot(_activationSound.clip);
     }
 
     private void SetLightIntensity()

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class CharacterOutline : MonoBehaviour//TODO: Change char material instead of global one
+public class CharacterOutline : MonoBehaviour
 {
     [SerializeField] private float _thickness;
     [SerializeField] private Material _material;
+
+    private const float MinThickness = 0f;
     
     private readonly int _outlineThickness = Shader.PropertyToID("_OutlineThickness");
 
@@ -19,6 +21,6 @@ public class CharacterOutline : MonoBehaviour//TODO: Change char material instea
 
     public void Hide()
     {
-        _material.SetFloat(_outlineThickness, 0f);
+        _material.SetFloat(_outlineThickness, MinThickness);
     }
 }

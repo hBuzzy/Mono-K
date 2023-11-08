@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    public static SceneSwitcher Instance;
+    public static SceneSwitcher Instance { get; private set; }
     
     private void Awake()
     {
@@ -18,16 +18,14 @@ public class SceneSwitcher : MonoBehaviour
         }
     }
 
-    public void NextLevel()
+    public void LoadScene(Scenes scene)
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadSceneAsync(scene.ToString());
     }
 
-    public void LoadScene(string sceneName)
+    public enum Scenes
     {
-        // var scene = SceneManager.LoadSceneAsync(sceneName);
-        // scene.allowSceneActivation = false;
-
-        SceneManager.LoadSceneAsync(sceneName);
+        MainMenu = 0,
+        GameLevel = 1
     }
 }

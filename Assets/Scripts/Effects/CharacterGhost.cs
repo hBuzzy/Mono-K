@@ -5,23 +5,25 @@ using UnityEngine;
 
 public class CharacterGhost : MonoBehaviour
 {
-    [SerializeField] private float _activeTime = 0.1f;
+    [Header("Settings")]
+    [SerializeField] private float _activeTime;
     [SerializeField] private float _intensityChangeSpeed;
     
-    private const float MaxIntensity = 1f;
-    private const float MinIntensity = -0.1f;
-    
+    private const float MaxIntensity = 0f;
+    private const float MinIntensity = 1f;
+
     private readonly int _dissolveIntensity = Shader.PropertyToID("_DissolveIntensity");
-    //private readonly int _characterSprite = Shader.PropertyToID("_MainTax");
-    //private readonly int _dissolveScale = Shader.PropertyToID("_DissolveScale");
-    
+
     private Character _character;
     private SpriteRenderer _characterSpriteRenderer;
+    private CharacterGhostsPool _ghostsPool;
     private SpriteRenderer _spriteRenderer;
     private Material _ghostMaterial;
     private Coroutine _currentCoroutine;
-    
-    private float _timeActivated;
+
+    private Vector3 _position;
+    private float _activatedTime;
+    private bool _isHiding;
 
     private void Awake()
     {
@@ -32,65 +34,61 @@ public class CharacterGhost : MonoBehaviour
     private void OnEnable()
     {
         if (_character == null)
-        {
             return;
-        }
 
+        transform.position = _character.transform.position;
+        
         _ghostMaterial.SetFloat(_dissolveIntensity, MaxIntensity);
         
         _spriteRenderer.sprite = _characterSpriteRenderer.sprite;
         _spriteRenderer.flipX = _characterSpriteRenderer.flipX;
-        
-        //_ghostMaterial.SetTexture(_characterSprite, _spriteRenderer.sprite.texture);
-        //_ghostMaterial.SetFloat(_dissolveScale, 300f);
 
-        transform.position = _character.transform.position;
-
-        _timeActivated = Time.time;
+        _activatedTime = Time.time;
     }
 
     private void Update()
     {
-        if (Time.time >= (_timeActivated + _activeTime))
+        if (Time.time >= (_activatedTime + _activeTime) && _isHiding == false)
         {
             if (_currentCoroutine != null)
-            {
                 StopCoroutine(_currentCoroutine);
-            }
 
-            _currentCoroutine = StartCoroutine(HideGhost());
+            _currentCoroutine = StartCoroutine(Hide());
         }
     }
 
-    public void Init(Character character)
+    public void Init(Character character, SpriteRenderer characterSpriteRenderer, CharacterGhostsPool pool)
     {
         _character = character;
-        _characterSpriteRenderer = _character.GetComponent<SpriteRenderer>();
+        _ghostsPool = pool;
+        _characterSpriteRenderer = characterSpriteRenderer;
         _spriteRenderer.sortingLayerID = _characterSpriteRenderer.sortingLayerID;
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
+        _isHiding = false;
     }
 
-    private IEnumerator HideGhost()
+    private IEnumerator Hide()
     {
+        _isHiding = true;
         yield return ReduceIntensity();
+        _ghostsPool.Add(this);
     }
 
     private IEnumerator ReduceIntensity()
     {
         float currentIntensity = _ghostMaterial.GetFloat(_dissolveIntensity);
-
+        
         while (currentIntensity != MinIntensity)
         {
             currentIntensity =
                 Mathf.MoveTowards(currentIntensity, MinIntensity, _intensityChangeSpeed * Time.deltaTime);
             _ghostMaterial.SetFloat(_dissolveIntensity, currentIntensity);
+            
             yield return null;
         }
-        
-        CharacterGhostsPool.Instance.Add(this);
     }
 }

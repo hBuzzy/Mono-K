@@ -13,7 +13,7 @@ public class MovingPlatform : MonoBehaviour
 
     private const int LeftDirection = -1;
     private const int RightDirection = 1;
-    private const float DistanceError = 0.05f;
+    private const float DistanceError = 0.2f;
 
     private Vector3 _targetPosition;
     private Vector2 _velocity;
@@ -25,8 +25,8 @@ public class MovingPlatform : MonoBehaviour
     private int _wayPointIndex;
     private bool _isOnPlatform;
 
-    public Vector3 Velocity => _rigidbody.velocity; 
-    
+    public Vector3 Velocity => _rigidbody.velocity;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -41,19 +41,16 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update()
     {
-        if ((Vector2.Distance(transform.position, _targetPosition) < DistanceError) == false)
+        if (_waitCoroutine != null || IsTargetPointReached() == false)
             return;
-        
+
         transform.position = _targetPosition;
+        _rigidbody.velocity = Vector2.zero;
         
         SelectNextWayPoint();
-            
-        _rigidbody.velocity = Vector2.zero;
-
+        
         if (_waitCoroutine != null)
-        {
             StopCoroutine(_waitCoroutine);
-        }
 
         _waitCoroutine = StartCoroutine(Wait());
     }
@@ -77,17 +74,18 @@ public class MovingPlatform : MonoBehaviour
         }                                                           
     }
 
+    private bool IsTargetPointReached()
+    {
+        return Vector2.Distance(transform.position, _targetPosition) < DistanceError;
+    }
+
     private void SelectNextWayPoint()
     {
         if (_wayPointIndex == _wayPoints.Length - 1)
-        {
             _indexDirection = LeftDirection;
-        }
 
         if (_wayPointIndex == 0)
-        {
             _indexDirection = RightDirection;
-        }
 
         _wayPointIndex += _indexDirection;
         _targetPosition = _wayPoints[_wayPointIndex].transform.position;
@@ -103,7 +101,7 @@ public class MovingPlatform : MonoBehaviour
     private IEnumerator Wait()
     {
         yield return new WaitForSeconds(_waitAtPoint);
-
+        
         _waitCoroutine = null;
     }
 }

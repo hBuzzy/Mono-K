@@ -3,8 +3,11 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class DoorLever : MonoBehaviour//TODO: Rename switcher to lifter or somehow in this way?
+
+public class DoorLever : MonoBehaviour
 {
+    private const float AnimationTransitionDuration = 0.1f;
+    
     private readonly int _switch = Animator.StringToHash("Switch");
     
     private BoxCollider2D _boxCollider;
@@ -22,8 +25,8 @@ public class DoorLever : MonoBehaviour//TODO: Rename switcher to lifter or someh
     {
         if (_boxCollider.enabled && collision.TryGetComponent(out Character character))
         {
-            _animator.CrossFade(_switch, 0, 0);
             _boxCollider.enabled = false;
+            _animator.CrossFade(_switch, AnimationTransitionDuration);
             _switched?.Invoke();
         }
     }

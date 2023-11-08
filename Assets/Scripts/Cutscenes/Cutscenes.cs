@@ -4,8 +4,7 @@ using UnityEngine;
 public class Cutscenes : MonoBehaviour
 {
     [SerializeField] private Cutscene[] _cutscenes;
-
-    public event Action<bool> ActivationChanged; //TODO: Rennamed?
+    public event Action<bool> ActiveChanged;
 
     private void OnEnable()
     {
@@ -27,11 +26,11 @@ public class Cutscenes : MonoBehaviour
 
     private void OnCutsceneStarted()
     {
-        ActivationChanged?.Invoke(true);
+        ActiveChanged?.Invoke(true);
     }
 
     private void OnCutsceneEnded()
     {
-        ActivationChanged?.Invoke(false);
+        ActiveChanged?.Invoke(false);
     }
 }

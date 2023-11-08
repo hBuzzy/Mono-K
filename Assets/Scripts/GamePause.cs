@@ -7,10 +7,14 @@ public class GamePause : MonoBehaviour
     [SerializeField] private PauseMenu _pausePauseMenu;
     [SerializeField] private GameOver _gameOver;
 
+    private const float PauseTimeScale = 0f;
+    private const float ResumeTimeScale = 1f;
+
     private PlayerInputActions _playerInput;
-    
+    private bool _isCutsceneActive;
+
     public static GamePause Instance { get; private set; }
-    
+
     public event Action<bool> PauseChanged;
 
     private void Awake()
@@ -31,7 +35,7 @@ public class GamePause : MonoBehaviour
     private void OnEnable()
     {
         _playerInput.UI.Enable();
-        _playerInput.UI.OpenPauseMenu.performed += OnPauseMenuOpened;
+        _playerInput.UI.OpenPauseMenu.performed += OnPauseMenuPerformed;
         _pausePauseMenu.Closed += Resume;
         _gameOver.GameOverChanged += OnGameOverChanged;
     }
@@ -39,39 +43,40 @@ public class GamePause : MonoBehaviour
     private void OnDisable()
     {
         _playerInput.UI.Disable();
-        _playerInput.UI.OpenPauseMenu.performed -= OnPauseMenuOpened;
+        _playerInput.UI.OpenPauseMenu.performed -= OnPauseMenuPerformed;
         _pausePauseMenu.Closed -= Resume;
         _gameOver.GameOverChanged += OnGameOverChanged;
     }
 
     private void Pause()
     {
-        Time.timeScale = 0f;
-        PauseChanged?.Invoke(true);
+        UpdatePauseState(PauseTimeScale);
     }
 
     private void Resume()
     {
-        Time.timeScale = 1f;
-        PauseChanged?.Invoke(false);
+        UpdatePauseState(ResumeTimeScale);
     }
 
-    private void OnPauseMenuOpened(InputAction.CallbackContext obj)
+    private void UpdatePauseState(float timeScale)
     {
-        _pausePauseMenu.gameObject.SetActive(true);//todo: ADD BOOLEAN for check if in cutscene
-        
+        bool isPause = timeScale == PauseTimeScale;
+        Time.timeScale = timeScale;
+        AudioListener.pause = isPause;
+        PauseChanged?.Invoke(isPause);
+    }
+
+    private void OnPauseMenuPerformed(InputAction.CallbackContext obj)
+    {
+        _pausePauseMenu.gameObject.SetActive(true);
         Pause();
     }
 
     private void OnGameOverChanged(bool isOver)
     {
         if (isOver)
-        {
             Pause();
-        }
         else
-        {
             Resume();
-        }
     }
 }
