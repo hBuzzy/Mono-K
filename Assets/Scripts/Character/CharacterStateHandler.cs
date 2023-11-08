@@ -93,7 +93,6 @@ public class CharacterStateHandler : MonoBehaviour
 
             _currentState = value;
             StateChanged?.Invoke(_currentState);
-            _text.text = _currentState.ToString();
             HandleState(_currentState);
         }
     }
@@ -134,10 +133,16 @@ public class CharacterStateHandler : MonoBehaviour
     {
         _animator.CrossFade(animationState, _transitionDuration);
     }
-    
+
+    private void ResetState()
+    {
+        _currentState = States.Default;
+    }
+
     private void OnJumped()
     {
         _isJumping = true;
+        ResetState();
     }
 
     private void OnDashingChanged(bool isDashing)
