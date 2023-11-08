@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-395114990034681618
+--- !u!114 &-6091650754463955000
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve_Lit
-  m_Shader: {fileID: -6465566751694194690, guid: 199d5b0353f687f40a0c368f38c39475, type: 3}
+  m_Name: Dust
+  m_Shader: {fileID: -6465566751694194690, guid: 4aa9b6a88db33b545a1774d98a32aedd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -36,12 +36,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTax:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f61802524c30cca4981c57bca03ad219, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -58,15 +70,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveAmount: 0.948
-    - _DissolveIntensity: 1
-    - _DissolveScale: 20
-    - _DissolveWidth: 0.1
-    - _OutlineThickness: 0.5
+    - _Distance: 0.085
+    - _EnableExternalAlpha: 0
+    - _Size: 0.32
     m_Colors:
-    - _Color: {r: 3.0943396, g: 0.10217165, b: 0.10217165, a: 0}
-    - _DissolveColor: {r: 8, g: 0, b: 7.410885, a: 1}
-    - _GlowColor: {r: 1.8174353, g: 0, b: 0.09087211, a: 1}
-    - _MainColor: {r: 1.9766746, g: 0, b: 0.05806025, a: 0}
-    - _OutlineColor: {r: 7.9066987, g: 4.418963, b: 0, a: 0}
+    - _Color: {r: 5.9921584, g: 5.9073634, b: 5.9073634, a: 0}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _Position: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
