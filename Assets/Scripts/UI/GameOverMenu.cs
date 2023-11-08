@@ -4,15 +4,16 @@ using UnityEngine;
 public class GameOverMenu : MonoBehaviour, IClosable
 {
     [SerializeField] private CharacterDeath _deaths;
-    [SerializeField] private PieBasket _basket;
+    [SerializeField] private CookieBasket _basket;
     [SerializeField] private GameTimer _timer;
+    [SerializeField] private Cookies _cookies;
     
     public event Action Closed;
-    public event Action Opened;
+    public event Action<Score> Opened;
 
     private void OnEnable()
     {
-        Opened?.Invoke();
+        Opened?.Invoke(GetScore());
     }
 
     private void OnDisable()
@@ -20,18 +21,9 @@ public class GameOverMenu : MonoBehaviour, IClosable
         Closed?.Invoke();
     }
 
-    public Score GetDeathsScore()
+    private Score GetScore()
     {
-        return new Score(_deaths.DeathsCount, _deaths.DeathsCount * -10);
-    }
-
-    public Score GetTImeScore()
-    {
-        return new Score(_timer.ElapsedTIme, (int)(_timer.ElapsedTIme * -0.1));
-    }
-
-    public Score GetCakesScore()
-    {
-        return new Score(_basket.PieCount, _basket.PieCount * 100);
+        return new Score(_timer.ElapsedTime, _deaths.DeathsCount,
+            _basket.CookiesCount, _cookies.CookiesCount);
     }
 }

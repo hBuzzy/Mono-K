@@ -18,13 +18,13 @@ public class SoundSettings : MonoBehaviour
     private const float MinVolume = -80f;
     private const float MaxVolume = 0f;
 
-    private static SoundSettings Instance;
+    private static SoundSettings _instance;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

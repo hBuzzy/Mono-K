@@ -1,15 +1,14 @@
 ﻿using System;
-using JetBrains.Annotations;
 using UnityEngine;
 
-public class SpikeHeadHitBoxes : MonoBehaviour //TODO: Need it?
+public class SpikeHeadHitBoxes : MonoBehaviour
 {
     [SerializeField] private HitBox _leftHitBox;
     [SerializeField] private HitBox _rightHitBox;
     [SerializeField] private HitBox _upHitBox;
     [SerializeField] private HitBox _downHitBox;
 
-    [CanBeNull] public event Action<Sides> CharacterEntered;
+    public event Action<Sides> CharacterEntered;
     
     private void OnEnable()
     {

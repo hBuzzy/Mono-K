@@ -1,4 +1,5 @@
-using System.Threading.Tasks;
+using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class Spear : MonoBehaviour
@@ -10,25 +11,23 @@ public class Spear : MonoBehaviour
     
     private Animator _animator;
     private Coroutine _attackCoroutine;
-    
-    private float _waitAfterAttack;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
 
-    public async Task Attack()
+    public async UniTask Attack()
     {
         AnimateState(_attack);
-        
-        await AsyncExtensions.WaitForSeconds(_shineTime);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(_shineTime));
         
         AnimateState(_backToNormal);
     }
 
-    private void AnimateState(int stateHash, float transitionDuration = 0.1f,int layer = 0)
+    private void AnimateState(int stateHash, float transitionDuration = 0f)
     {
-        _animator.CrossFade(stateHash, transitionDuration, layer);
+        _animator.CrossFade(stateHash, transitionDuration);
     }
 }

@@ -1,9 +1,10 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DeathsView : View<int>
-{
-    [SerializeField] private TMP_Text _text;
+{ 
+    [SerializeField] private TMP_Text _deathsCountText;
     [SerializeField] private CharacterDeath _characterDeath;
 
     private void OnEnable()
@@ -18,6 +19,6 @@ public class DeathsView : View<int>
 
     protected override void Render(int deathsNumber)
     {
-        _text.text = $"x{DataConvector.NumberToString(deathsNumber)}";
+        _deathsCountText.text = $"x{DataConvector.NumberToString(deathsNumber)}";
     }
 }

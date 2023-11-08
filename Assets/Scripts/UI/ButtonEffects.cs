@@ -3,15 +3,15 @@ using UnityEngine.EventSystems;
 
 public class ButtonEffects : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 {
-    [SerializeField] private ButtonSounds _buttonSounds;
+    [SerializeField] private ButtonSounds _sounds;
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        _buttonSounds.PlayClickSound();
+        UISounds.Instance.PlaySound(_sounds.GetClickSound());
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _buttonSounds.PlayHoverSound();
+        UISounds.Instance.PlaySound(_sounds.GetHoverSound());
     }
 }

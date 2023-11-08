@@ -9,7 +9,7 @@ public class SpikeHead : MonoBehaviour
     [SerializeField] private AudioSource _moveSound;
     [SerializeField] private AudioSource _hitSound;
     
-    private const float AnimationTransitionDuration = 0.1f;
+    private const float AnimationTransitionDuration = 0.05f;
 
     private readonly int _leftHit = Animator.StringToHash("LeftHit");
     private readonly int _rightHit = Animator.StringToHash("RightHit");
@@ -39,19 +39,24 @@ public class SpikeHead : MonoBehaviour
 
     private void HandleHit(Sides hitSide)
     {
-        if (hitSide == Sides.Left)
+        const Sides Left = Sides.Left;
+        const Sides Right = Sides.Right;
+        const Sides Top = Sides.Top;
+        const Sides Bottom = Sides.Bottom;
+        
+        if (hitSide == Left)
         {
             AnimateState(_leftHit);
         }
-        else if (hitSide == Sides.Right)
+        else if (hitSide == Right)
         {
             AnimateState(_rightHit);
         }
-        else if (hitSide == Sides.Top)
+        else if (hitSide == Top)
         {
             AnimateState(_topHit);
         }
-        else if (hitSide == Sides.Bottom)
+        else if (hitSide == Bottom)
         {
             AnimateState(_bottomHit);
         }

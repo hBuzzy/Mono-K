@@ -7,28 +7,28 @@ public class GameTimer : MonoBehaviour
 {
     private bool _isActive;
     
-    private float _elapsedTIme;
+    private float _elapsedTime;
     private int _currentSeconds;
 
-    public float ElapsedTIme => _elapsedTIme;
+    public float ElapsedTime => _elapsedTime;
     
     public event Action<float> TimeChanged;
 
     private void OnEnable()
     {
-        _elapsedTIme = 0;
+        _elapsedTime = 0;
     }
 
     private void Update()
     {
-        _elapsedTIme += Time.deltaTime;
+        _elapsedTime += Time.deltaTime;
         
-        int passedSeconds = (int)_elapsedTIme;
+        int passedSeconds = (int)_elapsedTime;
 
         if (passedSeconds == _currentSeconds)
             return;
 
         _currentSeconds = passedSeconds;
-        TimeChanged?.Invoke(_elapsedTIme);
+        TimeChanged?.Invoke(_elapsedTime);
     }
 }

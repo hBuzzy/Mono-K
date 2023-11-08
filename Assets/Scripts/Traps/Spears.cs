@@ -1,58 +1,62 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class Spears : MonoBehaviour
 {
     [SerializeField] private AudioSource _attackSound;
-    [SerializeField, Range(0f, 2f)] private float _waitBeforeStart;
+    [SerializeField, Range(0f, 5f)] private float _waitBeforeStart;
     [SerializeField, Range(0f, 5f)] private float _waitBeforeAttack;
 
     [Header("Spears")]
     [SerializeField] private Spear[] _spears;
-
-    private CancellationTokenSource _cancelTokenSource;
-    private CancellationToken _token;
     
-    private void Awake()
-    {
-        _cancelTokenSource = new CancellationTokenSource();
-        _token = _cancelTokenSource.Token;
-    }
+    CancellationTokenSource disableCancellation = new CancellationTokenSource();
+    CancellationTokenSource destroyCancellation = new CancellationTokenSource();
 
     private void OnEnable()
-    { 
-        Run(_token);
+    {
+        if (disableCancellation != null)
+        {
+            disableCancellation.Dispose();
+        }
+        disableCancellation = new CancellationTokenSource();
+        Run(disableCancellation);
     }
 
     private void OnDisable()
     {
-        _cancelTokenSource.Cancel();
+        disableCancellation.Cancel();
     }
 
     private void OnDestroy()
     {
-        _cancelTokenSource.Cancel();
+        destroyCancellation.Cancel();
+        destroyCancellation.Dispose();
     }
 
-    private async void Run(CancellationToken token)
+    private async void Run(CancellationTokenSource tokenSource)
     {
-        Task[] tasks = new Task[_spears.Length];
+        UniTask[] tasks = new UniTask[_spears.Length];
 
-        await AsyncExtensions.WaitForSeconds(_waitBeforeStart);
+        await UniTask.Delay(TimeSpan.FromSeconds(_waitBeforeStart));
 
-        while (token.IsCancellationRequested == false)
+        while (tokenSource.IsCancellationRequested == false)
         {
-            await AsyncExtensions.WaitForSeconds(_waitBeforeAttack);
-            
-            _attackSound.PlayOneShot(_attackSound.clip);
+            await UniTask.Delay(TimeSpan.FromSeconds(_waitBeforeAttack));
 
-            for (int i = 0; i < _spears.Length; i++)
+            if (tokenSource.IsCancellationRequested == false)
             {
-                tasks[i] = _spears[i].Attack();
+                _attackSound.PlayOneShot(_attackSound.clip);
+
+                for (int i = 0; i < _spears.Length; i++)
+                {
+                    tasks[i] = _spears[i].Attack();
+                }
             }
 
-            await Task.WhenAll(tasks);
+            await UniTask.WhenAll(tasks);    
         }
     }
 }

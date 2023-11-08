@@ -4,11 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueView : View<DialogueLine>//TODO: Refactoring
+public class DialogueView : View<DialogueLine>
 {
     [Header("Model component")]
     [SerializeField] private Dialogue _dialogue;
-    //[SerializeField] private AudioSource _audioSource;
 
     [Header("View components")] 
     [SerializeField] private Image _dialogueWindow;
@@ -31,11 +30,7 @@ public class DialogueView : View<DialogueLine>//TODO: Refactoring
 
     protected override void Render(DialogueLine dialogue)
     {
-        _dialogueWindow.color = dialogue.SpeakerProfile.BackgroundColor;
-        _speakerImage.sprite = dialogue.SpeakerProfile.Icon;
-        _speakerName.text = dialogue.SpeakerProfile.Name;
-        _dialogueText.color = dialogue.SpeakerProfile.FontColor;
-        _dialogueText.text = String.Empty;
+        SetView(dialogue);
 
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
@@ -47,13 +42,22 @@ public class DialogueView : View<DialogueLine>//TODO: Refactoring
     {
         var wait = new WaitForSeconds(_renderingTime);
         
-        foreach (var symbol in text)
+        foreach (char symbol in text)
         {
             _dialogueText.text += symbol;
-            //_audioSource.Stop();
-            //_audioSource.PlayOneShot(_audioSource.clip);
             yield return wait;
         }
+
+        _typingCoroutine = null;
+    }
+
+    private void SetView(DialogueLine dialogue)
+    {
+        _dialogueWindow.color = dialogue.SpeakerProfile.BackgroundColor;
+        _speakerImage.sprite = dialogue.SpeakerProfile.Icon;
+        _speakerName.text = dialogue.SpeakerProfile.Name;
+        _dialogueText.color = dialogue.SpeakerProfile.FontColor;
+        _dialogueText.text = String.Empty;
     }
 
     private void OnRenderRequired(DialogueLine dialogue, float renderingTime)

@@ -3,10 +3,9 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class PathMover : MonoBehaviour//TODO: NEED refactoring?
+public class PathMover : MonoBehaviour
 {
     [Header("Path settings")]
-    [SerializeField] private bool _isLooped;
     [SerializeField] private LoopType _loopType;
     [SerializeField] private float _waitBeforeStart;
 
@@ -37,12 +36,12 @@ public class PathMover : MonoBehaviour//TODO: NEED refactoring?
     }
     
     private void OnDrawGizmos()
-    {                                                                   
-        if (_wayPoints == null || _wayPoints.Length < 2)                          
-        {                                                               
-            return;                                                     
-        }                                                               
-                                                                       
+    {
+        int minWayPointsNumber = 2;
+        
+        if (_wayPoints == null || _wayPoints.Length < minWayPointsNumber)                          
+            return; 
+        
         for (int i = 0; i < _wayPoints.Length - 1; i++)                      
         {                                                               
             Gizmos.DrawLine(_wayPoints[i].position, _wayPoints[i + 1].position);  
@@ -52,12 +51,10 @@ public class PathMover : MonoBehaviour//TODO: NEED refactoring?
     private IEnumerator Move()
     {
         yield return new WaitForSeconds(_waitBeforeStart);
-        
-        int nextPointIndex = 0;
-        
+
         while (enabled)
         {
-            nextPointIndex = _currentPointIndex + _movingDirection;
+            int nextPointIndex = _currentPointIndex + _movingDirection;
             
             yield return GetTween(GetNextPoint(nextPointIndex)).WaitForCompletion();
             
@@ -65,7 +62,7 @@ public class PathMover : MonoBehaviour//TODO: NEED refactoring?
         }
     }
 
-    private Vector3 GetNextPoint(int nextIndex)//TODO: Refactoring or make strategy
+    private Vector3 GetNextPoint(int nextIndex)
     {
         if (_loopType == LoopType.Restart)
         {
@@ -75,8 +72,7 @@ public class PathMover : MonoBehaviour//TODO: NEED refactoring?
                 _currentPointIndex = 0;
             }
         }
-
-        if (_loopType == LoopType.Yoyo)
+        else if (_loopType == LoopType.Yoyo)
         {
             if (nextIndex >= _wayPoints.Length)
             {
@@ -98,10 +94,10 @@ public class PathMover : MonoBehaviour//TODO: NEED refactoring?
         return transform.DOMove(target, _duration)
             .SetEase(_ease)
             .SetSpeedBased(_isSpeedBased)
-            .OnPlay(InvokeMove);
+            .OnPlay(OnMove);
     }
 
-    private void InvokeMove()
+    private void OnMove()
     {
         Moved?.Invoke();
     }
