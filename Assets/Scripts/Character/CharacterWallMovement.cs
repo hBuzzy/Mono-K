@@ -1,17 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using States = CharacterStates.States;
+using States = CharacterData.States;
 
 public class CharacterWallMovement : MonoBehaviour
 {
     [SerializeField, Range(0f, 0.5f)] private float _slidingSpeed;
     
     private Character _character;
-    private Rigidbody2D _rigidbody;
     private PlayerInputActions _playerInput;
-    private CharacterStates _states;
-    private CharacterMovement _characterMovement;
+    private CharacterStateHandler _states;
     
     private bool _isSliding;
     private bool _isGrabbing;
@@ -56,10 +54,8 @@ public class CharacterWallMovement : MonoBehaviour
     {
         _playerInput = new PlayerInputActions();
         
-        _rigidbody = GetComponent<Rigidbody2D>();
         _character = GetComponent<Character>();
-        _states = GetComponent<CharacterStates>();
-        _characterMovement = GetComponent<CharacterMovement>();
+        _states = GetComponent<CharacterStateHandler>();
     }
     
     private void OnEnable()
@@ -79,7 +75,7 @@ public class CharacterWallMovement : MonoBehaviour
 
     private void Update()
     {
-        States characterState = _states.GetCurrentState();
+        States characterState = _states.CurrentState;
 
         if (characterState == States.Dash)
         {
@@ -88,23 +84,15 @@ public class CharacterWallMovement : MonoBehaviour
             IsSliding = false;
         }
 
-        UpdateStates();
-
-        if (IsGrabbing)
-        {
-            _rigidbody.gravityScale = 0f;
-            _rigidbody.velocity = Vector2.zero;
-        }
-        else if (IsSliding)
-        {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,
-                Mathf.Clamp(_rigidbody.velocity.y, -_slidingSpeed, float.MaxValue));
-        }
+        UpdateWallStates();
+        
+        if (IsSliding)
+            Slide();
     }
 
-    private void UpdateStates()
+    private void UpdateWallStates()
     {
-        if (_character.IsTouchingWall && _character.IsGrounded == false)
+        if (_character.IsSlideOnWall(out bool isLeft) && _character.Velocity.y <= 0)
         {
             if (_isGrabRequired && IsGrabbing == false)
             {
@@ -113,21 +101,22 @@ public class CharacterWallMovement : MonoBehaviour
             }
             else
             {
-                if (_characterMovement.MovementDirectionX != 0 && _rigidbody.velocity.y <= 0)
-                {
-                    IsSliding = true;
-                }
-                else
-                {
-                    IsSliding = false;
-                }
+                IsSliding = _character.InputX != 0f;
             }
         }
         else
-        { 
+        {
             IsSliding = false;
             IsGrabbing = false;
         }
+    }
+
+    private void Slide()
+    {
+        Vector2 velocity = _character.Velocity;
+        velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -_slidingSpeed, float.MaxValue));
+        
+        _character.SetVelocity(velocity);
     }
 
     private void OnGrabStarted(InputAction.CallbackContext context)

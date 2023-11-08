@@ -16,15 +16,14 @@ public class CharacterWallDetector : MonoBehaviour
     
     private bool _isTouchingWall;
     private bool _isTouchingLeft;
-    
-    public bool IsTouchingWall => _isTouchingWall;
-    public bool IsTouchingLeft => _isTouchingLeft;
 
     private void Update()
     {
-        bool isTouchingLeft = Physics2D.OverlapCircleNonAlloc(transform.position + _leftOffset,
+        Vector3 position = transform.position;
+        
+        bool isTouchingLeft = Physics2D.OverlapCircleNonAlloc(position + _leftOffset,
             _leftRadius, _collisions, _wallMask) > 0;
-        bool isTouchingRight = Physics2D.OverlapCircleNonAlloc(transform.position + _rightOffset,
+        bool isTouchingRight = Physics2D.OverlapCircleNonAlloc(position + _rightOffset,
             _rightRadius, _collisions, _wallMask) > 0;
 
         _isTouchingWall = (isTouchingLeft || isTouchingRight);
@@ -34,8 +33,21 @@ public class CharacterWallDetector : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = _isTouchingWall ? Color.green : Color.red;
+
+        Vector3 position = transform.position;
         
-        Gizmos.DrawWireSphere(transform.position + _leftOffset, _leftRadius);
-        Gizmos.DrawWireSphere(transform.position + _rightOffset, _rightRadius);
+        Gizmos.DrawWireSphere(position + _leftOffset, _leftRadius);
+        Gizmos.DrawWireSphere(position + _rightOffset, _rightRadius);
+    }
+
+    public bool IsTouchingWall()
+    {
+        return _isTouchingWall;
+    }
+
+    public bool IsTouchingWall(out bool isTouchingLeft)
+    {
+        isTouchingLeft = _isTouchingLeft;
+        return IsTouchingWall();
     }
 }

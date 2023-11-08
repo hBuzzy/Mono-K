@@ -31,7 +31,7 @@ public class CharacterRespawner : MonoBehaviour
     private void Start()
     {
         _currentPoint = _startPoint;
-        //TODO: MoveCharacterToCheckPoint();
+        _character.SetPosition(_currentPoint.RespawnPoint.position);
         _currentPoint.Check(false);
     }
 
