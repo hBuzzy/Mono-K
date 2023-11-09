@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class GamePause : MonoBehaviour
 {
-    [SerializeField] private PauseMenu _pausePauseMenu;
+    [SerializeField] private PauseMenu _pauseMenu;
     [SerializeField] private GameOver _gameOver;
 
     private const float PauseTimeScale = 0f;
@@ -23,20 +23,21 @@ public class GamePause : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            _playerInput = new PlayerInputActions();
         }
         else
         {
             Destroy(gameObject);
         }
-
-        _playerInput = new PlayerInputActions();
+        
+        Resume();
     }
 
     private void OnEnable()
     {
         _playerInput.UI.Enable();
         _playerInput.UI.OpenPauseMenu.performed += OnPauseMenuPerformed;
-        _pausePauseMenu.Closed += Resume;
+        _pauseMenu.Closed += Resume;
         _gameOver.GameOverChanged += OnGameOverChanged;
     }
 
@@ -44,7 +45,7 @@ public class GamePause : MonoBehaviour
     {
         _playerInput.UI.Disable();
         _playerInput.UI.OpenPauseMenu.performed -= OnPauseMenuPerformed;
-        _pausePauseMenu.Closed -= Resume;
+        _pauseMenu.Closed -= Resume;
         _gameOver.GameOverChanged += OnGameOverChanged;
     }
 
@@ -68,7 +69,7 @@ public class GamePause : MonoBehaviour
 
     private void OnPauseMenuPerformed(InputAction.CallbackContext obj)
     {
-        _pausePauseMenu.gameObject.SetActive(true);
+        _pauseMenu.gameObject.SetActive(true);
         Pause();
     }
 

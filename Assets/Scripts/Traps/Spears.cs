@@ -5,56 +5,38 @@ using UnityEngine;
 
 public class Spears : MonoBehaviour
 {
-    [SerializeField] private AudioSource _attackSound;
     [SerializeField, Range(0f, 5f)] private float _waitBeforeStart;
     [SerializeField, Range(0f, 5f)] private float _waitBeforeAttack;
 
     [Header("Spears")]
     [SerializeField] private Spear[] _spears;
     
-    //TODO:
-    CancellationTokenSource _disableCancellation = new ();
-    CancellationTokenSource _destroyCancellation = new ();
-
-    private void OnEnable()
+    private AudioSource _attackSound;
+    private CancellationToken _cancellationToken;
+    
+    private void Start()
     {
-        if (_disableCancellation != null)
-        {
-            _disableCancellation.Dispose();
-        }
-        _disableCancellation = new CancellationTokenSource();
-        Run(_disableCancellation);
+        _cancellationToken = new CancellationToken();
+        _attackSound = GetComponent<AudioSource>();
+
+        Run(_cancellationToken);
     }
 
-    private void OnDisable()
-    {
-        _disableCancellation.Cancel();
-    }
-
-    private void OnDestroy()
-    {
-        _destroyCancellation.Cancel();
-        _destroyCancellation.Dispose();
-    }
-
-    private async void Run(CancellationTokenSource tokenSource)
+    private async void Run(CancellationToken token)
     {
         UniTask[] tasks = new UniTask[_spears.Length];
 
-        await UniTask.Delay(TimeSpan.FromSeconds(_waitBeforeStart));
+        await UniTask.Delay(TimeSpan.FromSeconds(_waitBeforeStart), cancellationToken: token);
 
-        while (tokenSource.IsCancellationRequested == false)
+        while (token.IsCancellationRequested == false)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(_waitBeforeAttack));
+            await UniTask.Delay(TimeSpan.FromSeconds(_waitBeforeAttack), cancellationToken: token);
 
-            if (tokenSource.IsCancellationRequested == false)
+            _attackSound.PlayOneShot(_attackSound.clip);
+
+            for (int i = 0; i < _spears.Length; i++)
             {
-                _attackSound.PlayOneShot(_attackSound.clip);
-
-                for (int i = 0; i < _spears.Length; i++)
-                {
-                    tasks[i] = _spears[i].Attack();
-                }
+                tasks[i] = _spears[i].Attack(token);
             }
 
             await UniTask.WhenAll(tasks);    

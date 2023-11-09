@@ -31,7 +31,7 @@ public class CharacterRespawner : MonoBehaviour
     private void Start()
     {
         _currentPoint = _startPoint;
-        _character.SetPosition(_currentPoint.RespawnPoint.position);
+        SetPlayerPosition();
         _currentPoint.Check(false);
     }
 
@@ -44,11 +44,16 @@ public class CharacterRespawner : MonoBehaviour
     public IEnumerator RespawnCharacter()
     {
         yield return _deathScreen.Show();
-        
-        _character.SetPosition(_currentPoint.RespawnPoint.position);
+
+        SetPlayerPosition();
 
         yield return new WaitForSeconds(_deathScreenDuration);
 
         yield return _deathScreen.Hide();
+    }
+
+    private void SetPlayerPosition()
+    {
+        _character.SetPosition(_currentPoint.RespawnPoint.position);
     }
 }

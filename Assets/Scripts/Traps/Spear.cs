@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -17,11 +18,11 @@ public class Spear : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public async UniTask Attack()
+    public async UniTask Attack(CancellationToken cancellationToken)
     {
         AnimateState(_attack);
 
-        await UniTask.Delay(TimeSpan.FromSeconds(_shineTime));
+        await UniTask.Delay(TimeSpan.FromSeconds(_shineTime), cancellationToken: cancellationToken);
         
         AnimateState(_backToNormal);
     }
