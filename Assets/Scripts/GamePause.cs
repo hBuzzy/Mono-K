@@ -22,14 +22,13 @@ public class GamePause : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            _playerInput = new PlayerInputActions();
         }
         else
         {
             Destroy(gameObject);
         }
         
+        _playerInput = new PlayerInputActions();
         Resume();
     }
 
