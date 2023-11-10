@@ -29,7 +29,7 @@ public class CharacterMovement : MonoBehaviour
     private bool _isFacingLeft;
 
     public Vector2 MoveInput => _moveInput;
-    public bool IsFacingfLeft => _isFacingLeft;
+    public bool IsFacingLeft => _isFacingLeft;
     
     private void Awake()
     {

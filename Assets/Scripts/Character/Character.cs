@@ -24,7 +24,7 @@ public class Character : MonoBehaviour
     private bool _isGamePaused;
     private bool _isCutsceneActive;
     
-    public bool IsFacingLeft => _movement.IsFacingfLeft;
+    public bool IsFacingLeft => _movement.IsFacingLeft;
     public float InputX => _movement.MoveInput.x;
     public float GravityScale => _rigidbody.gravityScale;
     public bool CanMove => _canMove;
@@ -81,10 +81,10 @@ public class Character : MonoBehaviour
     {
         if (_wallDetector.IsTouchingWall(out isOnLeft) && IsGrounded == false)
         {
-            if (_movement.IsFacingfLeft && isOnLeft)
+            if (_movement.IsFacingLeft && isOnLeft)
                 return true;
             
-            if (_movement.IsFacingfLeft == false && isOnLeft == false)
+            if (_movement.IsFacingLeft == false && isOnLeft == false)
                 return true; 
 
             return false;
